@@ -1,0 +1,116 @@
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+
+DirectoryIndex page137462456.html
+
+RewriteEngine On
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} /robots.txt
+RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
+RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
+RewriteRule ^booking/15$ page53959051.html [NC]
+RewriteRule ^booking/15/$ page53959051.html [NC]
+
+RewriteRule ^tochka-vhoda$ page155407766.html [NC]
+RewriteRule ^tochka-vhoda/$ page155407766.html [NC]
+
+RewriteRule ^old$ page47014073.html [NC]
+RewriteRule ^old/$ page47014073.html [NC]
+
+RewriteRule ^soglasie-na-rassylku$ page155347966.html [NC]
+RewriteRule ^soglasie-na-rassylku/$ page155347966.html [NC]
+
+RewriteRule ^ai-class$ page155408376.html [NC]
+RewriteRule ^ai-class/$ page155408376.html [NC]
+
+RewriteRule ^registration$ page51691963.html [NC]
+RewriteRule ^registration/$ page51691963.html [NC]
+
+RewriteRule ^booking/30$ page54052193.html [NC]
+RewriteRule ^booking/30/$ page54052193.html [NC]
+
+RewriteRule ^booking/60$ page54052815.html [NC]
+RewriteRule ^booking/60/$ page54052815.html [NC]
+
+RewriteRule ^booking/90$ page54052831.html [NC]
+RewriteRule ^booking/90/$ page54052831.html [NC]
+
+RewriteRule ^booking$ page54053171.html [NC]
+RewriteRule ^booking/$ page54053171.html [NC]
+
+RewriteRule ^blog$ page142046366.html [NC]
+RewriteRule ^blog/$ page142046366.html [NC]
+
+RewriteRule ^soglasie-na-obrabotku-personalnyh-dannyh$ page155395206.html [NC]
+RewriteRule ^soglasie-na-obrabotku-personalnyh-dannyh/$ page155395206.html [NC]
+
+RewriteRule ^publichnaya-oferta$ page155395496.html [NC]
+RewriteRule ^publichnaya-oferta/$ page155395496.html [NC]
+
+RewriteRule ^politika-obrabotki-personalnyh-dannyh$ page155407586.html [NC]
+RewriteRule ^politika-obrabotki-personalnyh-dannyh/$ page155407586.html [NC]
+
+RewriteRule ^politika-ispolzovaniya-faylov-cookie$ page155407676.html [NC]
+RewriteRule ^politika-ispolzovaniya-faylov-cookie/$ page155407676.html [NC]
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} /robots.txt
+RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
+RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
+RewriteRule ^booking/15$ page53959051.html [NC]
+RewriteRule ^booking/15/$ page53959051.html [NC]
+
+RewriteRule ^tochka-vhoda$ page155407766.html [NC]
+RewriteRule ^tochka-vhoda/$ page155407766.html [NC]
+
+RewriteRule ^old$ page47014073.html [NC]
+RewriteRule ^old/$ page47014073.html [NC]
+
+RewriteRule ^soglasie-na-rassylku$ page155347966.html [NC]
+RewriteRule ^soglasie-na-rassylku/$ page155347966.html [NC]
+
+RewriteRule ^ai-class$ page155408376.html [NC]
+RewriteRule ^ai-class/$ page155408376.html [NC]
+
+RewriteRule ^registration$ page51691963.html [NC]
+RewriteRule ^registration/$ page51691963.html [NC]
+
+RewriteRule ^booking/30$ page54052193.html [NC]
+RewriteRule ^booking/30/$ page54052193.html [NC]
+
+RewriteRule ^booking/60$ page54052815.html [NC]
+RewriteRule ^booking/60/$ page54052815.html [NC]
+
+RewriteRule ^booking/90$ page54052831.html [NC]
+RewriteRule ^booking/90/$ page54052831.html [NC]
+
+RewriteRule ^booking$ page54053171.html [NC]
+RewriteRule ^booking/$ page54053171.html [NC]
+
+RewriteRule ^blog$ page142046366.html [NC]
+RewriteRule ^blog/$ page142046366.html [NC]
+
+RewriteRule ^soglasie-na-obrabotku-personalnyh-dannyh$ page155395206.html [NC]
+RewriteRule ^soglasie-na-obrabotku-personalnyh-dannyh/$ page155395206.html [NC]
+
+RewriteRule ^publichnaya-oferta$ page155395496.html [NC]
+RewriteRule ^publichnaya-oferta/$ page155395496.html [NC]
+
+RewriteRule ^politika-obrabotki-personalnyh-dannyh$ page155407586.html [NC]
+RewriteRule ^politika-obrabotki-personalnyh-dannyh/$ page155407586.html [NC]
+
+RewriteRule ^politika-ispolzovaniya-faylov-cookie$ page155407676.html [NC]
+RewriteRule ^politika-ispolzovaniya-faylov-cookie/$ page155407676.html [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog(?:/([a-z0-9_-]+(?:/[a-z0-9_-]+)*))?/?$ http://127.0.0.1:39215%{REQUEST_URI}?feeduid=361761399901 [P,L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^material(?:/([a-z0-9_-]+(?:/[a-z0-9_-]+)*))?/?$ http://127.0.0.1:39215%{REQUEST_URI}?feeduid=197049015791 [P,L,QSA]
+

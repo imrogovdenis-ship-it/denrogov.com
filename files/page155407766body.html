@@ -1,0 +1,1075 @@
+<!--allrecords--> <div id="allrecords" data-tilda-export="yes" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="9160071" data-tilda-page-id="155407766" data-tilda-page-alias="tochka-vhoda" data-tilda-formskey="d5efa47f36a1f3a6a690c2b009160071" data-tilda-stat-scroll="yes" data-tilda-lazy="yes" data-tilda-root-zone="com" data-tilda-ts="y" data-tilda-project-country="RU"> <div id="rec2490542671" class="r t-rec" style=" " data-animationappear="off" data-record-type="131"> <!-- T123 --> <div class="t123"> <div class="t-container_100 "> <div class="t-width t-width_100 "> <!-- nominify begin --> <!-- =============================================================
+     ROGOV PRO — ТЕСТ «Точка входа в ИИ»
+     Готово к вставке в Tilda, блок T123 (Другое → HTML-код).
+     Вставь ВЕСЬ этот код в поле «Контент» блока T123.
+     ВНИМАНИЕ: ссылку сбора заявок ищи ниже по метке
+     «ВСТАВЬ СЮДА ССЫЛКУ GOOGLE SHEETS».
+     ============================================================= --> <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{--blue:#50B1F9;--navy:#0B1220;--ink:#0F0F12;--gray:#6B7280;--paper:#FAFAFB;--line:#E6E8EC;
+  min-height:100vh;background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ---------- общие ---------- */
+.eyebrow{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue)}
+.eb-line{display:block;width:30px;height:2px;background:var(--blue);margin-top:9px;border-radius:2px}
+.b{color:var(--blue)}
+
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#06121F;border:0;border-radius:14px;
+  padding:16px 26px;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;cursor:pointer;
+  transition:transform .18s cubic-bezier(.23,1,.32,1),box-shadow .18s;box-shadow:0 8px 24px rgba(80,177,249,.28)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(80,177,249,.4)}
+.btn-primary:active{transform:scale(.97)}
+.btn-primary:disabled{opacity:.35;cursor:default;transform:none;box-shadow:none}
+
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);color:var(--ink);
+  border-radius:14px;padding:14px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;cursor:pointer;
+  transition:transform .18s cubic-bezier(.23,1,.32,1),border-color .18s}
+.btn-ghost:hover{transform:translateY(-1px);border-color:#C9CFD8}
+.btn-ghost:active{transform:scale(.97)}
+
+/* ---------- обложка ---------- */
+.cover{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:56px 22px;color:#fff;
+  background:radial-gradient(720px 520px at 78% -8%,rgba(80,177,249,.32),transparent 62%),
+             radial-gradient(560px 460px at -12% 108%,rgba(80,177,249,.14),transparent 60%),var(--navy)}
+.cover-in{max-width:620px;width:100%}
+.h1{font-family:'Inter Tight',sans-serif;font-weight:900;line-height:1.04;letter-spacing:-.02em;font-size:clamp(34px,7.4vw,56px);margin:22px 0 0}
+.cover-sub{margin:18px 0 0;color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;max-width:52ch}
+.cover-list{margin:22px 0 0;display:grid;gap:9px}
+.cover-li{display:flex;gap:10px;color:rgba(255,255,255,.85);font-size:14.5px;line-height:1.5}
+.cover-li .arr{color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0 0}
+.stat{border:1px solid rgba(255,255,255,.14);border-left:3px solid var(--blue);border-radius:12px;padding:14px 12px;background:rgba(255,255,255,.03)}
+.stat-v{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(22px,4.5vw,30px);color:var(--blue);line-height:1}
+.stat-l{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:7px;line-height:1.5}
+.cover-cta{margin-top:30px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.cover-note{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:rgba(255,255,255,.5);text-transform:uppercase}
+
+/* ---------- страница ---------- */
+.page{max-width:720px;margin:0 auto;padding:0 20px 56px}
+
+/* ---------- опрос ---------- */
+.shead{position:sticky;top:0;z-index:20;background:rgba(250,250,251,.93);backdrop-filter:blur(8px);
+  margin:0 -20px;padding:14px 20px 12px;border-bottom:1px solid var(--line)}
+.shead-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px}
+.brand-min{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase}
+.counter{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px;color:var(--gray)}
+.progress{height:4px;background:#E9EBEF;border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--blue);border-radius:99px;transition:width .35s cubic-bezier(.23,1,.32,1)}
+
+.qwrap{padding-top:30px}
+.qwrap.anim{animation:qIn .28s cubic-bezier(.23,1,.32,1) both}
+@keyframes qIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.qnum{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(52px,12vw,72px);line-height:1;color:var(--blue);letter-spacing:-.02em}
+.qtitle{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(21px,4.6vw,27px);line-height:1.25;letter-spacing:-.01em;margin:10px 0 6px}
+.qhint{color:var(--gray);font-size:13.5px;margin:0}
+.qtag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
+  border:1px solid rgba(80,177,249,.45);border-radius:99px;padding:4px 10px;margin-top:10px}
+
+.opts{display:grid;gap:10px;margin-top:22px}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:2px solid var(--line);background:#fff;border-radius:14px;
+  padding:14px 16px;cursor:pointer;font-size:15px;line-height:1.4;color:var(--ink);
+  transition:transform .2s cubic-bezier(.23,1,.32,1),border-color .2s,background .2s,box-shadow .2s}
+.opt:hover{transform:translateY(-1px);border-color:#C9CFD8;box-shadow:0 4px 14px rgba(15,15,18,.05)}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--blue);background:rgba(80,177,249,.08)}
+.ind{flex:0 0 auto;width:20px;height:20px;border:2px solid #C9CFD8;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ind.rd{border-radius:50%}
+.ind.sq{border-radius:6px}
+.opt.sel .ind{border-color:var(--blue)}
+.opt.sel .ind.rd::after{content:"";width:9px;height:9px;background:var(--blue);border-radius:50%}
+.opt.sel .ind.sq{background:var(--blue)}
+
+.scale{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;margin-top:24px}
+@media(max-width:600px){.scale{grid-template-columns:repeat(5,1fr)}}
+.sc{aspect-ratio:1;border:2px solid var(--line);background:#fff;border-radius:12px;font-family:'Inter Tight',sans-serif;font-weight:700;
+  font-size:15px;color:var(--ink);cursor:pointer;transition:all .18s cubic-bezier(.23,1,.32,1)}
+.sc:hover{transform:translateY(-1px);border-color:#C9CFD8}
+.sc:active{transform:scale(.94)}
+.sc.sel{background:var(--blue);border-color:var(--blue);color:#fff}
+.scale-labels{display:flex;justify-content:space-between;gap:16px;margin-top:10px;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;letter-spacing:.04em;color:var(--gray);text-transform:uppercase}
+.scale-labels span:last-child{text-align:right}
+
+.tin,.tarea{width:100%;border:2px solid var(--line);border-radius:14px;background:#fff;padding:14px 16px;font-size:15px;
+  font-family:'Inter',sans-serif;color:var(--ink);margin-top:22px;transition:border-color .2s;outline:none}
+.tin:focus,.tarea:focus{border-color:var(--blue)}
+.tarea{min-height:140px;resize:vertical;line-height:1.6}
+
+.snav{margin-top:30px}
+.dots{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:99px;background:#D6DAE0;border:0;padding:0;cursor:pointer;transition:all .25s cubic-bezier(.23,1,.32,1)}
+.dot.was{background:rgba(80,177,249,.45)}
+.dot.now{background:var(--blue);width:22px}
+.dot:disabled{cursor:default}
+.nav-row{display:flex;justify-content:space-between;gap:12px}
+
+/* ---------- результаты ---------- */
+.hero{border-radius:24px;color:#fff;padding:clamp(26px,5vw,44px);margin-top:22px;
+  background:radial-gradient(640px 420px at 82% -12%,rgba(80,177,249,.34),transparent 62%),var(--navy)}
+.hero-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(30px,6.6vw,46px);line-height:1.06;letter-spacing:-.02em;margin:16px 0 8px;color:#fff}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.hero-desc{color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.65;max-width:56ch;margin:12px 0 0}
+.idx-row{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.idx-num{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(78px,20vw,120px);line-height:.9;color:var(--blue);letter-spacing:-.03em}
+.idx-meta{padding-bottom:8px;min-width:200px;flex:1}
+.idx-cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.idx-lvl{display:inline-block;margin-top:9px;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px;letter-spacing:.1em;
+  color:var(--blue);border:1px solid rgba(80,177,249,.5);border-radius:99px;padding:5px 12px}
+.idx-note{margin-top:10px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.55;max-width:46ch}
+
+.sect{margin-top:44px}
+.h2{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,4.8vw,28px);letter-spacing:-.01em;margin:14px 0 0}
+.sect-sub{color:var(--gray);font-size:14.5px;line-height:1.6;margin:8px 0 0;max-width:60ch}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px}
+
+.bars{display:grid;gap:16px}
+.bar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.bar-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px}
+.bar-val{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:12px;color:var(--blue)}
+.track{height:8px;border-radius:99px;background:#ECEEF2;overflow:hidden}
+.fill{height:100%;background:var(--blue);border-radius:99px;width:0;transition:width .9s cubic-bezier(.23,1,.32,1)}
+
+.grid2{display:grid;gap:12px;margin-top:20px}
+@media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+.grid1{display:grid;gap:12px;margin-top:20px}
+.ncard{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:14px;padding:16px 18px}
+.ncard-n{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:13px;color:var(--blue);letter-spacing:.05em}
+.ncard-t{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;line-height:1.3;margin:6px 0 5px}
+.ncard-d{color:var(--gray);font-size:14px;line-height:1.6}
+
+.tool-row{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.tool-row:first-of-type{border-top:0;padding-top:2px}
+.tool-arr{color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:600;flex:0 0 auto}
+.tool-t{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:15px;line-height:1.35}
+.tool-d{color:var(--gray);font-size:13.5px;line-height:1.55;margin-top:2px}
+
+  background:radial-gradient(520px 360px at 15% -30%,rgba(80,177,249,.3),transparent 60%),var(--navy)}
+
+
+.footer{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+
+/* ---------- приглашение в группу ---------- */
+.invite{border-radius:24px;color:#fff;padding:clamp(28px,5vw,46px);margin-top:20px;
+  background:radial-gradient(680px 460px at 84% -14%,rgba(80,177,249,.36),transparent 62%),
+             radial-gradient(520px 420px at -12% 112%,rgba(80,177,249,.14),transparent 60%),var(--navy)}
+.invite-course{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(32px,7vw,50px);line-height:1;letter-spacing:-.02em;margin:16px 0 0;color:#fff}
+.invite-lead{color:rgba(255,255,255,.78);font-size:16px;line-height:1.65;max-width:54ch;margin:16px 0 0}
+.invite-lead .b{color:var(--blue)}
+.invite-quote{border-left:3px solid var(--blue);padding:2px 0 2px 16px;margin:22px 0 0;
+  font-family:'Inter Tight',sans-serif;font-weight:800;font-size:17px;line-height:1.4;color:#fff;max-width:52ch}
+.invite-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 0}
+.invite-stat{border:1px solid rgba(255,255,255,.14);border-left:3px solid var(--blue);border-radius:12px;padding:14px 12px;background:rgba(255,255,255,.03)}
+.invite-stat-v{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(24px,5vw,32px);color:var(--blue);line-height:1}
+.invite-stat-l{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:7px;line-height:1.5}
+.invite-list{margin:26px 0 0;display:grid;gap:11px}
+.invite-li{display:flex;gap:11px;color:rgba(255,255,255,.85);font-size:14.5px;line-height:1.55}
+.invite-li .arr{color:var(--blue);font-family:'JetBrains Mono',monospace;font-weight:600;flex:0 0 auto}
+.invite-li b{color:#fff;font-weight:700}
+.invite-price{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  margin:28px 0 0;padding:18px 20px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(255,255,255,.03)}
+.invite-price-cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.invite-price-sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;color:rgba(255,255,255,.5);margin-top:6px}
+.invite-price-v{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(26px,6vw,36px);color:var(--blue);line-height:1;white-space:nowrap}
+.invite-cta{margin:26px 0 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-on-dark{display:inline-flex;align-items:center;gap:8px;background:transparent;border:2px solid rgba(255,255,255,.28);color:#fff;
+  border-radius:14px;padding:14px 22px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;
+  transition:transform .18s cubic-bezier(.23,1,.32,1),border-color .18s}
+.btn-on-dark:hover{transform:translateY(-1px);border-color:var(--blue)}
+.btn-on-dark:active{transform:scale(.97)}
+.invite-fine{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;color:rgba(255,255,255,.4);text-transform:uppercase;margin:18px 0 0;line-height:1.7}
+
+/* ---------- форма контактов ---------- */
+.lead{border-radius:24px;color:#fff;padding:clamp(26px,5vw,44px);margin-top:22px;
+  background:radial-gradient(660px 460px at 82% -14%,rgba(80,177,249,.34),transparent 62%),var(--navy)}
+.lead-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(28px,6vw,42px);line-height:1.05;letter-spacing:-.02em;margin:16px 0 0;color:#fff}
+.lead-sub{color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.6;max-width:52ch;margin:14px 0 0}
+.lead-form{margin:26px 0 0;display:grid;gap:16px}
+.lead-field{display:grid;gap:8px}
+.lead-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.lead-label .req{color:var(--blue)}
+.lead-in{width:100%;border:2px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(255,255,255,.05);
+  padding:14px 16px;font-size:15px;font-family:'Inter',sans-serif;color:#fff;outline:none;transition:border-color .2s}
+.lead-in::placeholder{color:rgba(255,255,255,.4)}
+.lead-in:focus{border-color:var(--blue)}
+.lead-consent{display:flex;gap:12px;align-items:flex-start;margin:4px 0 0;cursor:pointer;text-align:left}
+.lead-check{flex:0 0 auto;width:22px;height:22px;margin-top:1px;border:2px solid rgba(255,255,255,.3);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;background:transparent}
+.lead-consent.on .lead-check{background:var(--blue);border-color:var(--blue)}
+.lead-consent-txt{color:rgba(255,255,255,.7);font-size:12.5px;line-height:1.55}
+.lead-consent-txt a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(80,177,249,.4)}
+.lead-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0 0}
+.lead-skip{background:transparent;border:0;color:rgba(255,255,255,.5);font-family:'Inter Tight',sans-serif;font-weight:700;
+  font-size:14px;cursor:pointer;padding:14px 8px;transition:color .2s}
+.lead-skip:hover{color:rgba(255,255,255,.8)}
+.lead-err{color:#FF9B9B;font-size:13px;line-height:1.5;margin:2px 0 0;min-height:0}
+.lead-done{border-radius:20px;color:#fff;padding:clamp(24px,4.6vw,36px);margin-top:22px;text-align:center;
+  background:radial-gradient(480px 340px at 50% -30%,rgba(80,177,249,.3),transparent 60%),var(--navy)}
+.lead-done-ic{width:52px;height:52px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.lead-done-t{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:22px;color:#fff}
+.lead-done-d{color:rgba(255,255,255,.72);font-size:14.5px;line-height:1.6;max-width:44ch;margin:10px auto 0}
+.foot-name{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.foot-contact{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11.5px;letter-spacing:.08em;color:var(--blue)}
+.foot-contact a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(80,177,249,.4)}
+.disclaimer{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--gray);text-transform:uppercase;line-height:1.8}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style> <div id="app"></div> <script>
+/* ============================================================
+   НАСТРОЙКА СБОРА ДАННЫХ В GOOGLE ТАБЛИЦУ
+   1) Открой таблицу → Расширения → Apps Script
+   2) Вставь код из файла apps-script.gs → Deploy → New deployment
+      → Web app → Execute as: Me · Who has access: Anyone
+   3) Скопируй URL веб-приложения (…/exec) и вставь ниже в кавычки
+   Пока поле пустое — тест работает, данные никуда не уходят.
+   ============================================================ */
+/* ============================================================ */
+    /* ===  ВСТАВЬ СЮДА ССЫЛКУ GOOGLE SHEETS (endpoint)        === */
+    /* ===  Пока пусто — заявки НЕ отправляются.               === */
+    /* ===  Пример: var SHEETS_ENDPOINT = "https://script.google.com/macros/s/XXXX/exec"; === */
+    /* ============================================================ */
+    var SHEETS_ENDPOINT = "";
+var TEST_VERSION = "v1-course";
+/* Кому дается согласие на обработку ПДн — подставь свои данные (ИП/самозанятый/ФИО). */
+var PDN_OPERATOR = "Денис Рогов (Rogov Pro)";
+var PDN_POLICY_URL = "https://denrogov.com/politika-obrabotki-personalnyh-dannyh";
+var SRC = "";
+try { SRC = new URLSearchParams(location.search).get("src") || ""; } catch (e) {}
+
+/* ============================================================
+   ROGOV PRO · ИИ-ТЕСТ · данные и аналитика
+   ============================================================ */
+
+var SECTIONS = [
+  { title: "Образование", questions: [
+    { id: "q1", type: "single", title: "Какой у тебя уровень образования?", options: [
+      "Среднее образование", "Техникум или колледж", "Бакалавриат (в процессе)", "Бакалавриат (завершено)",
+      "Магистратура (в процессе)", "Магистратура (завершена)", "Аспирантура или ученая степень", "Самообразование" ] },
+    { id: "q2", type: "single", title: "В какой области ты учился(ась)?", options: [
+      "Гуманитарные науки", "Искусство и дизайн", "Социальные науки", "Бизнес и управление",
+      "Маркетинг и коммуникации", "STEM: наука, технологии, инженерия", "Медицина", "Юриспруденция", "Другое" ] },
+    { id: "q3", type: "single", title: "Твой текущий профессиональный статус", options: [
+      "Студент", "Работаю (полная занятость)", "Работаю (частичная занятость)", "Фрилансер",
+      "Предприниматель", "Декрет или перерыв в карьере", "В поиске работы", "Меняю сферу деятельности" ] },
+    { id: "q4", type: "text", title: "Твоя основная профессия или должность", placeholder: "Например: маркетолог, учитель, дизайнер…" },
+    { id: "q5", type: "single", title: "Сколько лет опыта работы у тебя за плечами?", options: [
+      "Меньше 1 года", "1–3 года", "3–5 лет", "5–10 лет", "Больше 10 лет" ] }
+  ]},
+  { title: "Опыт", questions: [
+    { id: "q6", type: "multi", title: "В каких областях ты работал(а) или работаешь?", hint: "Можно выбрать несколько", options: [
+      "Копирайтинг и тексты", "Графический дизайн", "Видеопроизводство", "Фотография", "SMM",
+      "Маркетинг и реклама", "Преподавание и коучинг", "Управление проектами", "Анализ данных",
+      "Программирование", "Продажи", "Финансы", "Клиентский сервис", "Музыка и аудио", "Организация мероприятий" ] },
+    { id: "q7", type: "textarea", optional: true, title: "Главное профессиональное достижение, которым гордишься", placeholder: "Пара предложений своими словами…" },
+    { id: "q8", type: "single", title: "Есть опыт работы на себя — фриланс или свой проект?", options: [
+      "Да, это мой основной доход", "Да, как подработка", "Пробовал(а) — не получилось",
+      "Нет, но хочу попробовать", "Нет, предпочитаю стабильность" ] },
+    { id: "q9", type: "multi", title: "Какими инструментами уже пользуешься?", hint: "Можно выбрать несколько", options: [
+      "Canva, Figma или Adobe", "Office, Google Workspace", "Видеоредакторы", "Соцсети и планировщики",
+      "CRM, Notion, Trello", "Email-маркетинг", "Аналитика: метрики, таблицы", "ИИ-инструменты (ChatGPT и другие)",
+      "Программирование или no-code", "Пока ничего из списка" ] },
+    { id: "q10", type: "scale", title: "Насколько легко осваиваешь новые программы и сервисы?", min: "Очень сложно", max: "Обожаю новые инструменты" }
+  ]},
+  { title: "Навыки", questions: [
+    { id: "q11", type: "multi", max: 5, title: "Твои сильнейшие навыки", hint: "Выбери до 5 самых сильных", options: [
+      "Письменная коммуникация", "Визуальное мышление", "Аналитическое мышление", "Сторителлинг",
+      "Организация и планирование", "Эмпатия и работа с людьми", "Технические способности",
+      "Творческое решение проблем", "Исследование и поиск информации", "Презентации и выступления",
+      "Продажи и убеждение", "Лидерство" ] },
+    { id: "q12", type: "scale", title: "Как оцениваешь свои навыки письма?", min: "Требует развития", max: "Профессиональный уровень" },
+    { id: "q13", type: "scale", title: "Насколько развит твой визуальный вкус?", min: "Не моя сторона", max: "Хорошо развитый вкус" },
+    { id: "q14", type: "scale", title: "Насколько ты аналитический человек?", min: "Предпочитаю интуицию", max: "Очень системный подход" },
+    { id: "q15", type: "single", title: "С чего обычно начинаешь сложную задачу?", options: [
+      "Исследую тему глубоко", "Генерирую много идей", "Спрашиваю опытных людей",
+      "Строю структурный план", "Сразу начинаю делать", "Ищу паттерны и закономерности" ] }
+  ]},
+  { title: "Интересы", questions: [
+    { id: "q16", type: "multi", title: "Какие темы затягивают тебя вне работы?", hint: "Можно выбрать несколько", options: [
+      "Технологии и ИИ", "Искусство и дизайн", "Писательство", "Бизнес и инвестиции", "Психология",
+      "Образование", "Здоровье и спорт", "Наука", "Музыка", "Видео и кино", "Социальные проекты", "Игры" ] },
+    { id: "q17", type: "textarea", optional: true, title: "Тема, о которой можешь говорить часами", placeholder: "Что это и почему цепляет…" },
+    { id: "q18", type: "single", title: "Твой естественный формат самовыражения", options: [
+      "Слова и тексты", "Визуальные образы", "Голос и звук", "Данные и системы", "Отношения и люди", "Пока не уверен(а)" ] },
+    { id: "q19", type: "multi", title: "Какие направления ИИ тебе интересны?", hint: "Можно выбрать несколько", options: [
+      "Создание контента с ИИ", "ИИ-дизайн и генерация изображений", "ИИ в образовании", "ИИ в маркетинге",
+      "Анализ данных с ИИ", "Автоматизация процессов", "ИИ в медицине и здоровье",
+      "Создание ИИ-продуктов", "Обучение других работе с ИИ", "ИИ в творческих искусствах" ] }
+  ]},
+  { title: "Стиль работы", questions: [
+    { id: "q20", type: "single", title: "В какой среде тебе комфортнее работать?", options: [
+      "Полностью удаленно", "Гибридный формат", "Офис и команда", "Одиночные проекты", "Легко адаптируюсь" ] },
+    { id: "q21", type: "single", title: "Как тебе удобнее организовывать работу?", options: [
+      "Четкие задачи и дедлайны", "Гибко и самостоятельно", "Проектный формат", "Свободное творчество", "Смешанный формат" ] },
+    { id: "q22", type: "scale", title: "Насколько важен доход по сравнению с интересом к делу?", min: "Важнее самореализация", max: "Доход — главный приоритет" },
+    { id: "q23", type: "single", title: "Сколько часов в неделю готов(а) вкладывать в ИИ-навыки?", options: [
+      "Меньше 2 часов", "2–5 часов", "5–10 часов", "10–20 часов", "Больше 20 часов — это главный фокус" ] }
+  ]},
+  { title: "Цели", questions: [
+    { id: "q24", type: "single", title: "Главная цель на ближайший год", options: [
+      "Найти работу с ИИ-навыками", "Увеличить доход на текущем месте", "Построить свой бизнес или фриланс",
+      "Автоматизировать свою работу", "Оставаться востребованным специалистом", "Исследовать увлечение" ] },
+    { id: "q25", type: "single", title: "Целевой доход в месяц через два года", options: [
+      "До 30 тысяч ₽", "30–80 тысяч ₽", "80–150 тысяч ₽", "150–400 тысяч ₽", "Больше 400 тысяч ₽" ] },
+    { id: "q26", type: "multi", title: "Что сейчас мешает двигаться к цели?", hint: "Можно выбрать несколько", options: [
+      "Не знаю, с чего начать", "Нет технических навыков", "Не хватает времени",
+      "Кажется, мои навыки не ценны", "Боюсь конкуренции", "Не хватает уверенности",
+      "Не знаю, как найти клиентов", "Не могу определиться с направлением" ] },
+    { id: "q27", type: "textarea", optional: true, title: "Опиши свой успех через пять лет", placeholder: "Как выглядит твоя жизнь и работа, если все получилось…" }
+  ]}
+];
+
+var QUESTIONS = [];
+SECTIONS.forEach(function(s, si){ s.questions.forEach(function(q){ var c = Object.assign({}, q); c.section = si; QUESTIONS.push(c); }); });
+var TOTAL = QUESTIONS.length;
+var SECTION_FIRST = SECTIONS.map(function(s, si){ for (var i = 0; i < QUESTIONS.length; i++) { if (QUESTIONS[i].section === si) return i; } return 0; });
+
+var DIM_ORDER = ["creative", "analytical", "tech", "communication", "drive"];
+var DIM_RU = { creative: "Творчество", analytical: "Аналитика", tech: "Техника", communication: "Коммуникация", drive: "Драйв" };
+
+var ARCHETYPES = {
+  "creative+communication": {
+    title: "ИИ-Контентмейкер", tag: "Контент · медиа · сторителлинг",
+    desc: "Ты соединяешь смыслы и подачу — редкая связка. С ИИ ты закрываешь полный цикл: идея, текст, визуал, публикация — быстрее, чем команда из трех человек.",
+    tools: [
+      { t: "ChatGPT / Claude", d: "Сценарии, посты и рерайты под каждую площадку — твой главный конвейер." },
+      { t: "Midjourney", d: "Обложки, визуал к постам и превью без дизайнера." },
+      { t: "HeyGen", d: "Видео с цифровым аватаром — контент без съемок." },
+      { t: "CapCut AI", d: "Монтаж шортс на потоке: субтитры и нарезка автоматически." }
+    ],
+    money: [
+      { t: "Контент для экспертов и брендов", d: "Ведение каналов под ключ: 40–120 тысяч ₽ в месяц с одного клиента." },
+      { t: "Продюсирование личного бренда", d: "Упаковка и контент-система: от 60 тысяч ₽ за проект." },
+      { t: "Свои медиа", d: "Канал или блог: реклама, партнерки и продажа своих продуктов." }
+    ]
+  },
+  "creative+tech": {
+    title: "ИИ-Визуализатор", tag: "Генерация · дизайн · видео",
+    desc: "Твоя зона — визуальный продакшн нового поколения. Там, где студии берут недели, ты с нейросетями выдаешь результат за день.",
+    tools: [
+      { t: "Midjourney", d: "Стиль, брендинг и арты коммерческого уровня." },
+      { t: "Runway / Kling", d: "Видео из текста и оживление статичных кадров." },
+      { t: "Figma AI", d: "Макеты, интерфейсы и продуктовый дизайн." },
+      { t: "ComfyUI", d: "Тонкий контроль генерации — свой пайплайн под задачи." }
+    ],
+    money: [
+      { t: "Нейродизайн на заказ", d: "Айдентика, обложки, креативы: 15–60 тысяч ₽ за пакет." },
+      { t: "Видеопродакшн с ИИ", d: "Рекламные ролики без съемок: от 30 тысяч ₽ за ролик." },
+      { t: "Нейрофотосессии", d: "Персональные и продуктовые — поток небольших чеков." }
+    ]
+  },
+  "creative+analytical": {
+    title: "Креативный стратег", tag: "Смыслы · упаковка · концепции",
+    desc: "Ты видишь и картинку, и логику за ней. Это профиль тех, кто придумывает, как продукту говорить с рынком — и проверяет гипотезы цифрами.",
+    tools: [
+      { t: "Claude", d: "Глубокая работа со смыслами, текстами и стратегией." },
+      { t: "Perplexity", d: "Быстрые исследования рынка и конкурентов с источниками." },
+      { t: "Midjourney", d: "Визуализация концепций до того, как их увидит дизайнер." },
+      { t: "Gamma", d: "Упаковка идей в презентации за минуты." }
+    ],
+    money: [
+      { t: "Упаковка офферов и продуктов", d: "Смыслы плюс структура: 30–100 тысяч ₽ за проект." },
+      { t: "Контент-стратегии", d: "Для экспертов и компаний: от 40 тысяч ₽ за стратегию." },
+      { t: "Нейминг и позиционирование", d: "Быстрые спринты: 15–50 тысяч ₽ за спринт." }
+    ]
+  },
+  "creative+drive": {
+    title: "Креативный предприниматель", tag: "Продукты · запуски · бренды",
+    desc: "Ты не просто создаешь — ты доводишь до денег. ИИ убирает главный барьер: производство контента и продукта больше не требует команды.",
+    tools: [
+      { t: "ChatGPT / Claude", d: "От идеи до воронки продаж — весь путь в одном окне." },
+      { t: "Midjourney", d: "Бренд и креативы без дизайнера." },
+      { t: "Tilda + ИИ", d: "Лендинг и упаковка продукта за вечер." },
+      { t: "ElevenLabs", d: "Озвучка и аудиоконтент студийного качества." }
+    ],
+    money: [
+      { t: "Свой инфопродукт", d: "Гайд, мини-курс, шаблоны: маржа до 90%." },
+      { t: "Пакетные креативные услуги", d: "Продажа результата, а не часов: 50–150 тысяч ₽ в месяц." },
+      { t: "Запуски с партнерами", d: "Твой креатив плюс чужая аудитория — процент с продаж." }
+    ]
+  },
+  "analytical+tech": {
+    title: "ИИ-Инженер процессов", tag: "Автоматизация · данные · системы",
+    desc: "Ты мыслишь системами — самый дефицитный навык на рынке ИИ. Бизнесы платят не за чат с нейросетью, а за процессы, которые работают без людей.",
+    tools: [
+      { t: "Claude / ChatGPT", d: "Логика, код и промпт-инженерия для сложных задач." },
+      { t: "Make / n8n", d: "Автоматизация процессов без программирования." },
+      { t: "Cursor", d: "Разработка с ИИ-ассистентом — в разы быстрее." },
+      { t: "Airtable + ИИ", d: "Базы данных и внутренние инструменты для бизнеса." }
+    ],
+    money: [
+      { t: "Автоматизация под ключ", d: "Процессы отдела: 50–200 тысяч ₽ за проект." },
+      { t: "Чат-боты и ИИ-ассистенты", d: "Для бизнеса: 30–100 тысяч ₽ плюс поддержка." },
+      { t: "Аналитика на заказ", d: "Дашборды и отчеты: абонентка 20–60 тысяч ₽ в месяц." }
+    ]
+  },
+  "analytical+communication": {
+    title: "ИИ-Аналитик и стратег", tag: "Исследования · выводы · решения",
+    desc: "Ты превращаешь хаос данных в ясные решения и умеешь доносить их людям. С ИИ скорость такой работы выросла в десятки раз — а цена осталась высокой.",
+    tools: [
+      { t: "Perplexity", d: "Исследования с проверяемыми источниками." },
+      { t: "Claude", d: "Анализ больших документов, отчетов и данных." },
+      { t: "Julius AI", d: "Работа с таблицами и графиками на обычном языке." },
+      { t: "Gamma", d: "Отчеты и презентации из текста за минуты." }
+    ],
+    money: [
+      { t: "Исследования рынка", d: "Для запусков и инвесторов: 40–150 тысяч ₽ за исследование." },
+      { t: "Аналитический консалтинг", d: "Решения на данных: от 50 тысяч ₽ в месяц." },
+      { t: "Обзоры и отчеты", d: "Регулярный формат для компаний и медиа." }
+    ]
+  },
+  "analytical+drive": {
+    title: "Системный предприниматель", tag: "Процессы · метрики · масштаб",
+    desc: "Ты строишь машины, которые зарабатывают. ИИ для тебя — не игрушка, а рычаг: меньше ручного труда, больше системы и цифр.",
+    tools: [
+      { t: "Claude", d: "Второй мозг: стратегические сессии и разбор решений." },
+      { t: "Notion AI", d: "База знаний и процессы компании в одном месте." },
+      { t: "Make / n8n", d: "Операционка без ручного труда." },
+      { t: "ChatGPT", d: "Быстрые задачи на потоке: письма, документы, расчеты." }
+    ],
+    money: [
+      { t: "Систематизация бизнесов", d: "Аудит плюс внедрение ИИ: 100–300 тысяч ₽ за проект." },
+      { t: "Свой продукт на процессах", d: "Шаблоны, системы, микро-SaaS на своей экспертизе." },
+      { t: "Трекинг и сопровождение", d: "Абонентка 30–80 тысяч ₽ в месяц с клиента." }
+    ]
+  },
+  "tech+communication": {
+    title: "ИИ-Наставник", tag: "Обучение · внедрение · люди",
+    desc: "Ты понимаешь технологии и умеешь объяснять их людям — на этой связке сейчас строятся самые быстрые карьеры. Рынку не хватает переводчиков с языка ИИ на человеческий.",
+    tools: [
+      { t: "Claude / ChatGPT", d: "Твоя витрина навыков и рабочая лошадка одновременно." },
+      { t: "Gamma", d: "Учебные материалы и презентации за минуты." },
+      { t: "HeyGen", d: "Обучающие видео без студии и монтажа." },
+      { t: "Notion AI", d: "База знаний курса и материалы для учеников." }
+    ],
+    money: [
+      { t: "Корпоративное обучение", d: "Воркшопы по ИИ: 50–200 тысяч ₽ за день." },
+      { t: "Личное наставничество", d: "Сопровождение внедрения: 30–100 тысяч ₽ в месяц." },
+      { t: "Свой курс или клуб", d: "Масштаб без потолка по времени." }
+    ]
+  },
+  "tech+drive": {
+    title: "Создатель ИИ-продуктов", tag: "Продукты · SaaS · боты",
+    desc: "Ты можешь превращать идеи в работающие продукты почти в одиночку. Порог входа в разработку рухнул — осталось выбрать проблему, за решение которой платят.",
+    tools: [
+      { t: "Cursor", d: "Код с ИИ — скорость соло-разработчика уровня команды." },
+      { t: "Claude API", d: "Мозг твоего продукта: логика, генерация, агенты." },
+      { t: "v0 / Vercel", d: "Интерфейсы и деплой за часы, а не недели." },
+      { t: "Telegram Bot API", d: "Быстрые MVP там, где уже живет аудитория." }
+    ],
+    money: [
+      { t: "Микро-SaaS или бот", d: "Подписка 500–2000 ₽ в месяц с пользователя." },
+      { t: "MVP на заказ", d: "Для стартапов и бизнесов: 100–400 тысяч ₽ за проект." },
+      { t: "ИИ-фичи в готовые бизнесы", d: "Интеграции за проект плюс поддержка." }
+    ]
+  },
+  "communication+drive": {
+    title: "ИИ-Консультант", tag: "Внедрение · продажи · клиенты",
+    desc: "Твоя сила — люди и договоренности. Пока рынок разбирается в нейросетях, зарабатывают те, кто умеет продать и внедрить понятное решение.",
+    tools: [
+      { t: "ChatGPT / Claude", d: "Подготовка к встречам и коммерческие предложения за минуты." },
+      { t: "Fireflies", d: "Протоколы звонков и договоренности — автоматически." },
+      { t: "Gamma", d: "Презентации и КП, которые продают." },
+      { t: "CRM + ИИ", d: "Касания с клиентами на автопилоте." }
+    ],
+    money: [
+      { t: "Консалтинг по внедрению ИИ", d: "Аудит плюс план: 50–150 тысяч ₽ за проект." },
+      { t: "Продажа ИИ-решений", d: "Партнерство с разработчиками за процент." },
+      { t: "Абонентское сопровождение", d: "20–60 тысяч ₽ в месяц с клиента." }
+    ]
+  }
+};
+
+var OBSTACLE_STEPS = [
+  { t: "Не знаю, с чего начать", d: "Начни с одного инструмента: 30 минут в день на ChatGPT или Claude в своих рабочих задачах. Через две недели у тебя будет первый мини-кейс." },
+  { t: "Нет технических навыков", d: "На старте они не нужны: современные ИИ управляются обычным языком. Твой опыт в профессии ценнее кода." },
+  { t: "Не хватает времени", d: "Правило одного процента: 15 минут в день на один и тот же навык. Через месяц — больше 7 часов практики без ломки графика." },
+  { t: "Кажется, мои навыки не ценны", d: "Связка «твоя экспертиза + ИИ» — самый дефицитный товар на рынке. ИИ без предметных знаний — просто игрушка." },
+  { t: "Боюсь конкуренции", d: "Рынок ИИ-услуг растет быстрее, чем на него приходят исполнители. Сейчас конкуренция ниже, чем будет через год." },
+  { t: "Не хватает уверенности", d: "Сделай три бесплатных кейса для знакомых. Уверенность приходит из результатов, а не наоборот." },
+  { t: "Не знаю, как найти клиентов", d: "Первые клиенты — из окружения: расскажи в соцсетях, что делаешь с ИИ, и покажи один живой кейс." },
+  { t: "Не могу определиться с направлением", d: "Твой профиль уже сузил выбор. Возьми первое направление из блока монетизации и тестируй его 30 дней." }
+];
+
+var INCOME_NOTES = [
+  "Цель до 30 тысяч ₽ достижима за 1–2 месяца практики: хватит пары разовых проектов.",
+  "30–80 тысяч ₽ — это 2–4 постоянных клиента или сильная подработка к основной работе.",
+  "80–150 тысяч ₽ — уровень уверенного специалиста: пакетные услуги и повторные клиенты.",
+  "150–400 тысяч ₽ — уровень системы: продукт, премиальный консалтинг или подрядчики.",
+  "400+ тысяч ₽ — уровень бизнеса: свой продукт, агентство или масштабируемая услуга."
+];
+
+var HOURS_NOTES = [
+  "При темпе до 2 часов в неделю начни с микропривычки: 15 минут в день.",
+  "2–5 часов в неделю хватит для устойчивого роста — если заниматься регулярно.",
+  "5–10 часов в неделю — темп, при котором результат виден уже через месяц.",
+  "10–20 часов в неделю — серьезная заявка: первые платные кейсы реальны за 4–6 недель.",
+  "Больше 20 часов — режим полного погружения: сразу закладывай практику на реальных проектах."
+];
+
+var GOAL_SHORT = [
+  "найти работу с ИИ-навыками", "поднять доход на текущем месте", "построить свое дело",
+  "автоматизировать свою работу", "оставаться востребованным специалистом", "исследовать интерес"
+];
+
+var FORMAT_RU = ["слова и тексты", "визуальные образы", "голос и звук", "данные и системы", "отношения и люди"];
+
+function levelOf(i) {
+  if (i < 35) return { name: "СТАРТ", note: "Ты в самом начале — и это преимущество: с первого дня можно строить правильную систему, без переучивания." };
+  if (i < 60) return { name: "РАЗГОН", note: "База уже есть. Дальше все решает регулярная практика на реальных задачах, а не новые курсы." };
+  if (i < 80) return { name: "УВЕРЕННЫЙ УРОВЕНЬ", note: "Ты впереди большинства рынка. Время переводить навык в деньги и публичные кейсы." };
+  return { name: "ПРОДВИНУТЫЙ", note: "Твой уровень — верхние 5% рынка. Фокус — масштаб: продукты, команда, системы." };
+}
+
+function computeResults(a) {
+  function v(id) { return a[id]; }
+  function inc(id, i) { return Array.isArray(a[id]) && a[id].indexOf(i) >= 0; }
+  function sc(id) { return typeof a[id] === "number" ? a[id] : 0; }
+
+  var creative = 0, analytical = 0, tech = 0, communication = 0, drive = 0;
+
+  creative += sc("q13") * 4;
+  if (inc("q11", 1)) creative += 12; if (inc("q11", 3)) creative += 8; if (inc("q11", 7)) creative += 10;
+  if (inc("q6", 1)) creative += 8; if (inc("q6", 2)) creative += 6; if (inc("q6", 3)) creative += 5; if (inc("q6", 13)) creative += 4;
+  if (inc("q16", 1)) creative += 6; if (inc("q16", 8)) creative += 3; if (inc("q16", 9)) creative += 4; if (inc("q16", 2)) creative += 3;
+  if (v("q18") === 1) creative += 10; if (v("q18") === 2) creative += 6;
+  if (v("q15") === 1) creative += 6;
+
+  analytical += sc("q14") * 4;
+  if (inc("q11", 2)) analytical += 12; if (inc("q11", 8)) analytical += 8; if (inc("q11", 4)) analytical += 6;
+  if (inc("q6", 8)) analytical += 10; if (inc("q6", 11)) analytical += 6; if (inc("q6", 7)) analytical += 5;
+  if (v("q18") === 3) analytical += 10;
+  if (v("q15") === 3) analytical += 8; if (v("q15") === 5) analytical += 8; if (v("q15") === 0) analytical += 6;
+  if (inc("q16", 7)) analytical += 5;
+  if (inc("q19", 4)) analytical += 6;
+
+  tech += Math.round(sc("q10") * 3.5);
+  if (inc("q9", 7)) tech += 14; if (inc("q9", 8)) tech += 14; if (inc("q9", 6)) tech += 6; if (inc("q9", 2)) tech += 4;
+  if (inc("q6", 9)) tech += 12; if (inc("q6", 8)) tech += 6;
+  if (inc("q11", 6)) tech += 12;
+  if (inc("q16", 0)) tech += 8;
+  if (inc("q19", 7)) tech += 8; if (inc("q19", 5)) tech += 6;
+
+  communication += Math.round(sc("q12") * 3.5);
+  if (inc("q11", 0)) communication += 10; if (inc("q11", 5)) communication += 8; if (inc("q11", 9)) communication += 8;
+  if (inc("q11", 10)) communication += 8; if (inc("q11", 3)) communication += 6; if (inc("q11", 11)) communication += 6;
+  if (inc("q6", 0)) communication += 8; if (inc("q6", 6)) communication += 8; if (inc("q6", 4)) communication += 6;
+  if (inc("q6", 10)) communication += 6; if (inc("q6", 12)) communication += 4;
+  if (v("q18") === 0) communication += 8; if (v("q18") === 4) communication += 8;
+  if (inc("q16", 4)) communication += 4; if (inc("q16", 5)) communication += 4;
+
+  var q8v = v("q8");
+  if (q8v === 0) drive += 25; else if (q8v === 1) drive += 18; else if (q8v === 2) drive += 10; else if (q8v === 3) drive += 12; else if (q8v === 4) drive += 2;
+  var q3v = v("q3");
+  if (q3v === 4) drive += 20; else if (q3v === 3) drive += 15; else if (q3v === 7) drive += 8;
+  var q24v = v("q24");
+  if (q24v === 2) drive += 20; else if (q24v === 1) drive += 10; else if (q24v === 3) drive += 8;
+  drive += sc("q22") * 2;
+  var q23v = v("q23");
+  if (q23v === 4) drive += 12; else if (q23v === 3) drive += 8; else if (q23v === 2) drive += 5;
+  if (inc("q11", 11)) drive += 6; if (inc("q11", 10)) drive += 6;
+
+  function capv(x) { return Math.max(4, Math.min(100, Math.round(x))); }
+  var dims = { creative: capv(creative), analytical: capv(analytical), tech: capv(tech), communication: capv(communication), drive: capv(drive) };
+
+  var idx = sc("q10") * 3;
+  if (inc("q9", 7)) idx += 20;
+  if (inc("q9", 8)) idx += 8;
+  idx += [4, 10, 16, 22, 26][typeof q23v === "number" ? q23v : 0] || 0;
+  if (inc("q16", 0)) idx += 8;
+  idx += Math.min(8, (Array.isArray(a.q19) ? a.q19.length : 0) * 2);
+  if (inc("q11", 6)) idx += 6;
+  idx = Math.max(6, Math.min(100, Math.round(idx)));
+  var level = levelOf(idx);
+
+  var sorted = DIM_ORDER.slice().sort(function(x, y) { return dims[y] - dims[x] || DIM_ORDER.indexOf(x) - DIM_ORDER.indexOf(y); });
+  var pair = [sorted[0], sorted[1]].sort(function(x, y) { return DIM_ORDER.indexOf(x) - DIM_ORDER.indexOf(y); });
+  var arch = ARCHETYPES[pair.join("+")];
+
+  var insights = [];
+  insights.push({ t: "Твоя связка",
+    d: DIM_RU[sorted[0]] + " + " + DIM_RU[sorted[1]] + " — ведущие оси профиля (" + dims[sorted[0]] + "% и " + dims[sorted[1]] + "%). Отсюда твой архетип: «" + arch.title + "»." });
+  insights.push({ t: "Готовность к ИИ",
+    d: "Индекс " + idx + "/100 — уровень «" + level.name.toLowerCase() + "». " + (HOURS_NOTES[q23v] || HOURS_NOTES[0]) });
+  var f = v("q18");
+  insights.push({ t: "Твой формат",
+    d: (typeof f === "number" && f <= 4)
+      ? "Твой естественный формат — " + FORMAT_RU[f] + ". Выбирай направления, где он основной: первые результаты придут быстрее."
+      : "Формат пока не выбран — по осям тебя тянет к направлению «" + DIM_RU[sorted[0]] + "». Тестируй форматы короткими спринтами по неделе." });
+  insights.push({ t: "Цель и деньги",
+    d: "Твоя цель — " + (GOAL_SHORT[q24v] || GOAL_SHORT[5]) + ". " + (INCOME_NOTES[v("q25")] || INCOME_NOTES[1]) });
+
+  var tools = arch.tools.slice();
+  if (!inc("q9", 7)) {
+    tools.unshift({ t: "ChatGPT или Claude", d: "Твоя первая точка входа: 30 минут в день на реальных рабочих задачах — база для всего остального." });
+    tools = tools.slice(0, 4);
+  }
+
+  var obstacles = Array.isArray(a.q26) ? a.q26.slice(0, 3) : [];
+  var steps = obstacles.map(function(i) { return OBSTACLE_STEPS[i]; }).filter(Boolean);
+
+  return { dims: dims, idx: idx, level: level, arch: arch, insights: insights, tools: tools, money: arch.money, steps: steps, top: sorted };
+}
+
+/* ============================================================
+   Отправка результатов в Google Таблицу
+   ============================================================ */
+
+function answersReadable() {
+  var out = {};
+  QUESTIONS.forEach(function(q) {
+    var v = answers[q.id], a = "";
+    if (q.type === "single") a = typeof v === "number" ? q.options[v] : "";
+    else if (q.type === "multi") a = (Array.isArray(v) && v.length) ? v.map(function(i) { return q.options[i]; }).join(", ") : "";
+    else if (q.type === "scale") a = typeof v === "number" ? String(v) : "";
+    else a = (v || "").toString().trim();
+    out[q.id] = a;
+  });
+  return out;
+}
+
+function sendResults() {
+  if (!SHEETS_ENDPOINT) return;
+  try {
+    var res = computeResults(answers);
+    var payload = JSON.stringify({
+      src: SRC,
+      version: TEST_VERSION,
+      name: lead.name || "",
+      contact: lead.contact || "",
+      consent: lead.consent ? "да" : "",
+      marketing: lead.marketing ? "да" : "",
+      archetype: res.arch.title,
+      idx: res.idx,
+      level: res.level.name,
+      dims: res.dims,
+      answers: answersReadable()
+    });
+    var sent = false;
+    if (navigator.sendBeacon) {
+      sent = navigator.sendBeacon(SHEETS_ENDPOINT, new Blob([payload], { type: "text/plain" }));
+    }
+    if (!sent) {
+      fetch(SHEETS_ENDPOINT, { method: "POST", mode: "no-cors", body: payload });
+    }
+  } catch (e) {}
+}
+
+/* ============================================================
+   Форма контактов и согласие на обработку ПДн
+   ============================================================ */
+
+function openLead() {
+  screen = "lead";
+  render(true);
+  window.scrollTo(0, 0);
+}
+
+function setLeadName(v) { lead.name = v; }
+function setLeadContact(v) { lead.contact = v; var b = document.getElementById("leadSubmit"); if (b && lead.error) { lead.error = ""; var e = document.getElementById("leadErr"); if (e) e.textContent = ""; } }
+
+function toggleConsent() {
+  lead.consent = !lead.consent;
+  var el = document.getElementById("consentBox");
+  if (el) el.className = "lead-consent" + (lead.consent ? " on" : "");
+  var ic = document.getElementById("consentCheck");
+  if (ic) ic.innerHTML = lead.consent ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2 5 9l5-6" stroke="#06121F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "";
+  if (lead.consent && lead.error) { lead.error = ""; var e = document.getElementById("leadErr"); if (e) e.textContent = ""; }
+}
+
+function toggleMarketing() {
+  lead.marketing = !lead.marketing;
+  var el = document.getElementById("marketingBox");
+  if (el) el.className = "lead-consent" + (lead.marketing ? " on" : "");
+  var ic = document.getElementById("marketingCheck");
+  if (ic) ic.innerHTML = lead.marketing ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2 5 9l5-6" stroke="#06121F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "";
+}
+
+function submitLead() {
+  var name = (lead.name || "").trim();
+  var contact = (lead.contact || "").trim();
+  if (!name) { showLeadErr("Напиши, как тебя зовут."); return; }
+  if (!contact) { showLeadErr("Оставь Telegram или телефон для связи."); return; }
+  if (!lead.consent) { showLeadErr("Нужно согласие на обработку персональных данных."); return; }
+  lead.name = name; lead.contact = contact;
+  if (!dataSent) { dataSent = true; sendResults(); }
+  lead.status = "done";
+  screen = "results";
+  render(true);
+  window.scrollTo(0, 0);
+}
+
+function showLeadErr(msg) {
+  lead.error = msg;
+  var e = document.getElementById("leadErr");
+  if (e) e.textContent = msg;
+}
+
+function skipLead() {
+  if (!dataSent) { dataSent = true; sendResults(); } // результат теста уходит и без контакта
+  screen = "results";
+  render(true);
+  window.scrollTo(0, 0);
+}
+
+/* ============================================================
+   Хелперы
+   ============================================================ */
+
+function pad2(n) { return String(n).length < 2 ? "0" + n : String(n); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function isAnswered(q, answers) {
+  if (q.optional) return true;
+  var v = answers[q.id];
+  if (q.type === "single" || q.type === "scale") return typeof v === "number";
+  if (q.type === "multi") return Array.isArray(v) && v.length > 0;
+  return typeof v === "string" && v.trim().length > 0;
+}
+
+function archTitleHtml(title) {
+  if (title.indexOf("ИИ-") === 0) return '<span class="b">ИИ</span>-' + esc(title.slice(3));
+  var sp = title.indexOf(" ");
+  if (sp > 0) return '<span class="b">' + esc(title.slice(0, sp)) + "</span>" + esc(title.slice(sp));
+  return esc(title);
+}
+
+/* ============================================================
+   Состояние и рендер
+   ============================================================ */
+
+var app = document.getElementById("app");
+var screen = "intro", cur = 0, maxV = 0, answers = {};
+var barsShown = false, idxShown = false, dataSent = false;
+var lead = { name: "", contact: "", consent: false, marketing: false, error: "", status: "form" }; // form | done
+var autoTimer = 0;
+
+function startTest() { screen = "survey"; render(true); window.scrollTo(0, 0); }
+
+function restart() {
+  clearTimeout(autoTimer);
+  screen = "intro"; cur = 0; maxV = 0; answers = {};
+  barsShown = false; idxShown = false; dataSent = false;
+  lead = { name: "", contact: "", consent: false, marketing: false, error: "", status: "form" };
+  render(true); window.scrollTo(0, 0);
+}
+
+function scheduleAdvance(from) {
+  if (from >= TOTAL - 1) return;
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(function() {
+    if (screen === "survey" && cur === from) {
+      cur = from + 1; maxV = Math.max(maxV, cur);
+      render(true); window.scrollTo(0, 0);
+    }
+  }, 260);
+}
+
+function selectVal(id, val) {
+  answers[id] = val;
+  render(false);
+  scheduleAdvance(cur);
+}
+
+function toggleMulti(id, i) {
+  var q = QUESTIONS[cur];
+  var arr = Array.isArray(answers[id]) ? answers[id].slice() : [];
+  var at = arr.indexOf(i);
+  if (at >= 0) arr.splice(at, 1);
+  else { if (q.max && arr.length >= q.max) return; arr.push(i); }
+  answers[id] = arr;
+  render(false);
+}
+
+function setText(id, v) {
+  answers[id] = v;
+  var b = document.getElementById("nextBtn");
+  if (b) b.disabled = !isAnswered(QUESTIONS[cur], answers);
+}
+
+function goPrev() {
+  clearTimeout(autoTimer);
+  if (cur === 0) { screen = "intro"; render(true); }
+  else { cur--; render(true); }
+  window.scrollTo(0, 0);
+}
+
+function goNext() {
+  clearTimeout(autoTimer);
+  if (!isAnswered(QUESTIONS[cur], answers)) return;
+  if (cur === TOTAL - 1) {
+    screen = "results";
+    render(true); window.scrollTo(0, 0);
+  }
+  else { cur++; maxV = Math.max(maxV, cur); render(true); window.scrollTo(0, 0); }
+}
+
+function jumpSection(si) {
+  clearTimeout(autoTimer);
+  if (SECTION_FIRST[si] > maxV) return;
+  cur = SECTION_FIRST[si];
+  render(true); window.scrollTo(0, 0);
+}
+
+/* ---------- шаблоны ---------- */
+
+function eyebrowHtml(text) {
+  return '<div><span class="eyebrow">' + text + '</span><span class="eb-line"></span></div>';
+}
+
+function renderIntro() {
+  return '<div class="cover"><div class="cover-in">'
+    + eyebrowHtml("Rogov Pro · ИИ-тест")
+    + '<h1 class="h1">Где твоя <span class="b">точка входа</span> в ИИ</h1>'
+    + '<p class="cover-sub">27 вопросов о твоем опыте, навыках и целях — и ты получишь профиль, индекс готовности и план монетизации. Аналитика сразу, без ожидания.</p>'
+    + '<div class="cover-list">'
+    +   '<div class="cover-li"><span class="arr">→</span><span>Архетип и 5 осей твоего профиля</span></div>'
+    +   '<div class="cover-li"><span class="arr">→</span><span>Индекс готовности к ИИ от 0 до 100</span></div>'
+    +   '<div class="cover-li"><span class="arr">→</span><span>Инструменты, деньги и первые шаги под тебя</span></div>'
+    + '</div>'
+    + '<div class="stats">'
+    +   '<div class="stat"><div class="stat-v">27</div><div class="stat-l">вопросов</div></div>'
+    +   '<div class="stat"><div class="stat-v">6</div><div class="stat-l">разделов</div></div>'
+    +   '<div class="stat"><div class="stat-v">7</div><div class="stat-l">минут на тест</div></div>'
+    + '</div>'
+    + '<div class="cover-cta">'
+    +   '<button class="btn-primary" onclick="startTest()">Начать тест →</button>'
+    +   '<span class="cover-note">Без регистрации · результат сразу</span>'
+    + '</div>'
+    + '</div></div>';
+}
+
+function renderSurvey(anim) {
+  var q = QUESTIONS[cur];
+  var val = answers[q.id];
+  var answered = isAnswered(q, answers);
+  var sec = SECTIONS[q.section];
+
+  var body = "";
+  if (q.type === "single") {
+    body = '<div class="opts">' + q.options.map(function(o, i) {
+      return '<button class="opt' + (val === i ? " sel" : "") + '" onclick="selectVal(\'' + q.id + "'," + i + ')">'
+        + '<span class="ind rd"></span><span>' + esc(o) + "</span></button>";
+    }).join("") + "</div>";
+  } else if (q.type === "multi") {
+    body = '<div class="opts">' + q.options.map(function(o, i) {
+      var sel = Array.isArray(val) && val.indexOf(i) >= 0;
+      var check = sel ? '<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6.2 5 9l5-6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "";
+      return '<button class="opt' + (sel ? " sel" : "") + '" onclick="toggleMulti(\'' + q.id + "'," + i + ')">'
+        + '<span class="ind sq">' + check + "</span><span>" + esc(o) + "</span></button>";
+    }).join("") + "</div>";
+  } else if (q.type === "scale") {
+    var btns = "";
+    for (var n = 1; n <= 10; n++) {
+      btns += '<button class="sc' + (val === n ? " sel" : "") + '" onclick="selectVal(\'' + q.id + "'," + n + ')">' + n + "</button>";
+    }
+    body = '<div class="scale">' + btns + '</div><div class="scale-labels"><span>' + esc(q.min) + "</span><span>" + esc(q.max) + "</span></div>";
+  } else if (q.type === "text") {
+    body = '<input class="tin" value="' + esc(val || "") + '" placeholder="' + esc(q.placeholder || "") + '"'
+      + ' oninput="setText(\'' + q.id + '\', this.value)"'
+      + ' onkeydown="if(event.key===\'Enter\'){event.preventDefault();goNext()}">';
+  } else {
+    body = '<textarea class="tarea" placeholder="' + esc(q.placeholder || "") + '"'
+      + ' oninput="setText(\'' + q.id + '\', this.value)">' + esc(val || "") + "</textarea>";
+  }
+
+  var hint = "";
+  if (q.hint) {
+    var cnt = (q.max && Array.isArray(val)) ? " · выбрано " + val.length + " из " + q.max : "";
+    hint = '<p class="qhint">' + esc(q.hint) + cnt + "</p>";
+  }
+  var tag = q.optional ? '<span class="qtag">Можно пропустить</span>' : "";
+
+  var dots = SECTIONS.map(function(s, si) {
+    var cls = si === q.section ? " now" : (SECTION_FIRST[si] <= maxV ? " was" : "");
+    var dis = SECTION_FIRST[si] > maxV ? " disabled" : "";
+    return '<button class="dot' + cls + '"' + dis + ' aria-label="Раздел ' + (si + 1) + ': ' + esc(s.title) + '" onclick="jumpSection(' + si + ')"></button>';
+  }).join("");
+
+  return '<div class="page">'
+    + '<div class="shead">'
+    +   '<div class="shead-row">'
+    +     '<span class="brand-min"><span class="b">Rogov Pro</span> · ИИ-тест</span>'
+    +     '<span class="counter"><span class="b">' + pad2(cur + 1) + "</span> / " + TOTAL + "</span>"
+    +   '</div>'
+    +   '<div class="progress"><i style="width:' + (((cur + 1) / TOTAL) * 100) + '%"></i></div>'
+    + '</div>'
+    + '<div class="qwrap' + (anim ? " anim" : "") + '">'
+    +   eyebrowHtml("Раздел " + (q.section + 1) + " · " + esc(sec.title))
+    +   '<div style="margin-top:18px">'
+    +     '<div class="qnum">' + pad2(cur + 1) + "</div>"
+    +     '<h2 class="qtitle">' + esc(q.title) + "</h2>"
+    +     hint + tag
+    +   '</div>'
+    +   body
+    +   '<div class="snav">'
+    +     '<div class="dots">' + dots + "</div>"
+    +     '<div class="nav-row">'
+    +       '<button class="btn-ghost" onclick="goPrev()">← Назад</button>'
+    +       '<button class="btn-primary" id="nextBtn"' + (answered ? "" : " disabled") + ' onclick="goNext()">'
+    +         (cur === TOTAL - 1 ? "Показать результат ✓" : "Далее →")
+    +       "</button>"
+    +     '</div>'
+    +   '</div>'
+    + '</div></div>';
+}
+
+function ncardHtml(n, t, d) {
+  return '<div class="ncard"><div class="ncard-n">' + n + '</div><div class="ncard-t">' + esc(t) + '</div><div class="ncard-d">' + esc(d) + "</div></div>";
+}
+
+function renderResults() {
+  var r = computeResults(answers);
+
+  var barsHtml = DIM_ORDER.map(function(k, i) {
+    var w = r.dims[k];
+    var style = barsShown ? 'width:' + w + '%' : 'width:0;transition-delay:' + (i * 90) + "ms";
+    return '<div><div class="bar-top"><span class="bar-name">' + DIM_RU[k] + '</span><span class="bar-val">' + w + '%</span></div>'
+      + '<div class="track"><i class="fill" data-w="' + w + '" style="' + style + '"></i></div></div>';
+  }).join("");
+
+  var insightsHtml = r.insights.map(function(it, i) { return ncardHtml(pad2(i + 1), it.t, it.d); }).join("");
+  var toolsHtml = r.tools.map(function(t) {
+    return '<div class="tool-row"><span class="tool-arr">→</span><div><div class="tool-t">' + esc(t.t) + '</div><div class="tool-d">' + esc(t.d) + "</div></div></div>";
+  }).join("");
+  var moneyHtml = r.money.map(function(m, i) { return ncardHtml(pad2(i + 1), m.t, m.d); }).join("");
+  var stepsHtml = r.steps.map(function(s, i) { return ncardHtml(pad2(i + 1), s.t, s.d); }).join("");
+
+  var inviteCta = (lead.status === "done")
+    ? '<div class="invite-price" style="border-color:rgba(80,177,249,.5)"><div><div class="invite-price-cap" style="color:var(--blue)">Заявка принята</div><div class="invite-price-sub">Свяжемся с тобой в ближайшее время по оставленному контакту</div></div><div class="invite-price-v">✓</div></div>'
+    : '<div class="invite-cta"><button class="btn-primary" onclick="openLead()">Хочу в группу →</button><a class="btn-on-dark" href="https://drive.google.com/file/d/16mZHfKRDfd7qITB_wioGlm3_gP8IFYiP/view?usp=sharing" target="_blank" rel="noopener noreferrer">Программа курса</a></div>';
+
+  return '<div class="page">'
+    + '<div style="padding-top:18px"><span class="brand-min"><span class="b">Rogov Pro</span> · ИИ-тест · результат</span></div>'
+    + '<div class="hero">'
+    +   eyebrowHtml("Твой архетип")
+    +   '<h1 class="hero-title">' + archTitleHtml(r.arch.title) + "</h1>"
+    +   '<div class="hero-tag">' + esc(r.arch.tag) + "</div>"
+    +   '<p class="hero-desc">' + esc(r.arch.desc) + "</p>"
+    +   '<div class="idx-row">'
+    +     '<div class="idx-num" id="idxNum">' + (idxShown ? r.idx : 0) + "</div>"
+    +     '<div class="idx-meta">'
+    +       '<div class="idx-cap">Индекс готовности к ИИ · из 100</div>'
+    +       '<span class="idx-lvl">' + r.level.name + "</span>"
+    +       '<p class="idx-note">' + esc(r.level.note) + "</p>"
+    +     '</div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="sect">' + eyebrowHtml("01 · Оси профиля") + '<h2 class="h2">Из чего ты состоишь</h2>'
+    +   '<div class="card"><div class="bars">' + barsHtml + "</div></div></div>"
+    + '<div class="sect">' + eyebrowHtml("02 · Ключевые инсайты") + '<h2 class="h2">Что это значит</h2>'
+    +   '<div class="grid2">' + insightsHtml + "</div></div>"
+    + '<div class="sect">' + eyebrowHtml("03 · Инструменты") + '<h2 class="h2">Твой стартовый стек</h2>'
+    +   '<p class="sect-sub">Подобран под архетип «' + esc(r.arch.title) + '». Осваивай по одному — глубина важнее списка.</p>'
+    +   '<div class="card">' + toolsHtml + "</div></div>"
+    + '<div class="sect">' + eyebrowHtml("04 · Монетизация") + '<h2 class="h2">Где здесь деньги</h2>'
+    +   '<p class="sect-sub">Суммы — рыночные ориентиры на старте, не потолок.</p>'
+    +   '<div class="grid1">' + moneyHtml + "</div></div>"
+    + (r.steps.length ? ('<div class="sect">' + eyebrowHtml("05 · Первые шаги") + '<h2 class="h2">Разбор твоих барьеров</h2>'
+    +   '<p class="sect-sub">Ты сам(а) назвал(а) их в последнем разделе — вот как их снять.</p>'
+    +   '<div class="grid1">' + stepsHtml + "</div></div>") : "")
+    + '<div class="sect">' + eyebrowHtml("06 · Следующий шаг") + '<h2 class="h2">Пройти этот путь не одному</h2>'
+    +   '<p class="sect-sub">Тест показал направление. Дальше вопрос один — внедрить это в свою работу, а не отложить «на потом».</p>'
+    +   '<div class="invite">'
+    +     eyebrowHtml("Rogov Pro · группа по внедрению ИИ")
+    +     '<div class="invite-course">AI Class</div>'
+    +     '<p class="invite-lead">Камерная группа, где за месяц ты внедряешь ИИ в свои реальные задачи — от голоса и готового файла до коннекторов, скиллов, фирстиля и сайта. <span class="b">Не конспект, а рабочая система под твои цели.</span></p>'
+    +     '<div class="invite-quote">Еще до старта мы собираем твой персональный трек — и весь поток в течение месяца ведем именно к твоим целям.</div>'
+    +     '<div class="invite-stats">'
+    +       '<div class="invite-stat"><div class="invite-stat-v">3</div><div class="invite-stat-l">занятия по 2 часа</div></div>'
+    +       '<div class="invite-stat"><div class="invite-stat-v">1</div><div class="invite-stat-l">месяц сопровождения</div></div>'
+    +       '<div class="invite-stat"><div class="invite-stat-v">10</div><div class="invite-stat-l">человек в группе</div></div>'
+    +     '</div>'
+    +     '<div class="invite-list">'
+    +       '<div class="invite-li"><span class="arr">→</span><span><b>Персональный трек с первого дня.</b> Определяем, под что именно ты внедряешь ИИ — все остальное подстраивается под твою цель.</span></div>'
+    +       '<div class="invite-li"><span class="arr">→</span><span><b>Практика на своем проекте.</b> Каждое занятие заканчивается внедрением в твои задачи, а не в учебный пример.</span></div>'
+    +       '<div class="invite-li"><span class="arr">→</span><span><b>Ведем весь месяц.</b> Еженедельные чек-ины и разбор в чате: что сделал, что получилось, где застрял.</span></div>'
+    +       '<div class="invite-li"><span class="arr">→</span><span><b>Уходишь с картой роста.</b> В финале — рабочая система под свои задачи и персональные рекомендации, куда двигаться дальше.</span></div>'
+    +     '</div>'
+    +     '<div class="invite-price">'
+    +       '<div><div class="invite-price-cap">Стоимость участия</div><div class="invite-price-sub">Камерная группа · 3 занятия · 1 месяц</div></div>'
+    +       '<div class="invite-price-v">20 000 ₽</div>'
+    +     '</div>'
+    +     inviteCta
+    +     '<p class="invite-fine">Программа предварительная · часть тем меняется под запросы участников</p>'
+    +   '</div></div>'
+    + '<div class="footer">'
+    +   '<div class="foot-name">Денис Рогов</div>'
+    +   '<div class="foot-contact">'
+    +     '<a href="https://t.me/rogovpro" target="_blank" rel="noopener noreferrer">TG @rogovpro</a> · '
+    +     '<a href="https://youtube.com/@imrogov" target="_blank" rel="noopener noreferrer">YT @imrogov</a> · '
+    +     '<a href="https://denrogov.com" target="_blank" rel="noopener noreferrer">denrogov.com</a>'
+    +   '</div>'
+    +   '<button class="btn-ghost" onclick="restart()">Пройти заново</button>'
+    +   '<div class="disclaimer">Тест дает ориентир, а не диагноз · решения — за тобой</div>'
+    + '</div>'
+    + '</div>';
+}
+
+function renderLead() {
+  var consentTxt = 'Я даю согласие ' + esc(PDN_OPERATOR) + ' на обработку моих персональных данных (имени и контакта) с целью связи по программе AI Class'
+    + (PDN_POLICY_URL ? ' в соответствии с <a href="' + esc(PDN_POLICY_URL) + '" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>.' : '.');
+  return '<div class="page">'
+    + '<div style="padding-top:18px"><span class="brand-min"><span class="b">Rogov Pro</span> · AI Class · заявка</span></div>'
+    + '<div class="lead">'
+    +   eyebrowHtml("Последний шаг")
+    +   '<div class="lead-title">Куда прислать детали группы</div>'
+    +   '<p class="lead-sub">Оставь контакт — вышлем программу AI Class, даты старта и поможем собрать твой персональный трек под цели из теста.</p>'
+    +   '<div class="lead-form">'
+    +     '<div class="lead-field">'
+    +       '<label class="lead-label" for="leadName">Как тебя зовут <span class="req">*</span></label>'
+    +       '<input class="lead-in" id="leadName" value="' + esc(lead.name) + '" placeholder="Имя" oninput="setLeadName(this.value)">'
+    +     '</div>'
+    +     '<div class="lead-field">'
+    +       '<label class="lead-label" for="leadContact">Telegram или телефон <span class="req">*</span></label>'
+    +       '<input class="lead-in" id="leadContact" value="' + esc(lead.contact) + '" placeholder="@username или +7…" oninput="setLeadContact(this.value)" onkeydown="if(event.key===\'Enter\'){event.preventDefault();submitLead()}">'
+    +     '</div>'
+    +     '<div class="lead-consent' + (lead.consent ? " on" : "") + '" id="consentBox" onclick="toggleConsent()">'
+    +       '<span class="lead-check" id="consentCheck">' + (lead.consent ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2 5 9l5-6" stroke="#06121F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "") + '</span>'
+    +       '<span class="lead-consent-txt" onclick="event.stopPropagation()">' + consentTxt + '</span>'
+    +     '</div>'
+    +     '<div class="lead-consent' + (lead.marketing ? " on" : "") + '" id="marketingBox" onclick="toggleMarketing()">'
+    +       '<span class="lead-check" id="marketingCheck">' + (lead.marketing ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2 5 9l5-6" stroke="#06121F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' : "") + '</span>'
+    +       '<span class="lead-consent-txt">Согласен(на) получать информационные и рекламные рассылки о курсах, материалах и мероприятиях Rogov Pro. Отписаться можно в любой момент.</span>'
+    +     '</div>'
+    +     '<div class="lead-err" id="leadErr">' + esc(lead.error || "") + '</div>'
+    +     '<div class="lead-actions">'
+    +       '<button class="btn-primary" id="leadSubmit" onclick="submitLead()">Отправить заявку →</button>'
+    +       '<button class="lead-skip" onclick="skipLead()">Только результат, без заявки</button>'
+    +     '</div>'
+    +   '</div>'
+    + '</div></div>';
+}
+
+function render(anim) {
+  if (screen === "intro") { app.innerHTML = renderIntro(); return; }
+  if (screen === "survey") { app.innerHTML = renderSurvey(anim); return; }
+  if (screen === "lead") { app.innerHTML = renderLead(); return; }
+  app.innerHTML = renderResults();
+  if (!barsShown) {
+    requestAnimationFrame(function() {
+      setTimeout(function() {
+        var fills = document.querySelectorAll(".fill");
+        for (var i = 0; i < fills.length; i++) fills[i].style.width = fills[i].getAttribute("data-w") + "%";
+      }, 80);
+    });
+    barsShown = true;
+  }
+  if (!idxShown) {
+    var el = document.getElementById("idxNum");
+    var target = computeResults(answers).idx;
+    var t0 = performance.now();
+    (function tick(t) {
+      var p = Math.min(1, (t - t0) / 950);
+      if (el) el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+    idxShown = true;
+  }
+}
+
+render(true);
+</script> <!-- nominify end --> </div> </div> </div> </div> </div> <!--/allrecords-->
