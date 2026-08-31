@@ -32,10 +32,11 @@ jobs:
           trap 'docker logs denrogov-site-test; docker rm -f denrogov-site-test' EXIT
 
           for attempt in 1 2 3 4 5; do
-            curl --fail --silent http://127.0.0.1:8080/ >/dev/null && break
+            curl --fail --silent http://127.0.0.1:8080/api/health | grep -q '"ok":true' && break
             sleep 1
           done
 
+          curl --fail --silent http://127.0.0.1:8080/api/health | grep -q '"service":"denrogov.com"'
           curl --fail --silent http://127.0.0.1:8080/ | grep -q '<html lang="ru">'
           curl --fail --silent http://127.0.0.1:8080/booking | grep -q 'href="https://denrogov.com/booking"'
           curl --fail --silent http://127.0.0.1:8080/blog/hermes-linear-vnutrenniy-loop-agentov/ | grep -q 'analytics.ai-class.tech/script.js'
