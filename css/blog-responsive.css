@@ -1,0 +1,13 @@
+pre,
+code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+pre {
+  white-space: pre;
+}
+
+a {
+  overflow-wrap: anywhere;
+}
