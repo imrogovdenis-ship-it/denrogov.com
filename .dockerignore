@@ -4,5 +4,6 @@
 node_modules
 .coolify
 files
+base-vault
 htaccess.txt
 readme.txt
