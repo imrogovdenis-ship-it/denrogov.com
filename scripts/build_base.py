@@ -166,7 +166,7 @@ def page_shell(title: str, description: str, body: str, canonical: str) -> str:
   <meta property=\"og:type\" content=\"article\">
   <meta property=\"og:url\" content=\"{canonical}\">
   <link rel=\"stylesheet\" href=\"/base/assets/base.css\">
-  <script defer src=\"https://analytics.ai-class.tech/script.js\" data-website-id=\"denrogov-base\"></script>
+  <script defer src=\"https://analytics.ai-class.tech/script.js\" data-website-id=\"4bd222b6-0c49-4f3b-95f6-ec44c41f8c6f\"></script>
 </head>
 <body>
   <header class=\"topbar\"><a href=\"/\">Денис Рогов</a><nav><a href=\"/blog\">Блог</a><a href=\"/base/\">База</a></nav></header>
