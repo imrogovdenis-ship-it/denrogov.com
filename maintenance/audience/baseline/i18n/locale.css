@@ -1,0 +1,12 @@
+/* Additive locale chrome. Original Tilda visual layout remains the template. */
+.locale-switch{box-sizing:border-box;position:relative;z-index:100000;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;padding:5px 24px;background:#0B1220;color:white;font:14px/1.3 system-ui,sans-serif;min-height:58px}
+.locale-switch a,.locale-switch span{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border:1px solid transparent;border-radius:7px;color:white!important;text-decoration:none!important}
+.locale-switch a[aria-current]{background:#50B1F9;color:#0B1220!important;font-weight:700}.locale-switch span{color:rgba(255,255,255,.72)!important;font-size:12px;gap:4px}.locale-switch small{font-size:10px}.locale-switch a:hover{border-color:#50B1F9}.locale-switch a:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #50B1F9!important;outline-offset:3px}
+.locale-switch .locale-home{margin-right:auto}.locale-switch .locale-home:empty{display:none}
+html{scroll-padding-top:130px}.t-records{opacity:1!important;transition:none!important}.t450,.t228{top:58px!important}.t396__elem.t-animate{opacity:1!important;transform:none!important}.t-animate{opacity:1!important}.t-menu-base_positionfixed{top:58px!important}
+.locale-note{font:14px/1.5 system-ui,sans-serif;padding:16px 24px;background:#0B1220;color:white}.locale-note a{color:#50B1F9!important;text-decoration:underline!important}.locale-note p{margin:8px 0}
+@media(max-width:640px){.locale-switch{padding:4px 8px;justify-content:center;gap:0}.locale-switch a,.locale-switch span{padding:6px 9px}.locale-switch small{display:block;font-size:9px}.locale-switch span{flex-direction:column;padding:4px 6px;gap:2px}.locale-switch .locale-home{display:none}.locale-switch{min-height:54px}.t450,.t228,.t-menu-base_positionfixed{top:54px!important}}
+@media(max-width:479px){.tn-elem[data-elem-id="1712784208587"]{left:calc(50% - 140px)!important}.tn-elem[data-elem-id="1712784434527"]{width:280px!important}}
+html[lang="zh-Hans"] body,html[lang="zh-Hans"] .tn-atom,html[lang="zh-Hans"] .t-title,html[lang="zh-Hans"] .t-descr{font-family:Arial,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif!important;line-break:auto}
+html[lang="zh-Hans"] .tn-elem[data-elem-id="1712784208587"] .tn-atom{font-family:Georgia,"Times New Roman",serif!important}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}

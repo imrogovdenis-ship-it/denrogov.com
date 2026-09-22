@@ -1,0 +1,58 @@
+[
+  {
+    "id": "home",
+    "ru": "/",
+    "es": "/es/",
+    "source": "index.html",
+    "en": "/en/",
+    "zh-Hans": "/zh/"
+  },
+  {
+    "id": "booking",
+    "ru": "/booking/",
+    "es": "/es/booking/",
+    "source": "page54053171.html",
+    "en": "/en/booking/",
+    "zh-Hans": "/zh/booking/"
+  },
+  {
+    "id": "booking15",
+    "ru": "/booking/15/",
+    "es": "/es/booking/15/",
+    "source": "page53959051.html",
+    "en": "/en/booking/15/",
+    "zh-Hans": "/zh/booking/15/"
+  },
+  {
+    "id": "booking30",
+    "ru": "/booking/30/",
+    "es": "/es/booking/30/",
+    "source": "page54052193.html",
+    "en": "/en/booking/30/",
+    "zh-Hans": "/zh/booking/30/"
+  },
+  {
+    "id": "booking60",
+    "ru": "/booking/60/",
+    "es": "/es/booking/60/",
+    "source": "page54052815.html",
+    "en": "/en/booking/60/",
+    "zh-Hans": "/zh/booking/60/"
+  },
+  {
+    "id": "booking90",
+    "ru": "/booking/90/",
+    "es": "/es/booking/90/",
+    "source": "page54052831.html",
+    "en": "/en/booking/90/",
+    "zh-Hans": "/zh/booking/90/"
+  },
+  {
+    "id": "registration",
+    "ru": "/registration/",
+    "es": "/es/registration/",
+    "source": "page51691963.html",
+    "en": "/en/registration/",
+    "zh-Hans": "/zh/registration/"
+  }
+]

@@ -1,0 +1,6 @@
+**
+!deployed-public/
+!deployed-public/**
+!deploy/
+!deploy/audience-nginx.conf
+!Dockerfile.audience
