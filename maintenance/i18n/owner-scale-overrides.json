@@ -1,0 +1,30 @@
+{
+  "approval": "Сделай 40+ стран и более 200 локаций",
+  "scope": "Contemporary hero, scale statistics, Portal VR network description only; dated timeline and retrospective speaker experience unchanged",
+  "replacements": {
+    "ru": {
+      "Основатель группы компаний Portal Tech 180+ VR-локаций в 38 странах мира.": "Основатель группы компаний Portal Tech более 200 VR-локаций в 40+ странах мира.",
+      "Сеть клубов и арен виртуальной реальности с 180+ локациями, некоторые из которых по франшизе, другие используют наш контент для успешного VR бизнеса.": "Сеть клубов и арен виртуальной реальности с более чем 200 локациями, некоторые из которых по франшизе, другие используют наш контент для успешного VR бизнеса.",
+      ">180+<": ">200+<",
+      ">30+<": ">40+<"
+    },
+    "es": {
+      "Fundador del grupo Portal Tech: más de 180 espacios de RV en 38 países.": "Fundador del grupo Portal Tech: más de 200 ubicaciones de RV en 40+ países.",
+      "Red de clubes y arenas de realidad virtual con más de 180 espacios: algunos operan como franquicias y otros utilizan nuestros contenidos.": "Red de clubes y arenas de realidad virtual con más de 200 ubicaciones: algunas operan como franquicias y otras utilizan nuestros contenidos.",
+      ">180+<": ">200+<",
+      ">30+<": ">40+<"
+    },
+    "en": {
+      "Founder of Portal Tech: 180+ VR locations in 38 countries.": "Founder of Portal Tech: more than 200 VR locations in 40+ countries.",
+      "A network of VR clubs and arenas with 180+ locations. Some operate as franchises; others use our content to run their VR businesses.": "A network of VR clubs and arenas with more than 200 locations. Some operate as franchises; others use our content to run their VR businesses.",
+      ">180+<": ">200+<",
+      ">30+<": ">40+<"
+    },
+    "zh-Hans": {
+      "Portal Tech 创始人，业务覆盖 38 个国家的 180+ 家 VR 场馆。": "Portal Tech 创始人，业务覆盖40多个国家，拥有超过200家VR场馆。",
+      "拥有 180+ 家场馆的 VR 俱乐部和竞技场网络。部分采用特许经营模式，其他场馆使用我们的内容开展 VR 业务。": "拥有超过200家场馆的 VR 俱乐部和竞技场网络。部分采用特许经营模式，其他场馆使用我们的内容开展 VR 业务。",
+      ">180+<": ">200+<",
+      ">30+<": ">40+<"
+    }
+  }
+}

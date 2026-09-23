@@ -1,0 +1,57 @@
+{
+  "ru": {
+    "label": "Русский",
+    "prefix": "",
+    "enabled": true,
+    "language": "Язык",
+    "og": "ru_RU",
+    "preserve_baseline": true
+  },
+  "es": {
+    "label": "Español",
+    "prefix": "/es",
+    "enabled": true,
+    "language": "Idioma",
+    "og": "es_ES",
+    "preserve_baseline": true
+  },
+  "en": {
+    "label": "English",
+    "prefix": "/en",
+    "enabled": true,
+    "language": "Language",
+    "og": "en_US",
+    "navigation": "Navigation",
+    "russian": "Content in Russian",
+    "calendar": "Open the calendar directly",
+    "book": "Book a meeting",
+    "ai": "AI Class (in Russian)",
+    "disclosure": "Blog articles, catalogues, legal documents and external channels remain in their original language.",
+    "robots": "Robotics catalogue (Russian)",
+    "base": "Knowledge base (Russian)",
+    "description": "Denis Rogov: entrepreneur and founder of Portal Tech. Virtual reality projects, speaking, technology and collaboration.",
+    "intl": "en",
+    "hours": " h",
+    "preserve_baseline": false
+  },
+  "zh-Hans": {
+    "label": "中文",
+    "prefix": "/zh",
+    "enabled": true,
+    "language": "语言",
+    "og": "zh_CN",
+    "navigation": "导航",
+    "russian": "俄语内容",
+    "calendar": "直接打开预约日历",
+    "book": "预约会面",
+    "ai": "AI Class（俄语）",
+    "disclosure": "博客文章、产品目录、法律文件和外部频道保留原始语言。",
+    "robots": "机器人目录（俄语）",
+    "base": "知识库（俄语）",
+    "description": "Denis Rogov，创业者、Portal Tech 创始人。了解虚拟现实项目、演讲、科技与合作机会。",
+    "intl": "zh-CN",
+    "hours": " 小时",
+    "preserve_baseline": false,
+    "fallback_zone": "gz"
+  }
+}

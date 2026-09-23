@@ -1,0 +1,69 @@
+services:
+  am530wakaxmzjrmq2wwo0j5d-214428144935:
+    image: denrogov-durable:audience-reckXzEm3k3UP9Udx
+    container_name: am530wakaxmzjrmq2wwo0j5d-214428144935
+    restart: unless-stopped
+    expose:
+    - '80'
+    networks:
+      coolify:
+        aliases:
+        - am530wakaxmzjrmq2wwo0j5d-214428144935
+    mem_limit: '0'
+    memswap_limit: '0'
+    mem_swappiness: 60
+    mem_reservation: '0'
+    cpus: 0.0
+    cpu_shares: 1024
+    env_file:
+    - .env
+    labels:
+    - traefik.enable=true
+    - traefik.http.middlewares.gzip.compress=true
+    - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+    - traefik.http.routers.http-0-am530wakaxmzjrmq2wwo0j5d.entryPoints=http
+    - traefik.http.routers.http-0-am530wakaxmzjrmq2wwo0j5d.middlewares=redirect-to-https
+    - traefik.http.routers.http-0-am530wakaxmzjrmq2wwo0j5d.rule=Host(`denrogov.com`)
+      && PathPrefix(`/`)
+    - traefik.http.routers.http-0-am530wakaxmzjrmq2wwo0j5d.service=http-0-am530wakaxmzjrmq2wwo0j5d
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.entryPoints=https
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.middlewares=gzip
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.rule=Host(`denrogov.com`)
+      && PathPrefix(`/`)
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.service=https-0-am530wakaxmzjrmq2wwo0j5d
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.tls.certresolver=letsencrypt
+    - traefik.http.routers.https-0-am530wakaxmzjrmq2wwo0j5d.tls=true
+    - traefik.http.services.http-0-am530wakaxmzjrmq2wwo0j5d.loadbalancer.server.port=80
+    - traefik.http.services.https-0-am530wakaxmzjrmq2wwo0j5d.loadbalancer.server.port=80
+    - caddy_0.encode=zstd gzip
+    - caddy_0.handle_path.0_reverse_proxy={{upstreams 80}}
+    - caddy_0.handle_path=/*
+    - caddy_0.header=-Server
+    - caddy_0.try_files={path} /index.html /index.php
+    - caddy_0=https://denrogov.com
+    - caddy_ingress_network=coolify
+    - coolify.managed=true
+    - coolify.version=4.1.2
+    - coolify.applicationId=2
+    - coolify.type=application
+    - coolify.name=am530wakaxmzjrmq2wwo0j5d
+    - coolify.resourceName=denrogovcommain-hkmzsbo13ox9jc6o8h92nvq1
+    - coolify.projectName=my-first-project
+    - coolify.serviceName=denrogovcommain-hkmzsbo13ox9jc6o8h92nvq1
+    - coolify.environmentName=production
+    - coolify.pullRequestId=0
+    build:
+      context: .
+      dockerfile: Dockerfile.audience
+    volumes:
+    - type: bind
+      source: /root/work/audience-weekly-data/public
+      target: /srv/denrogov-audience-public
+      read_only: true
+      bind:
+        create_host_path: false
+networks:
+  coolify:
+    external: true
+    name: coolify
+    attachable: true

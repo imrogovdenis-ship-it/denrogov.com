@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-22T23:11:08.277002Z",
+  "accounts": [
+    {
+      "key": "twitter:224490425",
+      "platform": "twitter",
+      "label": "imrogov",
+      "profile_url": "https://x.com/imrogov",
+      "kind": "personal",
+      "followers": 2826,
+      "observed_at": "2026-09-22T09:03:33.373Z",
+      "status": "ok",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-22T09:03:33.373Z",
+          "followers": 2826
+        }
+      ],
+      "include_in_total": true,
+      "approximate": false
+    },
+    {
+      "key": "instagram:28106294215693796",
+      "platform": "instagram",
+      "label": "imrogov",
+      "profile_url": "https://www.instagram.com/imrogov",
+      "kind": "personal",
+      "followers": 8349,
+      "observed_at": "2026-09-22T08:42:54.018Z",
+      "status": "ok",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-22T08:42:54.018Z",
+          "followers": 8349
+        }
+      ],
+      "include_in_total": true,
+      "approximate": false
+    },
+    {
+      "key": "facebook:518679127988387",
+      "platform": "facebook",
+      "label": "DenisRogov",
+      "profile_url": "https://www.facebook.com/518679127988387",
+      "kind": "personal",
+      "followers": 1,
+      "observed_at": "2026-09-22T10:34:51.591Z",
+      "status": "unverified",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [],
+      "include_in_total": false,
+      "approximate": false
+    },
+    {
+      "key": "linkedin:personal",
+      "platform": "linkedin",
+      "label": "Denis Rogov",
+      "profile_url": "https://sg.linkedin.com/in/denis-rogov-19a1b07b",
+      "kind": "personal",
+      "followers": 3571,
+      "observed_at": "2026-09-21T00:00:00.000Z",
+      "status": "ok",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-21T00:00:00.000Z",
+          "followers": 3571
+        }
+      ],
+      "include_in_total": true,
+      "approximate": false
+    },
+    {
+      "key": "linkedin:100090868",
+      "platform": "linkedin",
+      "label": "VR ARENA",
+      "profile_url": null,
+      "kind": "company",
+      "followers": null,
+      "observed_at": null,
+      "status": "unavailable",
+      "source": null,
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [],
+      "include_in_total": false,
+      "approximate": false
+    },
+    {
+      "key": "linkedin:10661413",
+      "platform": "linkedin",
+      "label": "ToChina.pro",
+      "profile_url": null,
+      "kind": "company",
+      "followers": null,
+      "observed_at": null,
+      "status": "unavailable",
+      "source": null,
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [],
+      "include_in_total": false,
+      "approximate": false
+    },
+    {
+      "key": "youtube:UCD-cowQZ_jnMN-NNkPgBXFQ",
+      "platform": "youtube",
+      "label": "Денис Рогов PRO Технологии",
+      "profile_url": "https://www.youtube.com/channel/UCD-cowQZ_jnMN-NNkPgBXFQ",
+      "kind": "personal",
+      "followers": 14500,
+      "observed_at": "2026-09-22T13:08:29.879Z",
+      "status": "ok",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-22T13:08:29.879Z",
+          "followers": 14500
+        }
+      ],
+      "include_in_total": false,
+      "approximate": true
+    },
+    {
+      "key": "threads:28349039278115652",
+      "platform": "threads",
+      "label": "imrogov",
+      "profile_url": "https://www.threads.com/@imrogov",
+      "kind": "personal",
+      "followers": 358,
+      "observed_at": "2026-09-22T09:20:34.275Z",
+      "status": "ok",
+      "source": "https://schedulala.com/api/v1/analytics/followers",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-22T09:20:34.275Z",
+          "followers": 358
+        }
+      ],
+      "include_in_total": true,
+      "approximate": false
+    },
+    {
+      "key": "telegram:rogovpro",
+      "platform": "telegram",
+      "label": "Денис Рогов PRO технологии",
+      "profile_url": "https://t.me/rogovpro",
+      "kind": "personal",
+      "followers": 2348,
+      "observed_at": "2026-09-22T23:09:38.107889Z",
+      "status": "ok",
+      "source": "https://t.me/rogovpro",
+      "collected_at": "2026-09-22T23:11:08.277002Z",
+      "previous_followers": null,
+      "delta_week": null,
+      "delta_pct": null,
+      "history": [
+        {
+          "observed_at": "2026-09-22T23:09:38.107889Z",
+          "followers": 2348
+        }
+      ],
+      "include_in_total": true,
+      "approximate": false
+    }
+  ],
+  "totals": {
+    "followers": 17452,
+    "delta_week": null,
+    "coverage_keys": [
+      "twitter:224490425",
+      "instagram:28106294215693796",
+      "linkedin:personal",
+      "threads:28349039278115652",
+      "telegram:rogovpro"
+    ],
+    "coverage_count": 5,
+    "excludes_youtube": true,
+    "unique_people": false
+  }
+}
