@@ -21,7 +21,7 @@ for f in ['audience.css','audience.js']:
  shutil.copy2(W/f,assets/f);versions[f]=hashlib.sha256((W/f).read_bytes()).hexdigest()[:12]
 head=f'<link rel="stylesheet" href="/audience-assets/audience.css?v={versions["audience.css"]}"><script defer src="/audience-assets/audience.js?v={versions["audience.js"]}"></script>'
 def block(lang,compact):
- l=labels[lang];payload=json.dumps(l,ensure_ascii=False).replace('<','\\u003c');notice=l['fallback'] if not data['accounts'] else l['snapshot']
+ l=labels[lang];payload=json.dumps(l,ensure_ascii=False).replace('<','\\u003c');notice=l['fallback'] if not data['accounts'] else (l['shortSnapshot'] if compact else l['snapshot'])
  return f'<!--audience:start--><section class="aw" id="audience" data-audience="/audience-data/audience.json" data-compact="{str(compact).lower()}" aria-label="{html.escape(l["title"])}"><div data-content>{render(lang,compact)}</div><p class="aw-note aw-notice" data-notice role="status">{html.escape(notice)}</p><script type="application/json" data-labels>{payload}</script></section><!--audience:end-->'
 for lang,l in labels.items():
  home=l['prefix'];rel=home.lstrip('/')+'index.html';original=(b/rel).read_text()
