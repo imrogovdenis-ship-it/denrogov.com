@@ -25,8 +25,9 @@ def block(lang,compact):
  return f'<!--audience:start--><section class="aw" id="audience" data-audience="/audience-data/audience.json" data-compact="{str(compact).lower()}" aria-label="{html.escape(l["title"])}"><div data-content>{render(lang,compact)}</div><p class="aw-note aw-notice" data-notice role="status">{html.escape(notice)}</p><script type="application/json" data-labels>{payload}</script></section><!--audience:end-->'
 for lang,l in labels.items():
  home=l['prefix'];rel=home.lstrip('/')+'index.html';original=(b/rel).read_text()
- # Insert immediately before existing social links, preserving all original bytes.
- pattern=r'<div\b[^>]*\bid="rec2338832511"[^>]*>'
+ # Insert immediately before the verified localized press cards section.
+ # Same frozen Tilda record in RU/ES/EN/ZH; preserve all existing bytes.
+ pattern=r'<div\b[^>]*\bid="rec2232310341"[^>]*>'
  match=re.search(pattern,original);assert match,rel
  s=original[:match.start()]+block(lang,True)+original[match.start():]
  s=s.replace('</head>','<!--audience:head-->'+head+'<!--audience:/head--></head>',1)
