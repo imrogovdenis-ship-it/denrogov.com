@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hermes и Linear: как менеджер задач становится внутренним лупом для AI-агентов — Денис Рогов</title> <link rel="icon" href="/favicon.ico" sizes="32x32"/> <link rel="apple-touch-icon" href="/apple-touch-icon.png"/><meta name="description" content="Как связать Hermes Agent, Linear, кроны и журнал событий так, чтобы агенты брали задачи, передавали работу друг другу и оставляли проверяемый след."><link rel="canonical" href="https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/"><meta property="og:type" content="article"><meta property="og:url" content="https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/"><meta property="og:title" content="Hermes и Linear: как менеджер задач становится внутренним лупом для AI-агентов"><meta property="og:description" content="Как связать Hermes Agent, Linear, кроны и журнал событий так, чтобы агенты брали задачи, передавали работу друг другу и оставляли проверяемый след."><meta property="og:site_name" content="Денис Рогов"><meta name="twitter:card" content="summary_large_image"><link rel="shortcut icon" href="/images/tild3338-6662-4332-a539-343737336561__dlogo.svg" type="image/x-icon"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Hermes и Linear: как менеджер задач становится внутренним лупом для AI-агентов","description":"Как связать Hermes Agent, Linear, кроны и журнал событий так, чтобы агенты брали задачи, передавали работу друг другу и оставляли проверяемый след.","datePublished":"2026-08-27","dateModified":"2026-08-27","author":{"@id":"https://denrogov.com/#author"},"publisher":{"@id":"https://denrogov.com/#person"},"mainEntityOfPage":"https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/","url":"https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/","inLanguage":"ru-RU"},{"@type":"Person","@id":"https://denrogov.com/#author","name":"Денис Рогов","url":"https://denrogov.com/","sameAs":["https://t.me/rogovpro","https://www.youtube.com/@imrogov","https://vc.ru/id1202909"],"knowsAbout":["AI","ИИ-агенты","Hermes Agent","Linear","автоматизация","робототехника","VR"]},{"@type":"Person","@id":"https://denrogov.com/#person","name":"Денис Рогов","url":"https://denrogov.com/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://denrogov.com/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://denrogov.com/blog"},{"@type":"ListItem","position":3,"name":"Hermes и Linear: как менеджер задач становится внутренним лупом для AI-агентов","item":"https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/"}]}]}</script><style>:root{--blue:#50B1F9;--navy:#0B1220;--ink:#0F0F12;--gray:#6B7280;--paper:#FAFAFB;--font-display:"Inter Tight","Manrope",system-ui,sans-serif;--font-body:"Inter",system-ui,sans-serif;--font-mono:"JetBrains Mono","IBM Plex Mono",monospace;}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.72}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.nav{background:var(--navy);color:#fff;padding:22px max(24px,calc((100vw - 940px)/2));display:flex;justify-content:space-between;gap:18px;align-items:center;position:sticky;top:0;z-index:5}.brand{font-weight:800;letter-spacing:.02em;color:#fff}.navlinks{display:flex;gap:18px;flex-wrap:wrap}.nav a{color:#fff;opacity:.9}.nav a:hover{color:var(--blue);opacity:1;text-decoration:none}.hero{background:radial-gradient(circle at 80% 10%,rgba(80,177,249,.22),transparent 36%),var(--navy);color:#fff;padding:88px max(24px,calc((100vw - 940px)/2)) 70px}.eyebrow{font-family:var(--font-mono);color:var(--blue);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}h1{font-family:var(--font-display);font-size:clamp(38px,7vw,82px);line-height:.96;margin:20px 0 24px;letter-spacing:-.055em;max-width:940px}.lead{font-size:clamp(18px,2.4vw,24px);line-height:1.45;max-width:820px;color:rgba(255,255,255,.78)}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;font-family:var(--font-mono);font-size:13px;color:rgba(255,255,255,.72)}.pill{border:1px solid rgba(80,177,249,.45);border-radius:999px;padding:7px 12px;color:#fff}main{max-width:940px;margin:0 auto;padding:58px 24px 78px}article{background:#fff;border:1px solid rgba(15,15,18,.08);border-radius:28px;padding:clamp(24px,5vw,58px);box-shadow:0 24px 80px rgba(15,15,18,.06)}article h2{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.035em;margin:58px 0 18px}p,li{font-size:18px;color:var(--gray)}p{margin:0 0 20px}ul,ol{padding-left:26px;margin:0 0 24px}li{margin:0 0 10px}strong{color:var(--ink)}blockquote{border-left:3px solid var(--blue);margin:32px 0;padding:14px 0 14px 22px;color:var(--ink);background:linear-gradient(90deg,rgba(80,177,249,.08),transparent)}blockquote p{color:var(--ink)}pre{overflow:auto;background:#0b1220;color:#fff;border-radius:18px;padding:22px;margin:30px 0;font-size:14px;line-height:1.55}code{font-family:var(--font-mono);font-size:.92em}p code,li code{background:rgba(80,177,249,.12);color:var(--ink);border-radius:6px;padding:2px 6px}.cta{margin-top:48px;background:var(--navy);color:#fff;border-radius:24px;padding:28px}.cta p{color:rgba(255,255,255,.78);margin:8px 0 0}.contacts{font-family:var(--font-mono);color:var(--blue);font-weight:700}footer{padding:34px 24px 54px;text-align:center;color:var(--gray);font-family:var(--font-mono);font-size:13px}@media(max-width:640px){.nav{align-items:flex-start;flex-direction:column}article{border-radius:20px}}</style></head><body><header class="nav"><a class="brand" href="/">Денис Рогов</a><div class="navlinks"><a href="/blog">Блог</a><a href="https://t.me/rogovpro">Telegram</a><a href="https://www.youtube.com/@imrogov">YouTube</a></div></header><section class="hero"><div class="eyebrow">ROGOV PRO · AI AGENTS</div><h1>Hermes и Linear: как менеджер задач становится внутренним лупом для AI-агентов</h1><div class="lead">Как связать Hermes Agent, Linear, кроны и журнал событий так, чтобы агенты брали задачи, передавали работу друг другу и оставляли проверяемый след.</div><div class="meta"><span class="pill">27.08.2026</span><span class="pill">Hermes</span><span class="pill">Linear · Cron · OS</span></div></section><main><article><p>Менеджер задач обычно воспринимают как место, куда люди складывают поручения. В агентной системе этого мало. Если Hermes, Codex, Claude Code и другие исполнители реально работают над проектом, задачник должен стать не доской контроля, а внутренним лупом: принять намерение, выдать контекст, запустить действие, принять результат, оставить след и передать следующий шаг.</p>
+<p>Я пришел к простой формуле: <strong>Linear хранит намерение, Hermes исполняет и ставит кроны, Supabase хранит хронологию, GitHub показывает фактические изменения, а AI Class OS собирает все в одну картину.</strong></p>
+<h2>Почему одного чата недостаточно</h2>
+<p>Чат удобен для старта. Я могу написать: «почини страницу», «добавь тест», «проверь аналитику». Агент поймет задачу и начнет работать. Но через три дня появляется вопрос: что именно изменилось, кто это сделал, где файл, какой был результат проверки и что осталось.</p>
+<p>Если ответ живет только в переписке, он быстро теряется. Если работа была сделана напрямую на сервере, но без следа, она превращается в черновик. Не потому что она плохая. Потому что ее не может подхватить следующий агент.</p>
+<p>В нормальной агентной системе задача должна быть машинно читаемой. У нее есть статус, владелец, исполнитель, ссылки на файлы, комментарии, проверки и следующий шаг. Именно здесь Linear становится полезен: его GraphQL API позволяет читать и менять задачи программно, создавать issue, обновлять статус и работать с комментариями.[1]</p>
+<h2>Главное правило: не «нет задачи — нет работы»</h2>
+<p>На практике жесткое правило «нет задачи Linear — нет работы» ломает скорость. Иногда нужно быстро проверить гипотезу, починить баг, поправить страницу или перезапустить сервис. Формальность перед действием будет мешать.</p>
+<p>Поэтому я бы формулировал иначе:</p>
+<blockquote><p>Нет следа в системе — работа считается черновиком.</p></blockquote>
+<p>След может быть разным:</p>
+<ul><li>Linear issue;</li><li>комментарий в существующей задаче;</li><li>запись в `os_events`;</li><li>Git commit или PR;</li><li>отчет cron-задачи.</li></ul>
+<p>Смысл не в бюрократии. Смысл в том, чтобы любая работа стала видимой для следующего участника: человека или агента.</p>
+<h2>Как выглядит внутренний луп</h2>
+<p>Я смотрю на систему как на цикл из семи шагов.</p>
+<ol><li>Человек формулирует намерение. Это может быть голос, Telegram, комментарий в Linear или команда Hermes.</li><li>Hermes нормализует задачу. Уточняет цель, ограничения, владельца и критерий готовности.</li><li>Linear фиксирует намерение. Создается или обновляется issue.</li><li>Агент берет работу. Он получает не всю память проекта, а нужный контракт: задача, файлы, допуски, критерии проверки.</li><li>Кроны поддерживают ритм. Проверяют статусы, запускают аудиты, напоминают о зависших задачах, собирают данные.</li><li>Результат возвращается в систему. Комментарий в Linear, запись в журнал, ссылка на commit, тестовый вывод.</li><li>Следующий шаг появляется автоматически. Если работа завершена — закрываем. Если есть блокер — создаем follow-up. Если нужна проверка человека — статус меняется на review.</li></ol>
+<p>Это и есть внутренний луп. Linear не заменяет агента. Hermes не заменяет задачник. Они замыкают друг друга.</p>
+<h2>Что делает Linear</h2>
+<p>Linear в этой схеме — не интерфейс для сотрудников. Это движок задач.</p>
+<p>Он хранит:</p>
+<ul><li>проекты и направления;</li><li>issue и статусы;</li><li>исполнителей и владельцев;</li><li>комментарии;</li><li>историю изменений;</li><li>связи между задачами.</li></ul>
+<p>Важная часть — API. Linear публично описывает GraphQL endpoint <code><a href="https://api.linear.app/graphql">https://api.linear.app/graphql</a></code>, персональные API-ключи и OAuth для доступа, а также мутации для создания и обновления задач.[1] Это значит, что агент может не скриншотить интерфейс, а работать с задачником как с системой.</p>
+<p>Еще один слой — вебхуки. Linear может отправлять HTTP POST при создании, обновлении или удалении данных, например по задачам, комментариям, проектам и документам.[2] Для агентной системы это принципиально: нам не нужно постоянно опрашивать все задачи. Достаточно принять событие, проверить подпись и обновить свой журнал.</p>
+<h2>Что делает Hermes</h2>
+<p>Hermes — это операционный слой. Он понимает человеческую команду, знает правила проекта, умеет пользоваться инструментами и может создавать scheduled jobs.</p>
+<p>Кроны в Hermes — не просто напоминалки. По документации Hermes cron jobs могут быть разовыми или регулярными, могут загружать один или несколько skills, доставлять результат в исходный чат или другой канал, запускаться в свежих агентных сессиях и работать в no-agent mode, когда по расписанию исполняется только скрипт без LLM.[4]</p>
+<p>Это меняет роль задачника. Linear отвечает на вопрос «что должно быть сделано». Hermes отвечает на вопрос «кто и как это будет делать по расписанию».</p>
+<p>Примеры:</p>
+<ul><li>Linear issue: «каждое утро проверить сайт и аналитику»;</li><li>Hermes cron: раз в день запускает аудит, собирает HTTP-коды, метрики, ошибки JS;</li><li>результат: комментарий в issue и запись в журнал;</li><li>если найден блокер: создается новая задача или меняется статус старой.</li></ul>
+<p>Так задача перестает быть мертвой карточкой. Она начинает жить в ритме.</p>
+<h2>Зачем нужен Supabase или `os_events`</h2>
+<p>Git хорошо показывает, что изменилось в файлах. Linear хорошо показывает, что планировалось. Но между ними есть жизнь: кто запустил проверку, какой агент взял задачу, какой cron сработал, что вернул API, почему задача ушла в блокер.</p>
+<p>Для этого нужен журнал событий. У нас эту роль выполняет Supabase / <code>os_events</code>.</p>
+<p>Supabase дает обычную Postgres-базу, не абстракцию над ней: таблицы, SQL, программный доступ, функции, триггеры, webhooks и Realtime-слой строятся вокруг этой базы.[3] Для операционного журнала это удобно: можно хранить события структурно и потом показывать их на портале.</p>
+<p>Событие может быть таким:</p>
+<pre><code>{
+  &quot;ts&quot;: &quot;2026-08-27T15:00:00Z&quot;,
+  &quot;actor&quot;: &quot;hermes/default&quot;,
+  &quot;event&quot;: &quot;cron_completed&quot;,
+  &quot;linear_issue&quot;: &quot;AI-44&quot;,
+  &quot;target&quot;: &quot;docs.ai-class.tech/ai-class-os&quot;,
+  &quot;result&quot;: &quot;api 200, tests 40/40&quot;,
+  &quot;next&quot;: &quot;wait for human review&quot;
+}</code></pre>
+<p>Это не замена Linear. Это черный ящик системы. Если завтра другой агент продолжит работу, он увидит не только задачу, но и цепочку действий.</p>
+<h2>Где в этой схеме GitHub</h2>
+<p>GitHub не должен быть задачником. Он должен быть доказательством фактических изменений.</p>
+<p>Рабочее правило:</p>
+<ul><li>Linear: что хотели сделать;</li><li>GitHub: что реально поменяли;</li><li>Supabase: когда и кем это прошло через систему;</li><li>AI Class OS: как это выглядит для человека;</li><li>Hermes: кто двигает цикл.</li></ul>
+<p>Если правка затрагивает код, страницу, конфиг или шаблон, она должна заканчиваться коммитом или PR. Если задача была маленькая и делалась напрямую, след все равно нужен: хотя бы issue постфактум с отчетом и ссылкой на измененные файлы.</p>
+<h2>Как передавать задачи между агентами</h2>
+<p>Передача между агентами не должна выглядеть как «прочитай весь чат». Это слишком шумно.</p>
+<p>Нормальный контракт передачи:</p>
+<pre><code>{
+  &quot;task&quot;: &quot;Исправить синхронизацию задач на вкладке Tasks&quot;,
+  &quot;linear_issue&quot;: &quot;AI-44&quot;,
+  &quot;owner&quot;: &quot;Denis&quot;,
+  &quot;agent&quot;: &quot;infra&quot;,
+  &quot;context&quot;: [
+    &quot;страница: /ai-class-os/#tasks&quot;,
+    &quot;API: /api/linear/issues&quot;,
+    &quot;проблема: пустой первый проект&quot;
+  ],
+  &quot;done_when&quot;: [
+    &quot;live page returns 200&quot;,
+    &quot;tasks count &gt; 0&quot;,
+    &quot;test suite passes&quot;,
+    &quot;comment added to Linear&quot;
+  ],
+  &quot;handoff&quot;: &quot;если API работает, передать UI-агенту; если нет, вернуть infra&quot;
+}</code></pre>
+<p>Так один агент не держит всю память. Память держит система. Агент получает только то, что нужно для шага.</p>
+<p>Это особенно важно для больших проектов. Один агент может заниматься backend, второй интерфейсом, третий проверкой, четвертый контентом. Linear держит статус и связи, Hermes выдает контракты, журнал хранит факты, портал показывает состояние.</p>
+<h2>Где кроны реально полезны</h2>
+<p>Кроны нужны не для «напомни мне». В агентной инфраструктуре они закрывают регулярные петли.</p>
+<p>Вот рабочие типы cron-задач:</p>
+<ol><li>Watchdog. Проверить, что сайт, API, бот или webhook живы.</li><li>Audit. Раз в день собрать ошибки, битые ссылки, JS-ошибки, SEO-сигналы.</li><li>Sync. Сверить Linear, GitHub, Supabase и портал.</li><li>Backlog hygiene. Найти зависшие задачи без владельца, без next step, без следа.</li><li>Report. Сформировать короткий отчет Денису или Ирине.</li><li>Escalation. Если задача зависла больше N часов — поднять статус или отправить сообщение.</li><li>Content loop. Найти материал, собрать черновик, поставить review, не публиковать без допуска.</li></ol>
+<p>Главное: cron не должен жить отдельно от задач. Если регулярная проверка существует, у нее должен быть владелец, описание и место, куда она пишет результат.</p>
+<h2>Минимальная архитектура внедрения</h2>
+<p>Я бы начинал не с большого портала, а с простого контура.</p>
+<p><strong>1. Linear workspace</strong></p>
+<p>Создать проекты: Product, Infra, Content, Community, Analytics. Договориться о статусах: Backlog, Todo, In Progress, Review, Done, Blocked.</p>
+<p><strong>2. Hermes profile</strong></p>
+<p>Один головной профиль, который знает правила проекта, допуски и карту агентов. Он не делает все руками, а раздает работу.</p>
+<p><strong>3. Bridge service</strong></p>
+<p>Небольшой FastAPI-сервис:</p>
+<ul><li>принимает Linear webhooks;</li><li>проверяет `Linear-Signature`;</li><li>пишет события в `os_events`;</li><li>умеет создавать комментарии и issue через GraphQL;</li><li>отдает срез для портала.</li></ul>
+<p><strong>4. Cron layer</strong></p>
+<p>Hermes cron jobs:</p>
+<ul><li>`project-audit` раз в час;</li><li>`stale-linear-issues` раз в день;</li><li>`deploy-smoke` после релиза;</li><li>`weekly-trace-report` раз в неделю.</li></ul>
+<p><strong>5. AI Class OS</strong></p>
+<p>Человек смотрит не в пять инструментов, а в одну страницу: задачи, цели, агенты, события, блокеры, последние изменения.</p>
+<h2>Что важно не перепутать</h2>
+<p><strong>Linear — не память агента.</strong> Это структурированное намерение и история задач.</p>
+<p><strong>Supabase — не задачник.</strong> Это журнал событий и состояние витрины.</p>
+<p><strong>GitHub — не операционный дневник.</strong> Это доказательство изменений в коде.</p>
+<p><strong>Hermes — не человек с ответственностью.</strong> Агент исполняет, но ответственность остается у владельца задачи. Этот принцип совпадает с рекомендациями Linear для agent interaction: агент должен быть явно обозначен, работать в привычных паттернах платформы, показывать состояние и не быть конечным ответственным лицом.[5]</p>
+<p><strong>Крон — не магия.</strong> Это расписание. Если prompt не самодостаточный, skill не загружен, credential не доступен или доставка не настроена, автоматизация будет ломаться молча или шуметь не туда.</p>
+<h2>Практический протокол Project Trace</h2>
+<p>После любой работы агент должен оставить короткий след:</p>
+<pre><code>Project Trace
+- Что изменил:
+- Зачем:
+- Где файлы:
+- Linear issue:
+- Commit / PR:
+- Что проверено:
+- Что осталось:</code></pre>
+<p>Если issue не было до начала, агент создает его после факта как <code>ad-hoc fix</code> или пишет событие в журнал. Это не идеальная бюрократия. Это бухгалтерия смысла.</p>
+<h2>Итог</h2>
+<p>Будущая операционная система компании — это не один суперапп. Это связка инструментов, где каждый отвечает за свой слой.</p>
+<p>Linear держит намерение. Hermes двигает исполнение. Кроны поддерживают ритм. Supabase фиксирует хронологию. GitHub доказывает изменения. AI Class OS показывает картину человеку.</p>
+<p>Когда эта петля замкнута, агентам не нужно каждый раз спрашивать: «что уже было сделано?». Они видят след, берут следующий шаг и продолжают работу.</p>
+<p>Вот тогда менеджер задач перестает быть доской с карточками. Он становится операционной памятью команды.</p>
+<p>TG @rogovpro · YT @imrogov · denrogov.com</p>
+<h2>Sources</h2>
+<p>[1] <a href="https://linear.app/developers/graphql">https://linear.app/developers/graphql</a></p>
+<p>[2] <a href="https://linear.app/developers/webhooks">https://linear.app/developers/webhooks</a></p>
+<p>[3] <a href="https://supabase.com/docs/guides/database/overview">https://supabase.com/docs/guides/database/overview</a></p>
+<p>[4] <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">https://hermes-agent.nousresearch.com/docs/user-guide/features/cron</a></p>
+<p>[5] <a href="https://linear.app/developers/aig">https://linear.app/developers/aig</a></p><div class="cta"><div class="contacts">TG @rogovpro · YT @imrogov · denrogov.com</div><p>Разбираю агентные процессы и операционные системы для бизнеса в канале.</p></div></article></main><footer>ДЕНИС РОГОВ · DENROGOV.COM · DESIGN 5b0f17410219a0956527ee1f3231bc9114285fab</footer></body></html>
