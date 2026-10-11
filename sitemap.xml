@@ -9,10 +9,6 @@
 		<lastmod>2026-07-22T02:19:07+00:00</lastmod>
 	</url>
 	<url>
-		<loc>https://denrogov.com/old</loc>
-		<lastmod>2026-05-17T07:51:11+00:00</lastmod>
-	</url>
-	<url>
 		<loc>https://denrogov.com/soglasie-na-rassylku</loc>
 		<lastmod>2026-07-21T20:33:47+00:00</lastmod>
 	</url>
@@ -37,16 +33,24 @@
 		<lastmod>2026-05-17T07:51:11+00:00</lastmod>
 	</url>
 	<url>
-		<loc>https://denrogov.com/page100540816.html</loc>
-		<lastmod>2026-05-17T07:51:11+00:00</lastmod>
-	</url>
-	<url>
 		<loc>https://denrogov.com/</loc>
 		<lastmod>2026-07-22T02:18:39+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://denrogov.com/blog</loc>
 		<lastmod>2026-05-17T07:51:12+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://denrogov.com/base/</loc>
+		<lastmod>2026-09-07T00:00:00+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://denrogov.com/base/yuan-geng-shekou/</loc>
+		<lastmod>2026-09-07T00:00:00+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://denrogov.com/robots/</loc>
+		<lastmod>2026-09-08T00:00:00+00:00</lastmod>
 	</url>
 	<url>
 		<loc>https://denrogov.com/soglasie-na-obrabotku-personalnyh-dannyh</loc>
@@ -68,4 +72,8 @@
 		<loc>https://denrogov.com/blog/kak-optimizirovat-sait-pod-ai-poisk-geo-seo-ai-assistent/</loc>
 		<lastmod>2026-08-24T00:00:00+00:00</lastmod>
 	</url>
-</urlset>
+	<url>
+		<loc>https://denrogov.com/blog/hermes-linear-vnutrenniy-loop-agentov/</loc>
+		<lastmod>2026-08-27T00:00:00+00:00</lastmod>
+	</url>
+<url><loc>https://denrogov.com/audience/</loc></url><url><loc>https://denrogov.com/es/audience/</loc></url><url><loc>https://denrogov.com/en/audience/</loc></url><url><loc>https://denrogov.com/zh/audience/</loc></url><url><loc>https://denrogov.com/blog/telegram-ai-analysis/</loc><lastmod>2026-10-11</lastmod></url></urlset>
