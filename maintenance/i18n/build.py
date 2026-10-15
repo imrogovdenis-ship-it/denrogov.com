@@ -1,7 +1,8 @@
 """Private, deterministic multilingual overlay. Production is never a write target."""
 from pathlib import Path
 from bs4 import BeautifulSoup,Comment
-import json,re,shutil,hashlib
+import json,re,shutil,hashlib,runpy
+brand_header=runpy.run_path(str(Path(__file__).resolve().parent.parent/'branding.py'))['apply']
 from urllib.parse import urlsplit
 W=Path(__file__).resolve().parent
 P=W/'public'; SOURCE=W/'live'; T=W/'templates'
@@ -103,6 +104,7 @@ for route in ROUTES:
     if frame:
      note=s.new_tag('p',attrs={'class':'locale-note'});a=s.new_tag('a',href=frame['src'].split('?')[0]);a.string=cfg['calendar'];note.append(a);frame.parent.insert_after(note)
    text=str(s)
+  text=brand_header(text,route[lang])
   dest=path_for(P,route[lang]);dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(text)
   if lang=='ru':(P/route['source']).write_text(text)
   coverage.append({'family':route['id'],'locale':lang,'route':route[lang],'path':str(dest.relative_to(P))})

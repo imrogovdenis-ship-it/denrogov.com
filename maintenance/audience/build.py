@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Additive overlay only. Never runs old i18n generator against current public bytes."""
 from pathlib import Path
-import json,subprocess,hashlib,re,shutil,html,argparse
+import json,subprocess,hashlib,re,shutil,html,argparse,runpy
+brand_header=runpy.run_path(str(Path(__file__).resolve().parent.parent/'branding.py'))['apply']
 W=Path(__file__).resolve().parent
 assert (W/'baseline').is_dir(), 'Frozen public baseline required'
 args=argparse.ArgumentParser();args.add_argument('--data',type=Path);opt=args.parse_args()
@@ -19,7 +20,7 @@ assets=p/'audience-assets';assets.mkdir(exist_ok=True)
 versions={}
 for f in ['audience.css','audience.js']:
  shutil.copy2(W/f,assets/f);versions[f]=hashlib.sha256((W/f).read_bytes()).hexdigest()[:12]
-head=f'<link rel="stylesheet" href="/audience-assets/audience.css?v={versions["audience.css"]}"><script defer src="/audience-assets/audience.js?v={versions["audience.js"]}"></script>'
+head=f'<link rel="stylesheet" href="/assets/header-brand-v1.css"><link rel="stylesheet" href="/audience-assets/audience.css?v={versions["audience.css"]}"><script defer src="/audience-assets/audience.js?v={versions["audience.js"]}"></script>'
 def block(lang,compact):
  l=labels[lang];payload=json.dumps(l,ensure_ascii=False).replace('<','\\u003c');notice=l['fallback'] if not data['accounts'] else (l['shortSnapshot'] if compact else l['snapshot'])
  return f'<!--audience:start--><section class="aw" id="audience" data-audience="/audience-data/audience.json" data-compact="{str(compact).lower()}" aria-label="{html.escape(l["title"])}"><div data-content>{render(lang,compact)}</div><p class="aw-note aw-notice" data-notice role="status">{html.escape(notice)}</p><script type="application/json" data-labels>{payload}</script></section><!--audience:end-->'
@@ -31,6 +32,7 @@ for lang,l in labels.items():
  match=re.search(pattern,original);assert match,rel
  s=original[:match.start()]+block(lang,True)+original[match.start():]
  s=s.replace('</head>','<!--audience:head-->'+head+'<!--audience:/head--></head>',1)
+ s=brand_header(s,home)
  (p/rel).write_text(s)
  if lang=='ru':
   for alias in b.glob('page*.html'):
@@ -38,7 +40,7 @@ for lang,l in labels.items():
  alternates=''.join(f'<link rel="alternate" hreflang="{k}" href="https://denrogov.com{v["prefix"]}audience/">' for k,v in labels.items())+'<link rel="alternate" hreflang="x-default" href="https://denrogov.com/audience/">'
  nav=''.join(f'<a href="{v["prefix"]}audience/" lang="{k}"'+(' aria-current="page"' if k==lang else '')+f'>{v["name"]}</a>' for k,v in labels.items())
  title=html.escape(l['title']+' · Denis Rogov');intro=html.escape(l['intro'])
- page=f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><meta name="description" content="{intro}"><link rel="canonical" href="https://denrogov.com{home}audience/">{alternates}<meta property="og:title" content="{title}"><meta property="og:description" content="{intro}"><meta property="og:url" content="https://denrogov.com{home}audience/"><meta property="og:type" content="website">{head}</head><body class="aw-page"><header class="aw-header"><a class="aw-brand" href="{home}">DENIS ROGOV</a><nav class="aw-languages" aria-label="Language">{nav}</nav></header><main><div class="aw-intro"><h1>{html.escape(l["title"])}</h1><p>{intro}</p></div>{block(lang,False)}<section class="aw-method"><h2>{html.escape(l["method"])}</h2><p>{html.escape(l["methodText"])}</p><a href="{home}" style="color:inherit">← {html.escape(l["home"])}</a></section></main><footer class="aw-footer"><span>DENIS ROGOV · DENROGOV.COM</span><span><a href="https://t.me/rogovpro">TG @rogovpro</a> · <a href="https://www.youtube.com/@imrogov">YT @imrogov</a></span></footer></body></html>'
+ page=f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><meta name="description" content="{intro}"><link rel="canonical" href="https://denrogov.com{home}audience/">{alternates}<meta property="og:title" content="{title}"><meta property="og:description" content="{intro}"><meta property="og:url" content="https://denrogov.com{home}audience/"><meta property="og:type" content="website">{head}</head><body class="aw-page"><header class="aw-header"><a class="aw-brand dr-home-logo" href="{home}" aria-label="{html.escape(l["home"])}"><img src="/images/tild3939-3732-4135-b030-386439336433__drlogo.svg" width="36" height="38" alt="Денис Рогов"></a><nav class="aw-languages" aria-label="Language">{nav}</nav></header><main><div class="aw-intro"><h1>{html.escape(l["title"])}</h1><p>{intro}</p></div>{block(lang,False)}<section class="aw-method"><h2>{html.escape(l["method"])}</h2><p>{html.escape(l["methodText"])}</p><a href="{home}" style="color:inherit">← {html.escape(l["home"])}</a></section></main><footer class="aw-footer"><span>DENIS ROGOV · DENROGOV.COM</span><span><a href="https://t.me/rogovpro">TG @rogovpro</a> · <a href="https://www.youtube.com/@imrogov">YT @imrogov</a></span></footer></body></html>'
  dest=p/home.lstrip('/')/'audience/index.html';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(page)
 sitemap=(b/'sitemap.xml').read_text();addition=''.join(f'<url><loc>https://denrogov.com{l["prefix"]}audience/</loc></url>' for l in labels.values());(p/'sitemap.xml').write_text(sitemap.replace('</urlset>',addition+'</urlset>'))
 if opt.data:
