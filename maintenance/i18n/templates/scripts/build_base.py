@@ -167,9 +167,9 @@ def page_shell(title: str, description: str, body: str, canonical: str) -> str:
   <meta property=\"og:url\" content=\"{canonical}\">
   <link rel=\"stylesheet\" href=\"/base/assets/base.css\">
   <script defer src=\"https://analytics.ai-class.tech/script.js\" data-website-id=\"denrogov-base\"></script>
-</head>
+<link rel=\"stylesheet\" href=\"/assets/header-brand-v1.css\"></head>
 <body>
-  <header class=\"topbar\"><a href=\"/\">Денис Рогов</a><nav><a href=\"/blog\">Блог</a><a href=\"/base/\">База</a></nav></header>
+  <header class=\"topbar\"><a class=\"dr-home-logo\" href=\"/\" aria-label=\"На главную\"><img src=\"/images/tild3939-3732-4135-b030-386439336433__drlogo.svg\" width=\"36\" height=\"38\" alt=\"Денис Рогов\"></a><nav><a href=\"/blog\">Блог</a><a href=\"/base/\">База</a></nav></header>
   {body}
 </body>
 </html>"""

@@ -1,0 +1,8 @@
+/* Existing original monogram; shared header treatment, no navigation logic. */
+a.dr-home-logo{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:46px!important;min-width:46px!important;height:44px!important;min-height:44px!important;padding:3px!important;box-sizing:border-box!important;background:#0B1220!important;border-radius:7px;line-height:1!important;vertical-align:middle;text-decoration:none!important}
+a.dr-home-logo>img{display:block!important;width:36px!important;height:38px!important;max-width:none!important;max-height:none!important;object-fit:contain!important;margin:0!important;padding:0!important}
+a.dr-home-logo:focus-visible{outline:2px solid #50B1F9;outline-offset:4px}
+
+/* Keep mobile home links below the existing locale bar, like desktop. */
+.locale-switch~#allrecords .tmenu-mobile_positionfixed{top:58px!important}
+@media(max-width:640px){.locale-switch~#allrecords .tmenu-mobile_positionfixed{top:54px!important}}
