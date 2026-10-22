@@ -33,6 +33,7 @@ for lang,l in labels.items():
  s=original[:match.start()]+block(lang,True)+original[match.start():]
  s=s.replace('</head>','<!--audience:head-->'+head+'<!--audience:/head--></head>',1)
  s=brand_header(s,home)
+ s=runpy.run_path(str(W.parent/'project_ai_class.py'))['apply'](s,lang)
  (p/rel).write_text(s)
  if lang=='ru':
   for alias in b.glob('page*.html'):
