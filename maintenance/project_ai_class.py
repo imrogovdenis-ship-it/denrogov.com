@@ -16,6 +16,7 @@ STYLE='''<style data-ai-class-project="v1">
 @media(max-width:479px){#rec2276415621 .tn-elem[data-elem-id="1778909752727000033"] .ai-class-mark{font-size:17px;border-radius:12px}#rec2276415621 .tn-elem[data-elem-id="1778909713837000019"] .tn-atom{font-size:13px}}
 </style><noscript><style>#rec2276415621 .t396__artboard{min-height:550px}@media(min-width:640px) and (max-width:1199px){#rec2276415621 .t396__artboard{min-height:1050px}}@media(max-width:639px){#rec2276415621 .t396__artboard{min-height:900px}}@media(max-width:479px){#rec2276415621 .t396__artboard{min-height:800px}}</style></noscript>'''
 def apply(text,lang):
+ lang='zh' if lang=='zh-Hans' else lang
  if 'data-ai-class-project="v1"' in text:return text
  soup=BeautifulSoup(text,'html.parser');rec=soup.find(id='rec2276415621')
  if not rec:return text
