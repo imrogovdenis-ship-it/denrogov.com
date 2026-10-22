@@ -105,6 +105,7 @@ for route in ROUTES:
      note=s.new_tag('p',attrs={'class':'locale-note'});a=s.new_tag('a',href=frame['src'].split('?')[0]);a.string=cfg['calendar'];note.append(a);frame.parent.insert_after(note)
    text=str(s)
   text=brand_header(text,route[lang])
+  if route['id']=='home':text=runpy.run_path(str(W.parent/'project_ai_class.py'))['apply'](text,lang)
   dest=path_for(P,route[lang]);dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(text)
   if lang=='ru':(P/route['source']).write_text(text)
   coverage.append({'family':route['id'],'locale':lang,'route':route[lang],'path':str(dest.relative_to(P))})
