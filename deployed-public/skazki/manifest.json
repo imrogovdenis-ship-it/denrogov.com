@@ -1,0 +1,30 @@
+{
+  "name": "Добрые сказки для маленьких",
+  "short_name": "Сказки",
+  "description": "Четыре истории для чтения вместе: Пегас, Солнышко, Весна, Дельфин",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "ru",
+  "background_color": "#FFF6E8",
+  "theme_color": "#FFF6E8",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "./",
+  "scope": "./"
+}
