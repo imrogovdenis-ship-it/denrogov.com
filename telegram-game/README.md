@@ -19,7 +19,7 @@
    Без этого Telegram не даёт боту проверять подписку, и бонус за неё не начисляется.
 4. **Проверьте, что функция жива.** Откройте в браузере
    <https://oxsmllzxalxriiwgwpna.supabase.co/functions/v1/portal-game>.
-   Должна быть строка вида `portal-game f67ee029b9d9 ok`. Если в ней слово `CORRUPT` —
+   Должна быть строка вида `portal-game a1c61d8683c8 ok`. Если в ней слово `CORRUPT` —
    код игры повредился при выкладке, функцию нужно выложить заново (см. ниже).
 5. **Подключите бота.** Откройте
    <https://oxsmllzxalxriiwgwpna.supabase.co/functions/v1/portal-game/setup>.
