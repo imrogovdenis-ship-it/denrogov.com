@@ -203,8 +203,13 @@ async function onStart(m: any, arg: string | undefined, d: Deps): Promise<void> 
 
   const widgetId = await d.store.getConfig(widgetKey(d));
   if (widgetId) {
-    await d.tg.call("sendSharedWidget", { chat_id: m.chat.id, widget_id: widgetId, caption: CAPTION });
-    return;
+    try {
+      await d.tg.call("sendSharedWidget", { chat_id: m.chat.id, widget_id: widgetId, caption: CAPTION });
+      return;
+    } catch (e) {
+      // The saved widget is gone or unusable: fall through and create a new one, so the player still gets a game.
+      console.error("sendSharedWidget failed:", (e as Error)?.message);
+    }
   }
   // First /start for this build of the game: this send creates the shared widget everyone else will get.
   const top = await currentTop(d);

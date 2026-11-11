@@ -1,12 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
 import { deflateSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 
 const root = new URL('..', import.meta.url).pathname;
-execFileSync('node', ['build/build.mjs'], { cwd: root });
 const html = readFileSync(root + 'dist/widget.html', 'utf8');
 
 test('the built widget fits Telegram limits', () => {
@@ -14,6 +12,11 @@ test('the built widget fits Telegram limits', () => {
   const packed = deflateSync(Buffer.from(html), { level: 9 }).length;
   assert.ok(packed <= 4096, `compressed size ${packed}`);
   assert.ok(!html.includes('\0'));
+});
+
+test('the widget avoids features the sandbox profile does not promise', () => {
+  for (const risky of ['.hidden=', 'localStorage.p', '+"44"']) assert.ok(!html.includes(risky), risky);
+  assert.ok(!/<(p|td|tr)>(?:(?!<\/\1>).)*<\1>/.test(html.replace(/\$\{[^}]*\}/g, '')), 'implied end tags');
 });
 
 test('the built widget is self-contained', () => {

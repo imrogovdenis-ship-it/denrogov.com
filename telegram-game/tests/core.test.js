@@ -261,3 +261,15 @@ test('answers stay within 1024 bytes with a full top of long names', async () =>
   await C.handleUpdate(query(1, 'i', name), deps);
   assert.equal(lastAnswer(tg).p, 12, 'a rank outside the top ten is reported');
 });
+
+test('/start falls back to a fresh widget when the saved shared widget cannot be sent', async () => {
+  let n = 1;
+  const { deps, tg, store } = makeDeps({
+    sendWidget: () => ({ message_id: 1, widget: { id: 'W' + n++ } }),
+    sendSharedWidget: () => { throw new Error('Bad Request: WIDGET_ID_INVALID'); },
+  });
+  await C.handleUpdate(startMsg(1), deps);
+  await C.handleUpdate(startMsg(2), deps);
+  assert.deepEqual(tg.of('sendWidget').map((p) => p.chat_id), [1, 2]);
+  assert.equal(store.config.get('widget:abc123'), 'W2');
+});

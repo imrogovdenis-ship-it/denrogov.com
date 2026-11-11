@@ -10,36 +10,60 @@ let browser;
 before(async () => { browser = await chromium.launch(); });
 after(async () => { await browser?.close(); });
 
-// A stand-in for the object Telegram injects. `script` maps a request prefix to an answer or an error code.
-function mock(script) {
+// A stand-in for the object Telegram injects, enforcing the request rules of the widget guide:
+// one request in flight (BUSY), a request needs a real tap (click / pointerup, never pointerdown) and a tap
+// unlocks one call, and tapless "background" requests are spaced by `opts.bgGap` ms. `script` maps a request
+// prefix to an answer or an error code; answers arrive after `opts.delay` ms.
+function mock(script, opts) {
+  let tap = false, pending = false, lastBg = -Infinity;
+  for (const type of ['click', 'pointerup']) {
+    document.addEventListener(type, () => { tap = true; }, true);
+    window.addEventListener(type, () => { tap = false; });
+  }
+  const fail = (code) => Promise.reject({ name: 'WidgetRequestError', code });
+  const spend = () => { const ok = tap; tap = false; return ok; };
   window.TelegramWidget = {
-    viewer: { id: 77, first_name: 'Денис' },
-    publicData: '{"r":1,"t":[["Аня",50],["Денис",44]]}',
-    calls: [], links: [], handlers: {}, watched: false,
+    viewer: opts.viewer, publicData: '{"r":1,"t":[["Аня",50],["Денис",44]]}',
+    calls: [], refused: [], links: [], handlers: {}, watched: false,
     request(data) {
+      if (pending) { this.refused.push(data + ':BUSY'); return fail('BUSY'); }
+      if (!spend()) {
+        if (performance.now() - lastBg < opts.bgGap) { this.refused.push(data + ':RATE_LIMITED'); return fail('RATE_LIMITED'); }
+        lastBg = performance.now();
+      }
       this.calls.push(data);
       const rule = script[data[0]];
       const r = Array.isArray(rule) ? (rule.length > 1 ? rule.shift() : rule[0]) : rule;
-      return typeof r === 'string' ? Promise.reject({ name: 'WidgetRequestError', code: r }) : Promise.resolve({ result: JSON.stringify(r ?? {}) });
+      pending = true;
+      return new Promise((resolve, reject) => setTimeout(() => {
+        pending = false;
+        typeof r === 'string' ? reject({ name: 'WidgetRequestError', code: r }) : resolve({ result: JSON.stringify(r ?? {}) });
+      }, opts.delay));
     },
     onEvent(name, fn) { (this.handlers[name] ??= []).push(fn); },
     emit(name) { (this.handlers[name] || []).forEach((fn) => fn()); },
     watchPublicData() { this.watched = true; },
-    openTelegramLink(url) { this.links.push(url); },
+    openTelegramLink(url) { if (spend()) this.links.push(url); },
   };
 }
 
-async function open(script) {
+async function open(script, opts = {}) {
   const page = await browser.newPage({ viewport: { width: 340, height: 440 } });
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
-  await page.setContent((script ? `<script>(${mock})(${JSON.stringify(script)})</script>` : '') + html);
+  const o = { delay: 20, bgGap: 0, viewer: { id: 77, first_name: 'Денис' }, ...opts };
+  await page.setContent((script ? `<script>(${mock})(${JSON.stringify(script)},${JSON.stringify(o)})</script>` : '') + html);
+  if (script) await page.waitForTimeout(60); // let the initial `i` settle, as it would before a human taps
   return { page, errors };
 }
 const calls = (page) => page.evaluate(() => window.TelegramWidget.calls);
+const refused = (page) => page.evaluate(() => window.TelegramWidget.refused);
 const overText = (page) => page.locator('#o').innerText();
-const waitOver = (page) => page.waitForFunction(() => !document.getElementById('o').hidden, null, { timeout: 8000 });
-const tap = (page) => page.dispatchEvent('#c', 'pointerdown');
+const overShown = () => getComputedStyle(document.getElementById('o')).display !== 'none';
+const waitOver = (page) => page.waitForFunction(overShown, null, { timeout: 8000 });
+const tap = (page) => page.click('#c');
+const waitResult = (page) => page.waitForFunction(() => / = 0/.test(document.getElementById('o').innerText), null, { timeout: 8000 });
+const again = (page) => page.locator('#o button', { hasText: 'Ещё раз' });
 const answers = { i: { k: 1.2, b: 44, p: 35, f: 2, s: 0 }, s: {}, e: { v: 0, k: 1.2, b: 44, p: 35, t: [['Аня', 50], ['Денис', 44]], r: 2 } };
 
 test('asks the bot for the player state on load and watches the shared top', async () => {
@@ -59,6 +83,7 @@ test('a tap starts a run, the bird flies, and the result is sent automatically',
   await page.waitForTimeout(150);
   assert.notEqual(await shot(), a);
   await waitOver(page);
+  await waitResult(page);
   assert.deepEqual(await calls(page), ['i', 's', 'e:0']);
   const text = await overText(page);
   assert.match(text, /0 × 1\.2 = 0/);
@@ -67,6 +92,7 @@ test('a tap starts a run, the bird flies, and the result is sent automatically',
   assert.match(text, /Аня/);
   assert.equal(await page.locator('#o tr.me').innerText().then((t) => t.replace(/\s+/g, ' ').trim()), '2 Денис 44');
   assert.equal(await page.locator('#o button', { hasText: 'Узнать место' }).count(), 0);
+  assert.deepEqual(await refused(page), [], 'no request broke a Telegram rule');
   assert.deepEqual(errors, []);
   await page.close();
 });
@@ -75,9 +101,91 @@ test('«Ещё раз» starts a new run', async () => {
   const { page } = await open(answers);
   await tap(page);
   await waitOver(page);
-  await page.locator('#o button', { hasText: 'Ещё раз' }).click();
-  assert.equal(await page.locator('#o').isHidden(), true);
+  await again(page).click();
+  assert.equal(await page.evaluate(overShown), false);
   assert.deepEqual(await calls(page), ['i', 's', 'e:0', 's']);
+  await page.close();
+});
+
+test('a finger going down does not start a run — it may become a scroll', async () => {
+  const { page } = await open(answers);
+  await page.dispatchEvent('#c', 'pointerdown');
+  await page.dispatchEvent('#c', 'pointercancel');
+  await page.waitForTimeout(1500);
+  assert.deepEqual(await calls(page), ['i']);
+  assert.equal(await page.evaluate(overShown), false);
+  await page.close();
+});
+
+test('a restart waits for the pending result instead of losing the next run', async () => {
+  const { page } = await open(answers, { delay: 400 });
+  await page.waitForTimeout(450);
+  await tap(page);
+  await waitOver(page);
+  assert.equal(await again(page).isDisabled(), true, 'disabled while the result is in flight');
+  await waitResult(page);
+  assert.equal(await again(page).isDisabled(), false);
+  await again(page).click();
+  await waitOver(page);
+  await page.waitForFunction(() => window.TelegramWidget.calls.length === 5);
+  assert.deepEqual(await calls(page), ['i', 's', 'e:0', 's', 'e:0']);
+  assert.deepEqual(await refused(page), []);
+  await page.close();
+});
+
+test('a tap while the first request is still in flight does not start an unrecorded run', async () => {
+  const { page } = await open(answers, { delay: 600 });
+  await tap(page);
+  await page.waitForTimeout(100);
+  assert.deepEqual(await calls(page), ['i']);
+  await page.waitForTimeout(700);
+  await tap(page);
+  assert.deepEqual(await calls(page), ['i', 's']);
+  assert.deepEqual(await refused(page), []);
+  await page.close();
+});
+
+test('a slow start answer still gets the result sent afterwards', async () => {
+  const { page } = await open(answers, { delay: 1500 });
+  await page.waitForTimeout(1500);
+  await tap(page);
+  await waitOver(page);
+  await waitResult(page);
+  assert.deepEqual(await calls(page), ['i', 's', 'e:0']);
+  assert.deepEqual(await refused(page), []);
+  await page.close();
+});
+
+test('a run whose start never reached the bot is not sent and says so', async () => {
+  const { page } = await open({ ...answers, s: 'FAILED' });
+  await tap(page);
+  await waitOver(page);
+  await page.waitForFunction(() => /не засчитан/.test(document.getElementById('o').innerText));
+  assert.deepEqual(await calls(page), ['i', 's']);
+  await again(page).click();
+  assert.deepEqual(await calls(page), ['i', 's', 's']);
+  await page.close();
+});
+
+test('a background limit on the automatic result leads to «Узнать место»', async () => {
+  const { page } = await open(answers, { bgGap: 60_000 });
+  await tap(page);
+  await waitOver(page);
+  const button = page.locator('#o button', { hasText: 'Узнать место' });
+  await button.waitFor();
+  assert.deepEqual(await calls(page), ['i', 's']);
+  await button.click();
+  await waitResult(page);
+  assert.deepEqual(await calls(page), ['i', 's', 'e:0']);
+  await page.close();
+});
+
+test('a viewer without a first name still gets the result screen', async () => {
+  const { page, errors } = await open(answers, { viewer: { id: 77 } });
+  await tap(page);
+  await waitOver(page);
+  assert.match(await overText(page), /Аня/);
+  assert.deepEqual(errors, []);
   await page.close();
 });
 
@@ -88,7 +196,7 @@ test('a rate-limited result can be sent with «Узнать место»', async
   const button = page.locator('#o button', { hasText: 'Узнать место' });
   await button.waitFor();
   await button.click();
-  await page.waitForFunction(() => /Твоё место: 35/.test(document.getElementById('o').innerText));
+  await waitResult(page);
   assert.deepEqual(await calls(page), ['i', 's', 'e:0', 'e:0']);
   assert.equal(await button.count(), 0);
   await page.close();
