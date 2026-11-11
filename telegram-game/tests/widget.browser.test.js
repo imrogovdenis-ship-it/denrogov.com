@@ -252,7 +252,11 @@ test('a subscriber is not asked to subscribe again', async () => {
   await tap(page);
   await waitOver(page);
   assert.equal(await page.locator('#o button', { hasText: 'Подписаться' }).count(), 0);
+  assert.equal(await page.locator('#o button', { hasText: 'Подписан ✓' }).isDisabled(), true);
   assert.match(await overText(page), /2\/15/);
+  assert.match(await overText(page), /каждый друг, который пришёл по твоей ссылке и сыграл \(до 15\)/);
+  const fits = await page.evaluate(() => [...document.querySelectorAll('#o > *')].every((el) => el.getBoundingClientRect().bottom <= 440 - 18));
+  assert.equal(fits, true, 'everything fits above the message time badge');
   await page.close();
 });
 
