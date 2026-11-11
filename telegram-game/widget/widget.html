@@ -1,0 +1,100 @@
+<style>
+body{margin:0;padding:0;background:#0b0620;color:#fff;font:13px system-ui;user-select:none}
+#w{position:relative;height:440px;overflow:hidden}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+#o{position:absolute;top:0;left:0;width:100%;height:100%;box-sizing:border-box;padding:12px 16px 0;background:rgba(11,6,32,.92);text-align:center}
+h3{margin:0;font-size:26px;color:#19d3ff}
+p{margin:3px 0;min-height:16px}
+table{width:100%;margin:4px 0 8px;border-collapse:collapse;text-align:left}
+td{border:0;padding:1px 4px}
+td:first-child{width:22px}
+td+td+td{text-align:right}
+.me td{color:#ff2d6f;font-weight:700}
+button{margin:3px;padding:7px 10px;border:1px solid #19d3ff;border-radius:8px;background:#12305a;color:#fff;font:inherit}
+</style>
+<div id=w><canvas id=c width=340 height=440></canvas><div id=o hidden></div></div>
+<script>
+/*GAME*/
+const T = window.TelegramWidget, D = document, c = D.getElementById('c'), x = c.getContext('2d'), o = D.getElementById('o'),
+  R = Math.random, PINK = '#ff2d6f', CYAN = '#19d3ff', DARK = '#0b0620', PI2 = 7,
+  calm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+// mode: 0 start screen, 1 flying, 2 game over. v: final score from the bot, -1 until it answers.
+let s = newGame(R), mode = 0, k = 1, best = 0, place = 0, friends = 0, sub = 0, top = [], rev = -1, last = 0, v = -1, note = '', retry = 0;
+try { [k, best, place] = JSON.parse(localStorage.p) } catch (e) {}
+
+const pub = () => { try { const d = JSON.parse(T.publicData); if (d.r >= rev) rev = d.r, top = d.t } catch (e) {} },
+  ask = (data, done) => T && T.request(data).then(a => { let r = {}; try { r = JSON.parse(a.result) || r } catch (e) {} done(r) }, e => done({ err: e.code })),
+  got = a => {
+    if (a.k) k = a.k;
+    if (a.b >= 0) best = a.b;
+    if (a.p >= 0) place = a.p;
+    if (a.f >= 0) friends = a.f, sub = a.s;
+    if (a.r >= rev) rev = a.r, top = a.t;
+    try { localStorage.p = JSON.stringify([k, best, place]) } catch (e) {}
+    mode > 1 && over()
+  },
+  // The result goes out without a tap. Telegram may refuse a background request; then a button sends it.
+  send = () => {
+    retry = 0; note = '…';
+    ask('e:' + s.score, a => {
+      note = '';
+      if (a.err) /RATE|NOT_|BUSY/.test(a.err) ? retry = 1 : note = a.err == 'TIMEOUT' ? 'Бот не ответил' : a.err == 'FAILED' ? 'Нет связи' : 'Результат не принят';
+      else v = a.v;
+      got(a)
+    });
+    over()
+  },
+  over = () => {
+    const me = T && [...T.viewer.first_name].slice(0, 16).join('');
+    o.innerHTML = `<h3>${v < 0 ? s.score : s.score + ' × ' + k + ' = ' + v}</h3><p>Рекорд ${best}${place ? ' · Твоё место: ' + place : ''}<p>${note}<table>` +
+      top.map((r, i) => `<tr${r[0] == me && r[1] == best ? ' class=me' : ''}><td>${i + 1}<td>${r[0].replace(/[<&]/g, '')}<td>${r[1]}`).join('') +
+      '</table><button data-a=1>Ещё раз</button>' +
+      (T ? (retry ? '<button data-a=4>Узнать место</button>' : '') + `<button data-a=2>Позвать друга +0.1 (${friends}/15)</button>` + (sub ? '' : '<button data-a=3>Подписаться +0.1</button>') : '');
+    o.hidden = 0
+  },
+  start = () => { s = newGame(R); mode = 1; v = -1; ask('s', a => a); flap(s) },
+  text = (str, y, size, color) => { x.fillStyle = color; x.font = 'bold ' + size + 'px system-ui'; x.fillText(str, W / 2, y) },
+  // A neon cube with an arrow pointing into the gap. Canvas shadows are unavailable, so the glow is a wide faint stroke under a thin bright one.
+  cube = (X, Y, color, dir) => {
+    x.fillStyle = '#1a1140'; x.fillRect(X + 2, Y + 2, 42, 42);
+    x.strokeStyle = color + '44'; x.lineWidth = 7; x.strokeRect(X + 2, Y + 2, 42, 42);
+    x.strokeStyle = color; x.lineWidth = 2; x.strokeRect(X + 2, Y + 2, 42, 42);
+    x.beginPath(); x.moveTo(X + 13, Y + 23 - 5 * dir); x.lineTo(X + 23, Y + 23 + 5 * dir); x.lineTo(X + 33, Y + 23 - 5 * dir); x.stroke()
+  },
+  dot = (X, Y, r, color) => { x.fillStyle = color; x.beginPath(); x.arc(X, Y, r, 0, PI2); x.fill() },
+  frame = t => {
+    requestAnimationFrame(frame);
+    if (mode == 1) { step(s, (t - last) / 1e3, R); if (s.dead) mode = 2, T ? send() : over() }
+    if (!mode) s.y = H / 2 + (calm ? 0 : Math.sin(t / 300) * 8);
+    last = t;
+    x.fillStyle = DARK; x.fillRect(0, 0, W, H);
+    x.lineWidth = 1; x.strokeStyle = '#241a4d';
+    for (let i = 0; i < 10; i++) x.strokeRect(i * 45 - (calm ? 0 : t / 20 % 45), -1, 0, H + 2), x.strokeRect(-1, i * 45 + 17, W + 2, 0);
+    for (const g of s.gates) {
+      for (let y = g.gapY - GAP / 2 - GATE_W; y > -GATE_W; y -= GATE_W) cube(g.x, y, PINK, 1);
+      for (let y = g.gapY + GAP / 2; y < H; y += GATE_W) cube(g.x, y, CYAN, -1)
+    }
+    // The bird: body, wing, beak, and its glasses.
+    x.save(); x.translate(BIRD_X, s.y); x.rotate(Math.max(-.5, Math.min(1, s.v / 600))); x.scale(1.3, 1.3); x.lineWidth = 2;
+    dot(0, 0, BIRD_R, '#ffd23f'); dot(-6, 3, 5, '#ff9f1c');
+    x.fillStyle = PINK; x.beginPath(); x.moveTo(10, 1); x.lineTo(19, 4); x.lineTo(10, 7); x.fill();
+    x.strokeStyle = CYAN;
+    for (const X of [0, 9]) { dot(X, -3, 4, DARK); x.stroke() }
+    x.beginPath(); x.moveTo(-4, -3); x.lineTo(-11, -5); x.stroke();
+    x.restore();
+    x.textAlign = 'center';
+    if (mode) text(s.score, 44, 30, '#fff');
+    else text('PORTAL FLIGHT', 120, 30, CYAN), text('Тапни, чтобы лететь', 300, 16, '#fff'), text('Твой коэффициент ×' + k, 326, 14, PINK)
+  };
+
+c.onpointerdown = () => mode ? flap(s) : start();
+o.onclick = e => {
+  const a = e.target.dataset.a;
+  a == 1 ? (o.hidden = 1, start()) :
+    a == 2 ? T.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent('https://t.me/portalvr?start=r' + T.viewer.id)) :
+      a == 3 ? T.openTelegramLink('https://t.me/portal_vr_news') :
+        a == 4 && send()
+};
+if (T) T.onEvent('publicDataChanged', () => { pub(); mode > 1 && over() }), T.watchPublicData(), pub(), ask('i', got);
+requestAnimationFrame(frame)
+</script>
