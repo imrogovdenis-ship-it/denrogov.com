@@ -37,7 +37,6 @@ export interface Deps {
   html: string;
   htmlHash: string;
   channel: string;
-  botUsername: string;
 }
 
 type TopRow = [string, number];
@@ -135,6 +134,22 @@ async function isSubscribed(d: Deps, userId: number): Promise<boolean> {
   }
 }
 
+// The bot's real @username, asked from Telegram once per running instance. Invite links are built from it,
+// so it must never be typed in by hand: a wrong name gives "user not found" for everyone invited.
+const names = new WeakMap<Tg, string>();
+async function botUsername(d: Deps): Promise<string> {
+  let name = names.get(d.tg);
+  if (!name) {
+    try {
+      name = String((await d.tg.call("getMe", {}))?.username ?? "");
+      if (name) names.set(d.tg, name);
+    } catch (e) {
+      console.error("getMe failed:", (e as Error)?.message);
+    }
+  }
+  return name ?? "";
+}
+
 const touch = (d: Deps, from: any) => d.store.upsertPlayer(from.id, String(from.first_name ?? ""), from.username ?? null, null);
 
 async function standing(d: Deps, userId: number) {
@@ -149,9 +164,9 @@ async function route(q: any, d: Deps): Promise<Record<string, unknown>> {
   if (data === "i") {
     await touch(d, q.from);
     await flushIfDirty(d);
-    const [st, player] = await Promise.all([standing(d, id), d.store.getPlayer(id)]);
+    const [st, player, u] = await Promise.all([standing(d, id), d.store.getPlayer(id), botUsername(d)]);
     const best = player?.best ?? 0;
-    return { k: st.k, b: best, p: best > 0 ? player!.place : 0, f: Math.min(st.friends, MAX_FRIENDS), s: st.subscribed ? 1 : 0 };
+    return { k: st.k, b: best, p: best > 0 ? player!.place : 0, f: Math.min(st.friends, MAX_FRIENDS), s: st.subscribed ? 1 : 0, u };
   }
 
   if (data === "s") {

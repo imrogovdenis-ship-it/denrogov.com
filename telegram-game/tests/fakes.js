@@ -46,6 +46,7 @@ export function fakeTg(overrides = {}) {
     answerWidgetQuery: () => true,
     editSharedWidgetData: () => true,
     getChatMember: () => ({ status: 'left' }),
+    getMe: () => ({ id: 5, username: 'portal_vr_bot' }),
     ...overrides,
   };
   return {
@@ -63,7 +64,7 @@ export function makeDeps(tgOverrides) {
   const clock = { t: 1_000_000 };
   const store = fakeStore();
   const tg = fakeTg(tgOverrides);
-  const deps = { store, tg, now: () => clock.t, html: '<b>game</b>', htmlHash: 'abc123', channel: '@portal_vr_news', botUsername: 'portalvr' };
+  const deps = { store, tg, now: () => clock.t, html: '<b>game</b>', htmlHash: 'abc123', channel: '@portal_vr_news' };
   return { deps, store, tg, clock };
 }
 

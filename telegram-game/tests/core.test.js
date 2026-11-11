@@ -91,11 +91,11 @@ test('a friend counts only after their first run starts', async () => {
   await C.handleUpdate(startMsg(1), deps);
   await C.handleUpdate(startMsg(2, 'r1'), deps);
   await C.handleUpdate(query(1, 'i'), deps);
-  assert.deepEqual(lastAnswer(tg), { k: 1, b: 0, p: 0, f: 0, s: 0 });
+  assert.deepEqual(lastAnswer(tg), { k: 1, b: 0, p: 0, f: 0, s: 0, u: 'portal_vr_bot' });
   await C.handleUpdate(query(2, 's'), deps);
   assert.deepEqual(lastAnswer(tg), {});
   await C.handleUpdate(query(1, 'i'), deps);
-  assert.deepEqual(lastAnswer(tg), { k: 1.1, b: 0, p: 0, f: 1, s: 0 });
+  assert.deepEqual(lastAnswer(tg), { k: 1.1, b: 0, p: 0, f: 1, s: 0, u: 'portal_vr_bot' });
 });
 
 test('a full run records the multiplied score and publishes the top', async () => {
@@ -112,7 +112,7 @@ test('a full run records the multiplied score and publishes the top', async () =
   assert.deepEqual(JSON.parse(edit.public_data), { r: 1, t: [['Денис', 12]] });
   assert.deepEqual(tg.of('getChatMember').at(-1), { chat_id: '@portal_vr_news', user_id: 1 });
   await C.handleUpdate(query(1, 'i', 'Денис'), deps);
-  assert.deepEqual(lastAnswer(tg), { k: 1.2, b: 12, p: 1, f: 1, s: 1 });
+  assert.deepEqual(lastAnswer(tg), { k: 1.2, b: 12, p: 1, f: 1, s: 1, u: 'portal_vr_bot' });
 });
 
 test('a worse run keeps the best and does not republish the top', async () => {
@@ -272,4 +272,21 @@ test('/start falls back to a fresh widget when the saved shared widget cannot be
   await C.handleUpdate(startMsg(2), deps);
   assert.deepEqual(tg.of('sendWidget').map((p) => p.chat_id), [1, 2]);
   assert.equal(store.config.get('widget:abc123'), 'W2');
+});
+
+test('the bot username comes from Telegram, is asked once, and its failure does not break the answer', async () => {
+  const { deps, tg } = makeDeps();
+  await C.handleUpdate(query(1, 'i'), deps);
+  await C.handleUpdate(query(1, 'i'), deps);
+  assert.equal(lastAnswer(tg).u, 'portal_vr_bot');
+  assert.equal(tg.of('getMe').length, 1);
+
+  let fail = true;
+  const broken = makeDeps({ getMe: () => { if (fail) throw new Error('Unauthorized'); return { username: 'later_bot' }; } });
+  await C.handleUpdate(query(1, 'i'), broken.deps);
+  assert.equal(lastAnswer(broken.tg).u, '');
+  assert.equal(lastAnswer(broken.tg).k, 1);
+  fail = false;
+  await C.handleUpdate(query(1, 'i'), broken.deps);
+  assert.equal(lastAnswer(broken.tg).u, 'later_bot', 'a failure is not cached');
 });

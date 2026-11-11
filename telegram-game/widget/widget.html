@@ -21,8 +21,8 @@ const T = window.TelegramWidget, D = document, c = D.getElementById('c'), x = c.
   calm = matchMedia('(prefers-reduced-motion:reduce)').matches;
 // mode: 0 start screen, 1 flying, 2 game over. v: final score from the bot, -1 until it answers.
 // busy: a request is in flight (Telegram allows one at a time). ok: the bot knows this run started (0 not yet, 1 yes, -1 failed).
-let s = newGame(R), mode = 0, k = 1, best = 0, place = 0, friends = 0, sub = 0, top = [], rev = -1, last = 0, v = -1, note = '', retry = 0, busy = 0, ok = 0;
-try { [k, best, place] = JSON.parse(localStorage.getItem('p')) } catch (e) {}
+let s = newGame(R), mode = 0, k = 1, best = 0, place = 0, friends = 0, sub = 0, top = [], rev = -1, last = 0, v = -1, note = '', retry = 0, busy = 0, ok = 0, bot = '';
+try { [k, best, place, bot] = JSON.parse(localStorage.getItem('p')) } catch (e) {}
 
 const pub = () => { try { const d = JSON.parse(T.publicData); if (d.r >= rev) rev = d.r, top = d.t } catch (e) {} },
   ask = (data, done) => {
@@ -36,7 +36,8 @@ const pub = () => { try { const d = JSON.parse(T.publicData); if (d.r >= rev) re
     if (a.p >= 0) place = a.p;
     if (a.f >= 0) friends = a.f, sub = a.s;
     if (a.r >= rev) rev = a.r, top = a.t;
-    try { localStorage.setItem('p', JSON.stringify([k, best, place])) } catch (e) {}
+    if (a.u) bot = a.u;
+    try { localStorage.setItem('p', JSON.stringify([k, best, place, bot])) } catch (e) {}
     mode > 1 && over()
   },
   // The result goes out without a tap. Telegram may refuse a background request; then a button sends it.
@@ -57,7 +58,7 @@ const pub = () => { try { const d = JSON.parse(T.publicData); if (d.r >= rev) re
     o.innerHTML = `<h3>${v < 0 ? s.score : s.score + ' × ' + k + ' = ' + v}</h3><p>Рекорд ${best}${place ? ' · Твоё место: ' + place : ''}</p><p>${note}</p><table>` +
       top.map((r, i) => `<tr${r[0] == me && r[1] == best ? ' class=me' : ''}><td>${i + 1}</td><td>${r[0].replace(/[<&]/g, '')}</td><td>${r[1]}</td></tr>`).join('') +
       `</table><button data-a=1${busy ? ' disabled' : ''}>Ещё раз</button>` +
-      (T ? (retry ? '<button data-a=4>Узнать место</button>' : '') + `<button data-a=2>Позвать друга +0.1 (${friends}/15)</button>` + `<button data-a=3${sub ? ' disabled>Подписан ✓' : '>Подписаться'} +0.1</button><p class=r>Очки × коэффициент. +0.1 — подписка на канал. +0.1 — каждый друг, который пришёл по твоей ссылке и сыграл (до 15).</p>` : '');
+      (T ? (retry ? '<button data-a=4>Узнать место</button>' : '') + `<button data-a=2${bot ? '' : ' disabled'}>Позвать друга +0.1 (${friends}/15)</button>` + `<button data-a=3${sub ? ' disabled>Подписан ✓' : '>Подписаться'} +0.1</button><p class=r>Очки × коэффициент. +0.1 — подписка на канал. +0.1 — каждый друг, который пришёл по твоей ссылке и сыграл (до 15).</p>` : '');
     o.style.display = 'block'
   },
   // Called from a click only: a request needs a real tap, and a finger going down may still become the chat's scroll.
@@ -107,7 +108,7 @@ c.onclick = () => mode || start();
 o.onclick = e => {
   const a = e.target.dataset.a;
   a == 1 ? start() :
-    a == 2 ? T.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent('https://t.me/portalvr?start=r' + T.viewer.id)) :
+    a == 2 ? bot && T.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent('https://t.me/' + bot + '?start=r' + T.viewer.id)) :
       a == 3 ? T.openTelegramLink('https://t.me/portal_vr_news') :
         a == 4 && send()
 };

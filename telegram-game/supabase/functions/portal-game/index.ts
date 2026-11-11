@@ -7,13 +7,12 @@ import { makeTg } from "./tg.ts";
 import { HTML, HTML_HASH } from "./widget.generated.ts";
 
 const CHANNEL = "@portal_vr_news";
-const BOT_USERNAME = "portalvr";
 
 const token = Deno.env.get("BOT_TOKEN") ?? "";
 const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
 const db = createClient(supabaseUrl, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "", { auth: { persistSession: false } });
 const tg = makeTg(token);
-const deps: Deps = { store: makeStore(db), tg, now: () => Date.now(), html: HTML, htmlHash: HTML_HASH, channel: CHANNEL, botUsername: BOT_USERNAME };
+const deps: Deps = { store: makeStore(db), tg, now: () => Date.now(), html: HTML, htmlHash: HTML_HASH, channel: CHANNEL };
 const secret = await deriveSecret(token);
 const health = await healthLine(HTML, HTML_HASH);
 

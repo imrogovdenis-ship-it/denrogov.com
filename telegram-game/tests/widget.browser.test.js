@@ -64,7 +64,7 @@ const waitOver = (page) => page.waitForFunction(overShown, null, { timeout: 8000
 const tap = (page) => page.click('#c');
 const waitResult = (page) => page.waitForFunction(() => / = 0/.test(document.getElementById('o').innerText), null, { timeout: 8000 });
 const again = (page) => page.locator('#o button', { hasText: 'Ещё раз' });
-const answers = { i: { k: 1.2, b: 44, p: 35, f: 2, s: 0 }, s: {}, e: { v: 0, k: 1.2, b: 44, p: 35, t: [['Аня', 50], ['Денис', 44]], r: 2 } };
+const answers = { i: { k: 1.2, b: 44, p: 35, f: 2, s: 0, u: 'portal_vr_bot' }, s: {}, e: { v: 0, k: 1.2, b: 44, p: 35, t: [['Аня', 50], ['Денис', 44]], r: 2 } };
 
 test('asks the bot for the player state on load and watches the shared top', async () => {
   const { page, errors } = await open(answers);
@@ -241,7 +241,7 @@ test('the invite and subscribe buttons open the right Telegram links', async () 
   await page.locator('#o button', { hasText: 'Позвать друга' }).click();
   await page.locator('#o button', { hasText: 'Подписаться' }).click();
   const links = await page.evaluate(() => window.TelegramWidget.links);
-  assert.equal(links[0], 'https://t.me/share/url?url=' + encodeURIComponent('https://t.me/portalvr?start=r77'));
+  assert.equal(links[0], 'https://t.me/share/url?url=' + encodeURIComponent('https://t.me/portal_vr_bot?start=r77'));
   assert.ok(links[0].length <= 256);
   assert.equal(links[1], 'https://t.me/portal_vr_news');
   await page.close();
@@ -266,5 +266,14 @@ test('outside Telegram the game plays without a leaderboard', async () => {
   await waitOver(page);
   assert.equal(await page.locator('#o button').count(), 1);
   assert.deepEqual(errors, []);
+  await page.close();
+});
+
+test('the invite button stays off until the bot has told the widget its username', async () => {
+  const { page } = await open({ ...answers, i: 'FAILED' });
+  await tap(page);
+  await waitOver(page);
+  assert.equal(await page.locator('#o button', { hasText: 'Позвать друга' }).isDisabled(), true);
+  assert.deepEqual(await page.evaluate(() => window.TelegramWidget.links), []);
   await page.close();
 });

@@ -20,7 +20,7 @@ test('the widget avoids features the sandbox profile does not promise', () => {
 });
 
 test('the built widget is self-contained', () => {
-  for (const banned of ['fetch(', ' src=', 'http://', '/*GAME*/', 'export ']) assert.ok(!html.includes(banned), banned);
+  for (const banned of ['fetch(', ' src=', 'http://', '/*GAME*/', 'export ', 'portalvr']) assert.ok(!html.includes(banned), banned);
 });
 
 test('the generated module carries the same HTML and its hash', async () => {
