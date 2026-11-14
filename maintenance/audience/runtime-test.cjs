@@ -7,4 +7,10 @@ d.accounts[0].history=d.accounts[0].history.slice(1);assert(!a.render(d,l,false)
 d.accounts.push({...acct('tg','telegram'),profile_url:'https://t.me/privatejoinedchannel',include_in_total:false});assert(a.valid(d));assert(!a.render(d,l,false).includes('privatejoinedchannel'));
 d.accounts.push({...acct('yt','youtube'),include_in_total:false,approximate:true});assert(a.render(d,l,false).includes('≈'));
 d.totals.coverage_keys.push('yt');assert(!a.valid(d));
-console.log('PASS runtime: source-only total, XSS/URL, history, weekly dates, Telegram boundary, approximation, exclusions');
+// YouTube may count toward the total only when the data says so explicitly.
+d.accounts.find(x=>x.key==='yt').include_in_total=true;assert(!a.valid(d));
+d.totals.excludes_youtube=false;assert(a.valid(d));
+{const all={...l,totalScopeAll:'ALL-SCOPE',policyAll:'ALL-POLICY'};const home=a.render(d,all,true),full=a.render(d,all,false);
+assert(home.includes('ALL-SCOPE')&&!home.includes('class="aw-youtube"'));assert(full.includes('ALL-POLICY'));}
+delete d.totals.excludes_youtube;assert(!a.valid(d));
+console.log('PASS runtime: source-only total, XSS/URL, history, weekly dates, Telegram boundary, approximation, exclusions, YouTube in total only by explicit flag');

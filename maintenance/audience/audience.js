@@ -6,14 +6,14 @@ const num=x=>Number.isSafeInteger(x)&&x>=0;
 const date=x=>typeof x==='string'&&/^\d{4}-\d\d-\d\dT/.test(x)&&Number.isFinite(Date.parse(x));
 const url=x=>{try{let u=new URL(x);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}};
 function valid(d){
- if(!d||d.schema_version!==1||!Array.isArray(d.accounts)||d.accounts.length>30||!d.totals||d.totals.excludes_youtube!==true||d.totals.unique_people!==false)return false;
+ if(!d||d.schema_version!==1||!Array.isArray(d.accounts)||d.accounts.length>30||!d.totals||typeof d.totals.excludes_youtube!=='boolean'||d.totals.unique_people!==false)return false;
  if(!(d.totals.followers===null||num(d.totals.followers))||!Array.isArray(d.totals.coverage_keys))return false;
  const keys=new Set();
  for(const a of d.accounts){if(!a||typeof a.key!=='string'||keys.has(a.key)||!['personal','company'].includes(a.kind)||!['ok','stale','unavailable','unverified'].includes(a.status)||!(a.followers===null||num(a.followers))||typeof a.platform!=='string'||typeof a.label!=='string'||!Array.isArray(a.history))return false;keys.add(a.key);
  // Public Telegram is strictly the owner's public channel, never joined chats.
  if(a.platform.toLowerCase()==='telegram'&&url(a.profile_url)!=='https://t.me/rogovpro'&&d.totals.coverage_keys.includes(a.key))return false;
  }
- return d.totals.coverage_keys.every(k=>d.accounts.some(a=>a.key===k&&a.kind==='personal'&&a.platform.toLowerCase()!=='youtube'&&a.include_in_total===true&&['ok','stale'].includes(a.status)&&num(a.followers)));
+ return d.totals.coverage_keys.every(k=>d.accounts.some(a=>a.key===k&&a.kind==='personal'&&(!d.totals.excludes_youtube||a.platform.toLowerCase()!=='youtube')&&a.include_in_total===true&&['ok','stale'].includes(a.status)&&num(a.followers)));
 }
 function render(d,l,compact){
  d={...d,accounts:d.accounts.filter(a=>['ok','stale'].includes(a.status)&&num(a.followers)&&(a.platform.toLowerCase()!=='telegram'||url(a.profile_url)==='https://t.me/rogovpro'))};
@@ -27,16 +27,16 @@ function render(d,l,compact){
  const coverage=d.totals.coverage_keys.map(k=>{const a=d.accounts.find(a=>a.key===k);return a?platform(a):k;}).join(' · ');
  const observed=d.accounts.filter(a=>d.totals.coverage_keys.includes(a.key)&&date(a.observed_at)).map(a=>a.observed_at).sort((a,b)=>Date.parse(a)-Date.parse(b));
  const stamp=observed.length?`${esc(l.observed)}: ${esc(dt(observed[0]))} — ${esc(dt(observed.at(-1)))}`:'';
- let out=`<p class="aw-note">${stamp}</p><div class="aw-summary"><div><p class="aw-eyebrow">ROGOV PRO · ${esc(l.title)}</p><h2>${esc(l.total)}</h2><div class="aw-total">${f(d.totals.followers)}</div></div><div class="aw-summary-side"><p class="aw-change">${esc(l.weekly)} <strong>${Number.isFinite(d.totals.delta_week)?signed(d.totals.delta_week):'—'}</strong></p><p class="aw-note">${esc(l.baseline)}</p><p class="aw-note">${esc(l.coverage)}: ${esc(coverage||l.none)}</p></div></div><p class="aw-policy">${esc(l.policy)}</p>`;
+ let out=`<p class="aw-note">${stamp}</p><div class="aw-summary"><div><p class="aw-eyebrow">ROGOV PRO · ${esc(l.title)}</p><h2>${esc(l.total)}</h2><div class="aw-total">${f(d.totals.followers)}</div></div><div class="aw-summary-side"><p class="aw-change">${esc(l.weekly)} <strong>${Number.isFinite(d.totals.delta_week)?signed(d.totals.delta_week):'—'}</strong></p><p class="aw-note">${esc(l.baseline)}</p><p class="aw-note">${esc(l.coverage)}: ${esc(coverage||l.none)}</p></div></div><p class="aw-policy">${esc(d.totals.excludes_youtube?l.policy:(l.policyAll||l.policy))}</p>`;
  if(compact){
   const item=a=>{const href=url(a.profile_url),text=`${esc(platform(a))} <strong>${a.approximate?'≈ ':''}${f(a.followers)}</strong>${a.status==='stale'?` <small>(${esc(l.stale)})</small>`:''}`;return href?`<a href="${esc(href)}" rel="noopener noreferrer">${text}</a>`:`<span>${text}</span>`;};
-  const personal=d.accounts.filter(a=>a.kind==='personal'),included=personal.filter(a=>d.totals.coverage_keys.includes(a.key)),youtube=personal.filter(a=>a.platform.toLowerCase()==='youtube');
+  const personal=d.accounts.filter(a=>a.kind==='personal'),included=personal.filter(a=>d.totals.coverage_keys.includes(a.key)),youtube=personal.filter(a=>a.platform.toLowerCase()==='youtube'&&!d.totals.coverage_keys.includes(a.key));
   const dates=personal.filter(a=>date(a.observed_at)).map(a=>a.observed_at).sort((a,b)=>Date.parse(a)-Date.parse(b));
   const day=x=>new Intl.DateTimeFormat(l.locale,{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'UTC'}).format(new Date(x));
   const dated=dates.length?`${esc(l.observed)}: ${esc(day(dates[0]))}${day(dates[0])===day(dates.at(-1))?'':' – '+esc(day(dates.at(-1)))} · UTC`:'';
-  return `<h2>${esc(l.homeTitle)}</h2><div class="aw-total">${f(d.totals.followers)}</div><p class="aw-scope">${esc(l.totalScope)}</p>${included.length?`<div class="aw-networks">${included.map(item).join('')}</div>`:''}${youtube.length?`<p class="aw-youtube">${youtube.map(item).join(' · ')} <span>· ${esc(l.youtubeSeparate)}</span></p>`:''}<div class="aw-meta"><a class="aw-details" href="${esc(l.prefix)}audience/">${esc(l.details)} ↗</a><span>${dated}${dated?' · ':''}${esc(l.nonUnique)}</span></div>`;
+  return `<h2>${esc(l.homeTitle)}</h2><div class="aw-total">${f(d.totals.followers)}</div><p class="aw-scope">${esc(d.totals.excludes_youtube?l.totalScope:(l.totalScopeAll||l.totalScope))}</p>${included.length?`<div class="aw-networks">${included.map(item).join('')}</div>`:''}${youtube.length?`<p class="aw-youtube">${youtube.map(item).join(' · ')} <span>· ${esc(l.youtubeSeparate)}</span></p>`:''}<div class="aw-meta"><a class="aw-details" href="${esc(l.prefix)}audience/">${esc(l.details)} ↗</a><span>${dated}${dated?' · ':''}${esc(l.nonUnique)}</span></div>`;
  }
- for(const [title,accounts]of [[l.personal,d.accounts.filter(a=>a.kind==='personal'&&a.platform.toLowerCase()!=='youtube')],[l.youtube,d.accounts.filter(a=>a.kind==='personal'&&a.platform.toLowerCase()==='youtube')],[l.company,d.accounts.filter(a=>a.kind==='company')]])if(accounts.length)out+=`<section class="aw-group"><h2>${esc(title)}</h2>${title===l.company?`<p class="aw-note">${esc(l.companyNote)}</p>`:''}<div class="aw-grid">${accounts.length?accounts.map(card).join(''):`<p class="aw-note">${esc(l.none)}</p>`}</div></section>`;
+ for(const [title,accounts]of [[l.personal,d.accounts.filter(a=>a.kind==='personal'&&(a.platform.toLowerCase()!=='youtube'||d.totals.coverage_keys.includes(a.key)))],[l.youtube,d.accounts.filter(a=>a.kind==='personal'&&a.platform.toLowerCase()==='youtube'&&!d.totals.coverage_keys.includes(a.key))],[l.company,d.accounts.filter(a=>a.kind==='company')]])if(accounts.length)out+=`<section class="aw-group"><h2>${esc(title)}</h2>${title===l.company?`<p class="aw-note">${esc(l.companyNote)}</p>`:''}<div class="aw-grid">${accounts.length?accounts.map(card).join(''):`<p class="aw-note">${esc(l.none)}</p>`}</div></section>`;
  return out;
 }
 const api={valid,render};if(typeof module!=='undefined')module.exports=api;

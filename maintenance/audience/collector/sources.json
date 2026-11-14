@@ -1,0 +1,201 @@
+[
+ {
+  "key": "youtube:denis-rogov",
+  "platform": "youtube",
+  "label": "Денис Рогов PRO Технологии",
+  "profile_url": "https://www.youtube.com/channel/UCD-cowQZ_jnMN-NNkPgBXFQ",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "approximate": true,
+  "fetch": {
+   "type": "youtube",
+   "channel_id": "UCD-cowQZ_jnMN-NNkPgBXFQ",
+   "handle": "imrogov",
+   "fallback": {
+    "type": "apify",
+    "actor": "streamers/youtube-channel-scraper",
+    "input": {
+     "startUrls": [
+      {
+       "url": "https://www.youtube.com/channel/UCD-cowQZ_jnMN-NNkPgBXFQ"
+      }
+     ],
+     "maxResults": 1,
+     "maxResultsShorts": 0,
+     "maxResultStreams": 0
+    },
+    "count": "numberOfSubscribers",
+    "id": "channelId",
+    "expect": "UCD-cowQZ_jnMN-NNkPgBXFQ"
+   }
+  }
+ },
+ {
+  "key": "instagram:imrogov",
+  "platform": "instagram",
+  "label": "imrogov",
+  "profile_url": "https://www.instagram.com/imrogov",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "apify",
+   "actor": "apify/instagram-profile-scraper",
+   "input": {
+    "usernames": [
+     "imrogov"
+    ]
+   },
+   "count": "followersCount",
+   "id": "username",
+   "expect": "imrogov"
+  }
+ },
+ {
+  "key": "linkedin:denis-rogov",
+  "platform": "linkedin",
+  "label": "Denis Rogov",
+  "profile_url": "https://sg.linkedin.com/in/denis-rogov-19a1b07b",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "apify",
+   "actor": "harvestapi/linkedin-profile-scraper",
+   "input": {
+    "profileScraperMode": "Profile details no email ($4 per 1k)",
+    "queries": [
+     "https://www.linkedin.com/in/denis-rogov-19a1b07b"
+    ]
+   },
+   "count": "followerCount",
+   "id": "publicIdentifier",
+   "expect": "denis-rogov"
+  }
+ },
+ {
+  "key": "facebook:denis-rogov",
+  "platform": "facebook",
+  "label": "Denis Rogov",
+  "profile_url": "https://www.facebook.com/imrogov",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "apify",
+   "actor": "apify/facebook-pages-scraper",
+   "input": {
+    "startUrls": [
+     {
+      "url": "https://www.facebook.com/imrogov"
+     }
+    ]
+   },
+   "count": "followers",
+   "id": "pageUrl",
+   "expect": "facebook.com/imrogov"
+  }
+ },
+ {
+  "key": "twitter:imrogov",
+  "platform": "twitter",
+  "label": "imrogov",
+  "profile_url": "https://x.com/imrogov",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "apify",
+   "actor": "apidojo/twitter-user-scraper",
+   "input": {
+    "twitterHandles": [
+     "imrogov"
+    ],
+    "maxItems": 1,
+    "getFollowers": false,
+    "getFollowing": false,
+    "getRetweeters": false
+   },
+   "count": "followers",
+   "id": "userName",
+   "expect": "imrogov"
+  }
+ },
+ {
+  "key": "telegram:rogovpro",
+  "platform": "telegram",
+  "label": "Денис Рогов PRO технологии",
+  "profile_url": "https://t.me/rogovpro",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "telegram",
+   "channel": "rogovpro"
+  }
+ },
+ {
+  "key": "threads:imrogov",
+  "platform": "threads",
+  "label": "imrogov",
+  "profile_url": "https://www.threads.com/@imrogov",
+  "kind": "personal",
+  "in_total": true,
+  "publish": true,
+  "fetch": {
+   "type": "apify",
+   "actor": "apify/threads-profile-api-scraper",
+   "input": {
+    "usernames": [
+     "imrogov"
+    ]
+   },
+   "count": "follower_count",
+   "id": "username",
+   "expect": "imrogov"
+  }
+ },
+ {
+  "key": "linkedin:vr-arena",
+  "platform": "linkedin",
+  "label": "VR ARENA",
+  "profile_url": "https://www.linkedin.com/company/vrarena",
+  "kind": "company",
+  "in_total": false,
+  "publish": false,
+  "fetch": {
+   "type": "apify",
+   "actor": "harvestapi/linkedin-company",
+   "input": {
+    "companies": [
+     "https://www.linkedin.com/company/100090868"
+    ]
+   },
+   "count": "followerCount",
+   "id": "universalName",
+   "expect": "vrarena"
+  }
+ },
+ {
+  "key": "linkedin:tochina-pro",
+  "platform": "linkedin",
+  "label": "ToChina.pro",
+  "profile_url": "https://www.linkedin.com/company/tochina.pro",
+  "kind": "company",
+  "in_total": false,
+  "publish": false,
+  "fetch": {
+   "type": "apify",
+   "actor": "harvestapi/linkedin-company",
+   "input": {
+    "companies": [
+     "https://www.linkedin.com/company/10661413"
+    ]
+   },
+   "count": "followerCount",
+   "id": "universalName",
+   "expect": "tochina.pro"
+  }
+ }
+]

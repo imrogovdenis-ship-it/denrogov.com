@@ -1,0 +1,5 @@
+staging/
+state.json
+last-run.json
+collect.lock
+__pycache__/
