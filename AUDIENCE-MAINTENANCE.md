@@ -1,34 +1,59 @@
-# Draft audience maintenance candidate — DO NOT MERGE YET
+# Audience block — how it works
 
-Job reckXzEm3k3UP9Udx. This branch preserves every file from remote main f697a006bc7d02f3e5cc48592588731bdc289b6e unchanged. It adds an isolated, explicit deployed-public/ root with the exact current immutable live filesystem plus the twelve approved audience UI files. Existing remote-only content is retained at its original paths, not silently deleted or newly published.
+The block «Моя совокупная аудитория» on the four home pages (RU/ES/EN/ZH), the RU Tilda alias
+`page137462456.html` and the four `/audience/` pages.
 
-## Verified build
+## Data
 
-`docker build --pull=false -f Dockerfile.audience -t denrogov-audience-source:reckXzEm3k3UP9Udx .`
+- Live data is **not** in the image. nginx serves `/audience-data/audience.json` from
+  `/srv/denrogov-audience-public/audience.json`, a read-only bind of the host directory
+  `/root/work/audience-weekly-data/public`. Every other path under `/audience-data/` returns 404.
+- The file is written by the collector in `maintenance/audience/collector/` (since 13.11.2026; it replaced
+  the Schedulala-based weekly collector). It runs daily at 07:00 UTC from Hermes cron
+  (`denrogov_audience_daily.sh`), uses Apify actors for Instagram, Threads, X, LinkedIn and Facebook and
+  reads the public pages of Telegram and YouTube. Accounts are listed in `collector/sources.json`.
+- The total sums every personal channel, **YouTube included** (`totals.excludes_youtube: false`).
+  YouTube reports a rounded figure, so it is marked `approximate` and is left out of the weekly change.
+  LinkedIn company pages are collected but not published (`publish: false`).
+- A failed or suspicious reading (more than 30% and 50 people in a day) never replaces a good one:
+  the last value stays, marked stale after 72 h, and leaves the total after 14 days.
 
-The image's 282 public files match the approved derivative byte-for-byte. Dockerfile.audience.dockerignore allows only deployed-public and the reviewed nginx config into the build context. Only that public root is copied into nginx. maintenance/ is BUILD-ONLY source; never serve it.
-
-Reproduce audience generation:
+Run the collector by hand (writes to `collector/staging/` unless `--out` is given):
 
 ```
-cd maintenance/audience
-python3 build.py --data public/audience-data/audience.json
-node runtime-test.cjs
-python3 test_contract.py
+python3 maintenance/audience/collector/collect.py
+python3 maintenance/audience/collector/collect.py --out /root/work/audience-weekly-data/public/audience.json
 ```
 
-Generation starts from frozen, already-public baseline bytes, preserving all four locales and owner scale amendments. maintenance/i18n preserves prior translation dictionaries, templates and owner overrides as provenance; do not run the older generator over current owner-amended pages. Weekly JSON remains outside the image; the included maintenance snapshot is a dated real-data rendering input, not a live data source.
+It keeps its own `state.json` next to the script; the live copy lives in `/root/work/audience-apify/`.
+The Apify token is read from `APIFY_TOKEN` or the `rogov_pro` Hermes profile and is never written anywhere.
 
-## Blocking deployment configuration mismatch
+## Widget
 
-Coolify is currently build_pack=static, publish_directory=/, base_directory=/, custom_nginx_configuration=null, auto-deploy=true on main. It does NOT currently use this Dockerfile. Merging this branch under the current build configuration can expose build-only files, restore stale root pages and lose custom nginx routing. Do not merge, push main, or disable auto-deploy to work around this.
+- Source: `maintenance/audience/audience.js`, `audience.css`, `labels.json`; published copy in
+  `deployed-public/audience-assets/`. The pages fetch the JSON on every visit; the numbers baked into the
+  HTML are only the no-JS fallback.
+- `valid()` rejects malformed data. YouTube may be in `coverage_keys` only when `excludes_youtube` is false;
+  the scope line and the policy text then switch to `totalScopeAll` / `policyAll`.
 
-Parent/owner must approve and coordinate a deployment-configuration migration to Dockerfile.audience (or a separately proven explicit static publish root) and register the persistent read-only DIRECTORY mount in Coolify's durable application storage configuration. A compose-only mount survives manual container replacement but is NOT proof it survives Coolify regeneration.
+To refresh the no-JS numbers or ship a widget change, edit the source, then:
 
-Required mount: /root/work/audience-weekly-data/public -> /srv/denrogov-audience-public, read-only. Directory contains ONLY audience.json, 0755 directory and 0644 file. Nginx exposes only /audience-data/audience.json; other prefix paths return 404. Cache max-age=300, current security/CSP headers repeated because add_header inheritance resets. Never mount collector credentials/state.
+```
+python3 maintenance/audience/refresh_blocks.py --data /root/work/audience-weekly-data/public/audience.json
+node maintenance/audience/runtime-test.cjs
+node maintenance/audience/minimal-test.cjs
+python3 maintenance/audience/test_contract.py
+(cd maintenance/audience/collector && python3 -m unittest test_collect)
+```
 
-## Unresolved remote differences
+`refresh_blocks.py` touches only the marked audience block, the labels payload and the `audience.js?v=`
+cache-buster inside the published pages. Do **not** run the old `build.py`: it starts from the frozen
+September baseline in `maintenance/audience/baseline/` and would drop every later change to the pages.
 
-Remote main has 30 paths absent from live, live has 51 absent from remote, 29 common paths differ and 196 match. Source baseline includes existing remote-only encrypted /zdorovie/ content; this branch neither changes nor adds it to the deployed public root. Explicit owner review is needed for that existing source/live discrepancy, not an audience release side effect.
+## Build
 
-Do not claim source overwrite risk closed until the actual Coolify full-build configuration and persistent storage are aligned and independently verified. No production promotion was performed while this gate remained open.
+`Dockerfile.audience` copies `deployed-public/` and `deploy/audience-nginx.conf` into nginx; the compose file
+`compose.audience.yaml` adds the read-only data mount. `maintenance/` is build-only and never served.
+
+`deployed-public/` must equal what is live. Changes made directly on the server have to be brought back here,
+otherwise the next build from Git rolls them back.

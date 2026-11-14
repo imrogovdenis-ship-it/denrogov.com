@@ -36,7 +36,9 @@
     "nonUnique": "Не уникальные люди",
     "youtubeSeparate": "вне суммы",
     "shortSnapshot": "Сохраненный замер",
-    "shortFailed": "Обновление недоступно · сохраненный замер"
+    "shortFailed": "Обновление недоступно · сохраненный замер",
+    "totalScopeAll": "Подписки на личные каналы · включая YouTube",
+    "policyAll": "Не уникальные люди: один человек может быть подписан на несколько каналов. YouTube показывает округленное число и не участвует в недельном изменении. Каналы компаний не входят в сумму."
   },
   "es": {
     "locale": "es-ES",
@@ -75,7 +77,9 @@
     "nonUnique": "No son personas únicas",
     "youtubeSeparate": "fuera de la suma",
     "shortSnapshot": "Medición guardada",
-    "shortFailed": "Sin actualización · medición guardada"
+    "shortFailed": "Sin actualización · medición guardada",
+    "totalScopeAll": "Suscripciones a canales personales · YouTube incluido",
+    "policyAll": "No son personas únicas: una misma persona puede seguir varios canales. YouTube muestra una cifra redondeada y no entra en el cambio semanal. Los canales de empresas no se incluyen en el total."
   },
   "en": {
     "locale": "en-US",
@@ -114,7 +118,9 @@
     "nonUnique": "Not unique people",
     "youtubeSeparate": "not in total",
     "shortSnapshot": "Saved observation",
-    "shortFailed": "Refresh unavailable · saved observation"
+    "shortFailed": "Refresh unavailable · saved observation",
+    "totalScopeAll": "Follows across personal channels · YouTube included",
+    "policyAll": "Not unique people: one person may follow several channels. YouTube reports a rounded figure and is left out of the weekly change. Company channels are not part of the total."
   },
   "zh-Hans": {
     "locale": "zh-CN",
@@ -153,6 +159,8 @@
     "nonUnique": "非独立人数",
     "youtubeSeparate": "不计入总和",
     "shortSnapshot": "已保存的观测数据",
-    "shortFailed": "暂时无法更新 · 显示已保存的观测数据"
+    "shortFailed": "暂时无法更新 · 显示已保存的观测数据",
+    "totalScopeAll": "个人频道订阅数 · 含 YouTube",
+    "policyAll": "并非独立人数：同一个人可能关注多个频道。YouTube 显示的是取整数字，不计入每周变化。公司频道不计入总数。"
   }
 }
