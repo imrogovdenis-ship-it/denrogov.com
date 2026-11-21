@@ -1001,7 +1001,7 @@ function renderCalendar() {
       `UID:english-daily-${Date.now()}@denrogov.com`, `DTSTAMP:${stamp}`,
       `DTSTART;TZID=${TZ}:${s.getFullYear()}${pad(s.getMonth() + 1)}${pad(s.getDate())}T${hh}${mm}00`,
       "DURATION:PT15M", "RRULE:FREQ=DAILY", "SUMMARY:English: повторение карточек",
-      "DESCRIPTION:Открыть тренажер: https://denrogov.com/english/", "URL:https://denrogov.com/english/",
+      `DESCRIPTION:Открыть тренажер: ${location.origin}${location.pathname}`, `URL:${location.origin}${location.pathname}`,
       "BEGIN:VALARM", "TRIGGER:PT0M", "ACTION:DISPLAY", "DESCRIPTION:English: повторение", "END:VALARM",
       "END:VEVENT", "END:VCALENDAR"].join("\r\n");
     const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "english-reminder.ics";
