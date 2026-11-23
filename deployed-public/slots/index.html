@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Встреча по Шопу — выбор времени</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0D12; --card:#141821; --card2:#1A1F2B; --line:#262C3A;
+    --text:#F2F4F8; --muted:#8C93A3; --accent:#50B1F9; --accent-d:#1E5F8F;
+    --win:#3DDC97; --warn:#F5B94A;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Onest,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 16px calc(120px + env(safe-area-inset-bottom))}
+  h1{font-size:24px;line-height:1.2;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 18px}
+  .tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:16px}
+  .tabs button{flex:1;border:0;background:transparent;color:var(--muted);font:600 14px Onest,system-ui,sans-serif;padding:10px;border-radius:9px;cursor:pointer}
+  .tabs button.on{background:var(--card2);color:var(--text)}
+  .name{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .name label{font-size:13px;color:var(--muted)}
+  .name input{background:var(--card);border:1px solid var(--line);color:var(--text);font:500 16px Onest,system-ui,sans-serif;padding:12px 14px;border-radius:10px;outline:none}
+  .name input:focus{border-color:var(--accent)}
+  .tz{font-size:12px;color:var(--muted);margin:-6px 0 14px}
+  .day{margin:18px 0 8px;font-weight:700;font-size:15px}
+  .slot{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);padding:12px 14px;border-radius:12px;margin-bottom:8px;cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
+  .slot:disabled{opacity:.4;cursor:not-allowed}
+  .slot.sel{border-color:var(--accent);background:#102233}
+  .slot .chk{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-size:14px}
+  .slot.sel .chk{background:var(--accent);border-color:var(--accent);color:#06121C}
+  .slot .t{flex:1}
+  .slot .m{font-weight:600;font-size:16px}
+  .slot .o{font-size:12px;color:var(--muted);margin-top:2px;font-family:'JetBrains Mono',monospace}
+  .slot .cnt{font:500 12px 'JetBrains Mono',monospace;color:var(--muted)}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(transparent,var(--bg) 30%);padding:24px 16px calc(16px + env(safe-area-inset-bottom))}
+  .bar .in{max-width:640px;margin:0 auto;display:flex;gap:10px;align-items:center}
+  .bar .info{font-size:13px;color:var(--muted);flex:1}
+  .btn{border:0;background:var(--accent);color:#06121C;font:700 15px Onest,system-ui,sans-serif;padding:14px 20px;border-radius:12px;cursor:pointer}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .msg{font-size:14px;padding:12px 14px;border-radius:10px;margin:0 0 14px;display:none}
+  .msg.ok{display:block;background:#0F2A20;color:var(--win)}
+  .msg.err{display:block;background:#2D1D0C;color:var(--warn)}
+  .res .row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+  .res .row.top{border-color:var(--win)}
+  .res .hd{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .res .hd b{font-size:15px}
+  .res .n{font:500 13px 'JetBrains Mono',monospace;color:var(--muted);white-space:nowrap}
+  .res .row.top .n{color:var(--win)}
+  .res .o{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px}
+  .meter{height:6px;background:var(--card2);border-radius:4px;margin:10px 0 8px;overflow:hidden}
+  .meter i{display:block;height:100%;background:var(--accent);border-radius:4px}
+  .row.top .meter i{background:var(--win)}
+  .who{font-size:13px;color:var(--muted)}
+  .badge{display:inline-block;font:600 11px Onest,system-ui,sans-serif;background:#0F2A20;color:var(--win);padding:3px 8px;border-radius:6px;margin-left:6px;vertical-align:2px}
+  .voters{font-size:13px;color:var(--muted);margin:4px 0 14px}
+  .empty{color:var(--muted);font-size:14px;padding:20px 0;text-align:center}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Встреча по Шопу 🤝</h1>
+  <p class="sub">Выберите до трех слотов, которые подходят. Длительность около часа, Zoom. Время указано по Москве, ниже по Буэнос-Айресу и по вашему часовому поясу.</p>
+
+  <div class="tabs">
+    <button id="tabVote" class="on">Голосовать</button>
+    <button id="tabRes">Результаты</button>
+  </div>
+
+  <div id="msg" class="msg"></div>
+
+  <section id="vote">
+    <div class="name">
+      <label for="nm">Ваше имя</label>
+      <input id="nm" maxlength="60" placeholder="Например, Дмитрий" autocomplete="name">
+    </div>
+    <div class="tz" id="tzNote"></div>
+    <div id="slots"></div>
+  </section>
+
+  <section id="res" class="res hidden">
+    <div class="voters" id="voters"></div>
+    <div id="results"></div>
+  </section>
+</div>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="info" id="info">Выбрано 0 из 3</div>
+    <button class="btn" id="send" disabled>Отправить</button>
+  </div>
+</div>
+
+<script>
+const POLL = 'shop-arma-2026-12';
+const SB_URL = 'https://oxsmllzxalxriiwgwpna.supabase.co';
+const SB_KEY = 'sb_publishable_9ymJv4v4D5SpAqhWhtGCEw_sR1_MeLQ';
+const MAX = 3;
+
+// Слоты в UTC. МСК = UTC+3, Буэнос-Айрес = UTC-3.
+const SLOTS = [
+  '2026-11-30T08:00Z','2026-11-30T09:00Z','2026-11-30T14:00Z',
+  '2026-12-01T14:00Z','2026-12-01T15:00Z',
+  '2026-12-02T08:00Z','2026-12-02T10:00Z','2026-12-02T12:00Z','2026-12-02T14:00Z',
+  '2026-12-03T08:00Z','2026-12-03T10:00Z','2026-12-03T14:00Z',
+  '2026-12-04T08:00Z','2026-12-04T10:00Z','2026-12-04T12:00Z'
+];
+
+const tg = window.Telegram && Telegram.WebApp && Telegram.WebApp.initData ? Telegram.WebApp : null;
+if (tg) { try { tg.ready(); tg.expand(); tg.setHeaderColor('#0B0D12'); tg.setBackgroundColor('#0B0D12'); } catch(e){} }
+
+const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const fmtT = (iso, tz) => new Date(iso).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',timeZone:tz});
+const fmtD = (iso, tz) => new Date(iso).toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',timeZone:tz});
+const endISO = iso => new Date(new Date(iso).getTime()+3600e3).toISOString();
+const msk = iso => `${fmtT(iso,'Europe/Moscow')}–${fmtT(endISO(iso),'Europe/Moscow')} МСК`;
+const other = iso => {
+  let s = `Буэнос-Айрес ${fmtT(iso,'America/Argentina/Buenos_Aires')}`;
+  if (!['Europe/Moscow','America/Argentina/Buenos_Aires','America/Buenos_Aires'].includes(localTZ)) s += ` · у вас ${fmtT(iso,localTZ)}`;
+  return s;
+};
+const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
+const label = iso => `${cap(fmtD(iso,'Europe/Moscow'))}, ${msk(iso)}`;
+
+function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null} }
+let voterId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? 'tg' + tg.initDataUnsafe.user.id : store('slots_voter');
+if (!voterId) { voterId = 'w' + Math.random().toString(36).slice(2) + Date.now().toString(36); store('slots_voter', voterId); }
+const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+const nm = document.getElementById('nm');
+nm.value = store('slots_name') || (tgUser ? [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ') : '');
+
+document.getElementById('tzNote').textContent = `Ваш часовой пояс: ${localTZ}`;
+
+let selected = new Set();
+let votes = [];
+
+function counts(){
+  const c = {}; SLOTS.forEach(s=>c[s]=[]);
+  votes.forEach(v => v.slots.forEach(s => { if (c[s]) c[s].push(v.voter_name); }));
+  return c;
+}
+
+function renderSlots(){
+  const c = counts();
+  const box = document.getElementById('slots'); box.innerHTML = '';
+  let lastDay = '';
+  SLOTS.forEach(iso => {
+    const day = cap(fmtD(iso,'Europe/Moscow'));
+    if (day !== lastDay) { const d = document.createElement('div'); d.className='day'; d.textContent = day; box.appendChild(d); lastDay = day; }
+    const b = document.createElement('button');
+    const on = selected.has(iso);
+    b.className = 'slot' + (on ? ' sel' : '');
+    b.disabled = !on && selected.size >= MAX;
+    b.innerHTML = `<span class="chk">${on?'✓':''}</span><span class="t"><div class="m">${msk(iso)}</div><div class="o">${other(iso)}</div></span><span class="cnt">${c[iso].length ? c[iso].length+' гол.' : ''}</span>`;
+    b.onclick = () => { on ? selected.delete(iso) : selected.add(iso); renderSlots(); };
+    box.appendChild(b);
+  });
+  document.getElementById('info').textContent = `Выбрано ${selected.size} из ${MAX}`;
+  document.getElementById('send').disabled = selected.size === 0;
+}
+
+function esc(s){ return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+
+function renderResults(){
+  const c = counts();
+  const ranked = SLOTS.map(s => ({s, who:c[s]})).filter(r=>r.who.length).sort((a,b)=> b.who.length - a.who.length || a.s.localeCompare(b.s));
+  const total = votes.length;
+  document.getElementById('voters').textContent = total
+    ? `Проголосовали ${total}: ${votes.map(v=>v.voter_name).join(', ')}`
+    : '';
+  const box = document.getElementById('results');
+  if (!ranked.length) { box.innerHTML = '<div class="empty">Пока никто не проголосовал</div>'; return; }
+  const max = ranked[0].who.length;
+  box.innerHTML = ranked.map(r => {
+    const top = r.who.length === max;
+    const all = total > 0 && r.who.length === total;
+    return `<div class="row${top?' top':''}">
+      <div class="hd"><b>${esc(label(r.s))}${top?'<span class="badge">'+(all?'подходит всем':'лидер')+'</span>':''}</b><span class="n">${r.who.length} из ${total}</span></div>
+      <div class="o">${esc(other(r.s))}</div>
+      <div class="meter"><i style="width:${Math.round(r.who.length/Math.max(total,1)*100)}%"></i></div>
+      <div class="who">${r.who.map(esc).join(', ')}</div>
+    </div>`;
+  }).join('');
+}
+
+function msg(text, kind){ const m = document.getElementById('msg'); m.textContent = text; m.className = 'msg ' + (kind||''); }
+
+async function load(){
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/slot_votes?poll=eq.${POLL}&select=voter_id,voter_name,slots,updated_at&order=updated_at.asc`, {headers:{apikey:SB_KEY, Authorization:'Bearer '+SB_KEY}});
+    if (!r.ok) throw new Error(r.status);
+    votes = await r.json();
+    const mine = votes.find(v => v.voter_id === voterId);
+    if (mine && selected.size === 0) { selected = new Set(mine.slots.filter(s=>SLOTS.includes(s))); if (!nm.value) nm.value = mine.voter_name; }
+    renderSlots(); renderResults();
+  } catch(e) { msg('Не получилось загрузить голоса. Обновите страницу.', 'err'); renderSlots(); }
+}
+
+document.getElementById('send').onclick = async () => {
+  const name = nm.value.trim();
+  if (!name) { msg('Укажите имя, чтобы было понятно, чей голос.', 'err'); nm.focus(); return; }
+  const btn = document.getElementById('send'); btn.disabled = true; btn.textContent = 'Отправляю…';
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/slot_votes?on_conflict=poll,voter_id`, {
+      method:'POST',
+      headers:{apikey:SB_KEY, Authorization:'Bearer '+SB_KEY, 'Content-Type':'application/json', Prefer:'resolution=merge-duplicates,return=minimal'},
+      body: JSON.stringify({poll:POLL, voter_id:voterId, voter_name:name, slots:[...selected], updated_at:new Date().toISOString()})
+    });
+    if (!r.ok) throw new Error(await r.text());
+    store('slots_name', name);
+    msg('Голос принят ✅ Выбор можно поменять в любой момент, отправив заново.', 'ok');
+    if (tg) { try { tg.HapticFeedback.notificationOccurred('success'); } catch(e){} }
+    await load(); show('res');
+  } catch(e) { msg('Не получилось отправить. Попробуйте еще раз.', 'err'); }
+  btn.textContent = 'Отправить'; btn.disabled = selected.size === 0;
+};
+
+function show(which){
+  document.getElementById('vote').classList.toggle('hidden', which!=='vote');
+  document.getElementById('res').classList.toggle('hidden', which!=='res');
+  document.getElementById('bar').classList.toggle('hidden', which!=='vote');
+  document.getElementById('tabVote').classList.toggle('on', which==='vote');
+  document.getElementById('tabRes').classList.toggle('on', which==='res');
+}
+document.getElementById('tabVote').onclick = () => { msg(''); show('vote'); };
+document.getElementById('tabRes').onclick = () => { load(); show('res'); };
+if (location.hash === '#results') show('res');
+
+load();
+setInterval(load, 20000);
+</script>
+</body>
+</html>
